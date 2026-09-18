@@ -10,6 +10,10 @@ The focus goes beyond writing automated tests. It demonstrates how different qua
 
 **API & Contract · UI · Cross-Browser · Accessibility · Visual Regression · Performance · Docker · CI/CD**
 
+### Technology
+
+**Playwright · TypeScript · Node.js · TypeBox · AJV · axe-core · Docker · GitHub Actions · GHCR · k6 · Lighthouse**
+
 ### Engineering Roadmap
 
 **Data & Cloud → AI-Assisted QA → AI QA Platforms → QE & Leadership → System Design, Security & Observability**
