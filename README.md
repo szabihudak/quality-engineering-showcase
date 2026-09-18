@@ -53,21 +53,21 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 
 | Capability | Status | Public Representation |
 | --- | --- | --- |
-| Automation architecture | ✅ Implemented | Architecture |
-| API automation | ✅ Implemented | Selected source planned |
-| Runtime contract validation | ✅ Implemented | Architecture · selected source planned |
-| UI automation | ✅ Implemented | Selected source planned |
-| Programmatic authentication | ✅ Implemented | Architecture · curated example planned |
-| Deterministic test data | ✅ Implemented | Architecture · selected example planned |
-| Network mocking | ✅ Implemented | Selected example planned |
-| Cross-browser execution | ✅ Implemented | Architecture · execution evidence planned |
-| Accessibility testing | ✅ Implemented | Architecture · execution evidence planned |
-| Visual regression | ✅ Implemented | Architecture · visual evidence planned |
-| API performance | ✅ Implemented | Architecture · performance evidence planned |
-| Browser performance | ✅ Implemented | Architecture · performance evidence planned |
-| Docker execution | ✅ Implemented | Architecture |
-| GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture |
-| GHCR image reuse | ✅ Implemented | CI/CD architecture |
+| Automation architecture | ✅ Implemented | Architecture · canonical source |
+| API automation | ✅ Implemented | Canonical source |
+| Runtime contract validation | ✅ Implemented | Canonical source |
+| UI automation | ✅ Implemented | Canonical source |
+| Programmatic authentication | ✅ Implemented | Canonical source |
+| Deterministic test data | ✅ Implemented | Canonical source |
+| Network mocking | ✅ Implemented | Canonical source |
+| Cross-browser execution | ✅ Implemented | Canonical source · architecture |
+| Accessibility testing | ✅ Implemented | Architecture · sanitized execution evidence planned |
+| Visual regression | ✅ Implemented | Architecture · sanitized visual evidence planned |
+| API performance | ✅ Implemented | Architecture · sanitized performance evidence planned |
+| Browser performance | ✅ Implemented | Architecture · sanitized performance evidence planned |
+| Docker execution | ✅ Implemented | Architecture · sanitized execution evidence planned |
+| GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture · sanitized execution evidence planned |
+| GHCR image reuse | ✅ Implemented | CI/CD architecture · sanitized execution evidence planned |
 | SQL & data foundations | ◇ Planned | Roadmap |
 | AWS & cloud foundations | ◇ Planned | Roadmap |
 | AI-assisted QA workflow | ◇ Planned | Roadmap |
