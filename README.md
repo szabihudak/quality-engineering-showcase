@@ -339,9 +339,9 @@ The current hosted performance workflow is intentionally separate from normal pu
 
 This repository is intentionally **not a public mirror of the complete framework**.
 
-Instead, selected public-safe examples are used to demonstrate representative engineering patterns.
+Selected public-safe examples are planned to demonstrate representative engineering patterns from the canonical implementation without creating a second independently maintained copy of the framework.
 
-The showcase is designed to include examples such as:
+The planned public structure is:
 
 ```text
 examples/
@@ -353,7 +353,7 @@ examples/
 └── performance/
 ```
 
-Representative material may demonstrate:
+Candidate examples include:
 
 - domain API client design;
 - TypeBox contracts;
@@ -368,9 +368,13 @@ Representative material may demonstrate:
 - visual regression patterns;
 - performance-testing patterns.
 
+> **Selected source examples are currently in preparation.**
+
+Each example will be selected from verified implementation patterns and reviewed against the portfolio publication boundary before being added here.
+
 Source publication is deliberately selective.
 
-The goal is to demonstrate **architecture, implementation quality, and engineering reasoning** without creating a second independently maintained copy of the canonical framework.
+The goal is to demonstrate **architecture, implementation quality, and engineering reasoning** without exposing the complete canonical framework or creating a parallel framework that must be maintained independently.
 
 ---
 
