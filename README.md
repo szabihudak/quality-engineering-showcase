@@ -501,7 +501,7 @@ Roadmap technologies represent planned areas of engineering development and are 
 
 ## About This Showcase
 
-This repository is a **curated public Quality Engineering engineering case study**.
+This repository is a **curated public Quality Engineering case study**.
 
 The complete implementation is maintained separately as the canonical engineering source of truth.
 
