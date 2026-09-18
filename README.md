@@ -51,22 +51,22 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 
 ## Capability Map
 
-| Capability | Status | Demonstrated Through |
+| Capability | Status | Public Representation |
 | --- | --- | --- |
-| Automation architecture | ✅ Implemented | Architecture + selected implementation |
-| API automation | ✅ Implemented | Selected source + execution evidence |
-| Runtime contract validation | ✅ Implemented | TypeBox + AJV |
-| UI automation | ✅ Implemented | Selected source + execution evidence |
-| Programmatic authentication | ✅ Implemented | Architecture + curated example |
-| Deterministic test data | ✅ Implemented | Factory / fixture pattern |
-| Network mocking | ✅ Implemented | Selected example |
-| Cross-browser execution | ✅ Implemented | Chromium / Firefox / WebKit |
-| Accessibility testing | ✅ Implemented | Architecture + execution evidence |
-| Visual regression | ✅ Implemented | Architecture + visual evidence |
-| API performance | ✅ Implemented | k6 |
-| Browser performance | ✅ Implemented | Lighthouse |
-| Docker execution | ✅ Implemented | Execution architecture |
-| GitHub Actions CI/CD | ✅ Implemented | Pipeline architecture |
+| Automation architecture | ✅ Implemented | Architecture |
+| API automation | ✅ Implemented | Selected source planned |
+| Runtime contract validation | ✅ Implemented | Architecture · selected source planned |
+| UI automation | ✅ Implemented | Selected source planned |
+| Programmatic authentication | ✅ Implemented | Architecture · curated example planned |
+| Deterministic test data | ✅ Implemented | Architecture · selected example planned |
+| Network mocking | ✅ Implemented | Selected example planned |
+| Cross-browser execution | ✅ Implemented | Architecture · execution evidence planned |
+| Accessibility testing | ✅ Implemented | Architecture · execution evidence planned |
+| Visual regression | ✅ Implemented | Architecture · visual evidence planned |
+| API performance | ✅ Implemented | Architecture · performance evidence planned |
+| Browser performance | ✅ Implemented | Architecture · performance evidence planned |
+| Docker execution | ✅ Implemented | Architecture |
+| GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture |
 | GHCR image reuse | ✅ Implemented | CI/CD architecture |
 | SQL & data foundations | ◇ Planned | Roadmap |
 | AWS & cloud foundations | ◇ Planned | Roadmap |
