@@ -1,0 +1,40 @@
+import { test, expect } from "../../src/fixtures/test-fixtures";
+import { mockTasksServerError } from "../../src/mocks/taskApiMock";
+
+test.describe("Task Dashboard tests", () => {
+  test("authenticated user sees the tasks on the dashboard", async ({
+    tasksDashboardPage,
+    createdTask,
+  }) => {
+    const { request } = createdTask;
+
+    await tasksDashboardPage.goto();
+
+    await expect(tasksDashboardPage.taskTitle(request.title)).toHaveText(
+      request.title,
+    );
+    await expect(
+      tasksDashboardPage.taskDescription(request.title, request.description),
+    ).toHaveText(request.description);
+    await expect(
+      tasksDashboardPage.taskPriority(request.title, request.priority),
+    ).toHaveText(request.priority);
+  });
+
+  test("shows error state when tasks API fails", async ({
+    authenticatedPage,
+    tasksDashboardPage,
+  }) => {
+    await mockTasksServerError(authenticatedPage);
+
+    await tasksDashboardPage.goto();
+
+    await expect(tasksDashboardPage.emptyColumn("backlog")).toHaveText(
+      "No tasks",
+    );
+    await expect(tasksDashboardPage.emptyColumn("in_progress")).toHaveText(
+      "No tasks",
+    );
+    await expect(tasksDashboardPage.emptyColumn("done")).toHaveText("No tasks");
+  });
+});
