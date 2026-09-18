@@ -339,42 +339,46 @@ The current hosted performance workflow is intentionally separate from normal pu
 
 This repository is intentionally **not a public mirror of the complete framework**.
 
-Selected public-safe examples are planned to demonstrate representative engineering patterns from the canonical implementation without creating a second independently maintained copy of the framework.
+The core API and UI automation architecture is published here as **public-safe canonical source**, copied directly from the verified private implementation without showcase-specific rewrites.
 
-The planned public structure is:
+The published source includes:
 
 ```text
-examples/
-├── api-contract/
-├── ui/
+config/
+└── environments/
+
+src/
+├── accessibility/   # shared canonical dependencies used by the published fixture layer
+├── api/
+├── components/
+├── data/
 ├── fixtures/
-├── accessibility/
-├── visual/
-└── performance/
+├── mocks/
+├── pages/
+└── utils/
+
+tests/
+├── api/
+├── smoke/
+└── ui/
 ```
 
-Candidate examples include:
+This source demonstrates:
 
 - domain API client design;
-- TypeBox contracts;
-- AJV runtime validation;
-- Page Object / Component Object boundaries;
-- fixture composition;
+- TypeBox contracts and AJV runtime validation;
+- Page Object and Component Object boundaries;
+- fixture composition and programmatic authentication;
 - deterministic test-data factories;
-- public-safe authentication architecture;
 - network mocking;
-- representative API and UI tests;
-- accessibility patterns;
-- visual regression patterns;
-- performance-testing patterns.
+- API, smoke, and cross-browser UI test design;
+- environment-aware configuration.
 
-> **Selected source examples are currently in preparation.**
+Advanced Quality Engineering capabilities — including the full accessibility suite, visual regression, performance testing with k6 and Lighthouse, Docker, GHCR, and CI/CD orchestration — are intentionally represented through **architecture and real sanitized execution evidence** rather than complete source publication.
 
-Each example will be selected from verified implementation patterns and reviewed against the portfolio publication boundary before being added here.
+Source publication remains deliberately selective.
 
-Source publication is deliberately selective.
-
-The goal is to demonstrate **architecture, implementation quality, and engineering reasoning** without exposing the complete canonical framework or creating a parallel framework that must be maintained independently.
+The goal is to make the **core API and UI architecture fully inspectable** while demonstrating broader Quality Engineering capability without publishing the complete canonical framework or creating a parallel framework that must be maintained independently.
 
 ---
 
