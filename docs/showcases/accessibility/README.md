@@ -86,7 +86,7 @@ In this execution, the framework behaved as designed and surfaced a reproducible
 
 A sanitized copy of the real Playwright HTML report is included with this evidence:
 
-[`playwright-report/index.html`](./playwright-report/index.html)
+[`playwright-report/index.html`](https://szabihudak.github.io/quality-engineering-showcase/showcases/accessibility/playwright-report/)
 
 The report was generated from the real local execution and sanitized before publication to remove environment-specific or generated runtime information that is not relevant to the engineering evidence.
 
