@@ -122,17 +122,19 @@ TBT               ≤ 300 ms
 LCP               ≤ 6000 ms
 ```
 
-The aggregated execution satisfies the configured performance policy.
+The canonical Lighthouse CI execution completed successfully without assertion failure.
 
-The individual run variance is intentionally retained as evidence rather than selecting only the strongest measurement. Browser-performance testing is inherently sensitive to runtime conditions, which is why the canonical framework executes multiple measurements and evaluates the aggregated signal.
+All three measurements are retained as evidence rather than selecting only the strongest result. Browser-performance measurements are inherently sensitive to runtime conditions, so the canonical Lighthouse CI configuration executes three independent runs to expose measurement variance rather than relying on a single sample.
+
+The median values shown above are included as a portfolio summary of the three observed measurements; they are not presented as the Lighthouse CI assertion algorithm.
 
 ### Public Lighthouse Reports
 
 The three real Lighthouse reports are published individually:
 
-- [Open public Lighthouse run 1](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-public/run-1.html)
-- [Open public Lighthouse run 2](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-public/run-2.html)
-- [Open public Lighthouse run 3](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-public/run-3.html)
+- [Open public Lighthouse run 1](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-public/public-home.run-1.report.html)
+- [Open public Lighthouse run 2](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-public/public-home.run-2.report.html)
+- [Open public Lighthouse run 3](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-public/public-home.run-3.report.html)
 
 The report sources are retained under:
 
@@ -182,9 +184,9 @@ The Lighthouse artifacts confirm that the measured target is the authenticated `
 
 The three real authenticated Lighthouse reports are published individually:
 
-- [Open authenticated Lighthouse run 1](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-authenticated/run-1.html)
-- [Open authenticated Lighthouse run 2](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-authenticated/run-2.html)
-- [Open authenticated Lighthouse run 3](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-authenticated/run-3.html)
+- [Open authenticated Lighthouse run 1](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-1.report.html)
+- [Open authenticated Lighthouse run 2](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-2.report.html)
+- [Open authenticated Lighthouse run 3](https://szabihudak.github.io/quality-engineering-showcase/showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-3.report.html)
 
 The report sources are retained under:
 
@@ -196,24 +198,28 @@ The framework treats performance validation as an executable quality policy rath
 
 ```text
 API performance
-    └── latency + failure thresholds
-             │
-             ├──────────────┐
-             │              │
-Public Lighthouse      Authenticated Lighthouse
-    │                       │
-3 measurements         3 measurements
-    │                       │
-metric aggregation     metric aggregation
-    │                       │
-shared policy          shared policy
-             │              │
-             └──────┬───────┘
-                    ↓
-             Performance gate
+    │
+k6 workload
+    │
+latency + failure thresholds
+    │
+    ├─────────────────────────────┐
+    │                             │
+Public Lighthouse          Authenticated Lighthouse
+    │                             │
+3 LHCI runs                3 independent audits
+    │                             │
+LHCI assertions            median metric aggregation
+    │                             │
+    └──────────────┬──────────────┘
+                   │
+          shared threshold policy
+                   │
+                   ↓
+          performance evidence
 ```
 
-This provides independent signals for service-level behavior, public browser rendering, and authenticated application rendering.
+This provides independent signals for service-level behavior, public browser rendering, and authenticated application rendering while preserving the different execution semantics of Lighthouse CI and the authenticated Lighthouse runner.
 
 ## Evidence Policy
 
@@ -227,7 +233,8 @@ The evidence demonstrates:
 - explicit latency and failure-rate quality gates;
 - deterministic performance test-state setup and cleanup;
 - multi-run browser-performance measurement;
-- metric-level aggregation;
+- Lighthouse CI assertion-based validation;
+- median metric aggregation for authenticated Lighthouse auditing;
 - shared Lighthouse policy enforcement;
 - public and authenticated browser-performance coverage;
 - and real interactive execution reports.
