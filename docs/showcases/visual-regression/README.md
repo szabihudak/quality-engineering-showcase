@@ -10,14 +10,14 @@ The execution was performed in the canonical Linux-based Playwright environment 
 | --- | --- |
 | Test layer | Visual regression |
 | Execution | Playwright screenshot comparison |
-| Rendering environment | Linux / Playwright container |
-| Coverage | Authenticated dashboard and task-card component |
+| Rendering environment | Linux · Playwright container |
+| Coverage | Authenticated dashboard · task-card component |
 | Tests executed | 2 |
 | Result | Passed |
 | Baseline ownership | Version-controlled canonical snapshots |
 | Comparison policy | Animations disabled · caret hidden |
 
-The successful execution confirms that the current rendered UI matches the approved visual baselines for the covered states.
+The successful execution confirms that the current rendered UI matches the approved visual baselines for the covered application states.
 
 ## Canonical Baselines
 
@@ -44,8 +44,6 @@ The component-level comparison demonstrates that visual checks can be scoped bel
 The visual scenarios do not depend on manually prepared application state.
 
 Before each comparison, the framework creates controlled task data through the API layer, navigates to the authenticated dashboard, and verifies that the expected UI state is visible before performing the screenshot assertion.
-
-Conceptually:
 
 ```text
 Deterministic test data
@@ -82,19 +80,15 @@ The objective is not to eliminate legitimate changes, but to remove transient br
 
 The source-of-truth visual baselines are version controlled with the canonical visual test implementation.
 
-The showcase copies shown here are evidence only.
+The copies published in this showcase are evidence only.
 
-Baseline updates are not performed in the public showcase repository.
+Baseline updates are not performed in the public showcase repository. A baseline should change only when a visual change has been intentionally reviewed and approved in the canonical framework.
 
-A baseline should change only when a visual change has been intentionally reviewed and approved in the canonical framework.
-
-## Successful Gate Behavior
+## Quality-Gate Behavior
 
 This execution passed because the current screenshots matched the approved baselines.
 
-No `actual`, `expected`, or `diff` mismatch artifacts were generated because Playwright only produces those diagnostic artifacts when a screenshot comparison fails.
-
-A successful execution therefore demonstrates the other half of visual regression testing:
+No `actual`, `expected`, or `diff` mismatch artifacts were generated because Playwright produces those diagnostics only when a screenshot comparison fails.
 
 ```text
 Approved baseline
@@ -108,7 +102,7 @@ No unexpected difference
 PASS
 ```
 
-A future genuine mismatch would cause the same test layer to fail and produce comparison diagnostics rather than silently accepting the change.
+A genuine future mismatch would cause the same test layer to fail and produce comparison diagnostics rather than silently accepting the change.
 
 ## Execution Report
 
@@ -116,15 +110,17 @@ A sanitized copy of the real Playwright HTML report is published with this showc
 
 [Open the rendered Playwright report](https://szabihudak.github.io/quality-engineering-showcase/showcases/visual-regression/playwright-report/)
 
-The sanitized report source is retained under:
+The sanitized report source is retained in this repository under:
 
 [`playwright-report/`](./playwright-report/)
 
-The report originates from the real canonical visual-regression execution. Environment-specific or generated runtime information that is not relevant to the engineering evidence should be removed before publication.
+The report was generated from the real canonical visual-regression execution and sanitized before publication to remove generated runtime information that is not relevant to the engineering evidence.
+
+The canonical framework and the original execution artifacts were not modified during sanitization.
 
 ## Evidence Policy
 
-This showcase publishes only public-safe evidence derived from the canonical implementation.
+This showcase publishes only public-safe evidence derived from real canonical execution.
 
 It does not publish or maintain an independent visual regression framework.
 
