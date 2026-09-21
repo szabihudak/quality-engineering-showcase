@@ -829,6 +829,45 @@ p {
   margin-top: 25px;
 }
 
+/* Runnable Framework */
+
+.runnable-framework {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 34px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(115, 174, 253, 0.055),
+      transparent 62%
+    ),
+    var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-large);
+}
+
+.runnable-framework-content {
+  max-width: 760px;
+}
+
+.runnable-framework-content h3 {
+  margin-bottom: 12px;
+}
+
+.runnable-framework-content p {
+  margin-bottom: 0;
+}
+
+.runnable-framework .technology-line {
+  margin-top: 28px;
+}
+
+.runnable-framework-actions {
+  flex-shrink: 0;
+}
+
 /* Principles */
 
 .principles-grid {
@@ -1196,6 +1235,16 @@ p {
     min-height: auto;
   }
 
+  .runnable-framework {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .runnable-framework-actions {
+    width: 100%;
+  }
+
   .evidence-flow {
     grid-template-columns: 1fr;
     overflow: visible;
@@ -1279,6 +1328,14 @@ p {
 
   .architecture-map {
     padding: 18px;
+  }
+
+  .runnable-framework {
+    padding: 22px;
+  }
+
+  .runnable-framework-actions .button {
+    width: 100%;
   }
 
   .footer-links {
