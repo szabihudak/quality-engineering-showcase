@@ -53,10 +53,10 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 
 | Capability | Status | Public Representation |
 | --- | --- | --- |
-| Automation architecture | ✅ Implemented | Architecture · canonical source |
-| API automation | ✅ Implemented | Canonical source |
-| Runtime contract validation | ✅ Implemented | Canonical source |
-| UI automation | ✅ Implemented | Canonical source |
+| API automation | ✅ Implemented | Canonical source · [execution evidence](docs/showcases/api/README.md) |
+| Runtime contract validation | ✅ Implemented | Canonical source · [execution evidence](docs/showcases/api/README.md) |
+| UI automation | ✅ Implemented | Canonical source · [execution evidence](docs/showcases/ui/README.md) |
+| Cross-browser execution | ✅ Implemented | Canonical source · architecture · [execution evidence](docs/showcases/ui/README.md) |
 | Programmatic authentication | ✅ Implemented | Canonical source |
 | Deterministic test data | ✅ Implemented | Canonical source |
 | Network mocking | ✅ Implemented | Canonical source |
