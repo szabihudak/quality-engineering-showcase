@@ -225,7 +225,7 @@ This demonstrates that the API suite is not dependent on a developer-machine-onl
 
 The real Playwright HTML report from the Docker-based API execution is published with this showcase:
 
-[Open the API Playwright report](./playwright-report/api-execution.report.html)
+[Open the rendered API Playwright report](https://szabihudak.github.io/quality-engineering-showcase/showcases/api/playwright-report/api-execution.report.html)
 
 The report is retained in its standard Playwright report structure:
 
