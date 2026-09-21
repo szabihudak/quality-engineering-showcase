@@ -61,10 +61,10 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 | Deterministic test data | ✅ Implemented | Canonical source |
 | Network mocking | ✅ Implemented | Canonical source |
 | Cross-browser execution | ✅ Implemented | Canonical source · architecture |
-| Accessibility testing | ✅ Implemented | Architecture · sanitized execution evidence planned |
-| Visual regression | ✅ Implemented | Architecture · sanitized visual evidence planned |
-| API performance | ✅ Implemented | Architecture · sanitized performance evidence planned |
-| Browser performance | ✅ Implemented | Architecture · sanitized performance evidence planned |
+| Accessibility testing | ✅ Implemented | Architecture · [execution evidence](docs/showcases/accessibility/README.md) |
+| Visual regression | ✅ Implemented | Architecture · [execution evidence](docs/showcases/visual-regression/README.md) |
+| API performance | ✅ Implemented | Architecture · [performance evidence](docs/showcases/performance/README.md) |
+| Browser performance | ✅ Implemented | Architecture · [performance evidence](docs/showcases/performance/README.md) |
 | Docker execution | ✅ Implemented | Architecture · sanitized execution evidence planned |
 | GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture · sanitized execution evidence planned |
 | GHCR image reuse | ✅ Implemented | CI/CD architecture · sanitized execution evidence planned |
