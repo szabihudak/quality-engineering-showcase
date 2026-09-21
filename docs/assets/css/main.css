@@ -215,12 +215,22 @@ p {
   max-width: var(--content-width);
 }
 
+/* Professional identity */
+
 .professional-identity {
   margin-bottom: 18px;
 }
 
+.identity-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin-bottom: 6px;
+}
+
 .identity-name {
-  margin: 0 0 6px;
+  margin: 0;
   color: var(--text);
   font-size: 0.95rem;
   font-weight: 650;
@@ -229,6 +239,26 @@ p {
 
 .professional-identity .eyebrow {
   margin-bottom: 0;
+}
+
+.professional-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.professional-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.professional-links a:hover,
+.professional-links a:focus-visible {
+  color: var(--accent);
 }
 
 .eyebrow {
@@ -356,29 +386,6 @@ p {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-}
-
-.professional-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-top: 18px;
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-.professional-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-.professional-links a:hover {
-  color: var(--accent);
-}
-
-.professional-links a:focus-visible {
-  color: var(--accent);
 }
 
 .button {
@@ -1093,6 +1100,10 @@ p {
     padding-bottom: 80px;
   }
 
+  .identity-header {
+    align-items: flex-start;
+  }
+
   h1 {
     font-size: clamp(2.8rem, 15vw, 4.2rem);
   }
@@ -1161,6 +1172,15 @@ p {
 /* Small mobile */
 
 @media (max-width: 480px) {
+  .identity-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .professional-links {
+    gap: 14px;
+  }
+
   .hero-actions,
   .final-actions {
     flex-direction: column;
@@ -1677,6 +1697,7 @@ code {
     margin-left: 8px;
   }
 }
+
 /* Accessibility evidence */
 
 .accessibility-evidence-card {
