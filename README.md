@@ -18,7 +18,7 @@ The focus goes beyond writing automated tests. It demonstrates how different qua
 
 **Data & Cloud → AI-Assisted QA → AI QA Platforms → QE & Leadership → System Design, Security & Observability**
 
-**Full Framework Demo — in preparation** · [Architecture](#architecture-at-a-glance) · [Roadmap](#framework-roadmap)
+**[Explore the portfolio site →](https://szabihudak.github.io/quality-engineering-showcase/)** · [Architecture](#architecture-at-a-glance) · [Evidence](#execution-evidence) · [Roadmap](#framework-roadmap)
 
 ---
 
@@ -64,9 +64,9 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 | Visual regression | ✅ Implemented | Architecture · [execution evidence](docs/showcases/visual-regression/README.md) |
 | API performance | ✅ Implemented | Architecture · [performance evidence](docs/showcases/performance/README.md) |
 | Browser performance | ✅ Implemented | Architecture · [performance evidence](docs/showcases/performance/README.md) |
-| Docker execution | ✅ Implemented | Architecture · sanitized execution evidence planned |
-| GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture · sanitized execution evidence planned |
-| GHCR image reuse | ✅ Implemented | CI/CD architecture · sanitized execution evidence planned |
+| Docker execution | ✅ Implemented | Architecture · dedicated public execution evidence deferred |
+| GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture · dedicated public execution evidence deferred |
+| GHCR image reuse | ✅ Implemented | CI/CD architecture · dedicated public execution evidence deferred |
 | SQL & data foundations | ◇ Planned | Roadmap |
 | AWS & cloud foundations | ◇ Planned | Roadmap |
 | AI-assisted QA workflow | ◇ Planned | Roadmap |
@@ -75,7 +75,7 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 | System design & security | ◇ Planned | Roadmap |
 | Observability foundations | ◇ Planned | Roadmap |
 
-> **Implementation status is evidence-based.** A capability is marked as implemented only when it exists in the canonical framework and can be supported by real implementation or execution evidence. Roadmap capabilities are explicitly presented as planned work.
+> **Implementation status is evidence-based.** A capability is marked as implemented only when it exists in the canonical framework and can be supported by verified implementation or execution evidence. Dedicated public execution-evidence publication is tracked separately and may intentionally be deferred. Roadmap capabilities are explicitly presented as planned work.
 
 ---
 
@@ -146,26 +146,91 @@ Browser Performance
 
 ---
 
-## Full Framework Demo
+## Execution Evidence
 
-A public-safe static demo will provide **real execution evidence from the canonical framework**.
+The public showcase includes **reviewed evidence from real executions of the canonical framework**.
 
-It will bring together representative evidence for:
+Published evidence currently covers:
 
 - API and runtime contract validation;
 - Chromium, Firefox, and WebKit UI execution;
 - automated accessibility analysis;
-- visual regression;
+- deterministic visual regression;
 - k6 API performance;
-- Lighthouse browser performance;
-- CI/CD execution;
-- reports and failure diagnostics.
+- public Lighthouse CI execution;
+- authenticated Playwright + Lighthouse execution;
+- reports, screenshots, visual baselines, and failure diagnostics.
 
-The demo is designed as an engineering case study rather than a raw CI log viewer.
+### API & Contract
 
-It will use reviewed and sanitized evidence from real executions. Results, metrics, screenshots, and reports will not be fabricated for presentation purposes.
+**28 / 28 tests passed**
 
-> **Full Framework Demo — in preparation**
+The published API evidence demonstrates authentication, runtime contract validation, validation behavior, negative paths, and deterministic test data.
+
+[Inspect API execution evidence →](docs/showcases/api/README.md)
+
+### UI & Cross-Browser
+
+**18 / 18 tests passed**
+
+The same browser scenarios execute across Chromium, Firefox, and WebKit, with six passing tests per browser engine.
+
+[Inspect UI execution evidence →](docs/showcases/ui/README.md)
+
+### Accessibility
+
+The accessibility quality gate detected **two real product accessibility issues** rather than converting the run into an artificial green result.
+
+The selected evidence includes serious `color-contrast` violations with an observed contrast ratio of **3.81:1** against the required **4.5:1**.
+
+[Inspect accessibility evidence →](docs/showcases/accessibility/README.md)
+
+### Visual Regression
+
+**2 / 2 visual tests passed** against approved Linux baselines.
+
+The published evidence demonstrates deterministic application state, controlled rendering, full-page and component-level screenshot comparison, and explicit baseline ownership.
+
+[Inspect visual regression evidence →](docs/showcases/visual-regression/README.md)
+
+### Performance
+
+Performance responsibility is separated into API workload and browser-observed measurement.
+
+Published evidence includes:
+
+```text
+k6 API workload
+→ 2 VUs / 30 seconds
+→ 52 iterations
+→ 56 / 56 checks
+→ 0% failures
+→ p95 257.33 ms
+
+Public Lighthouse CI
+→ 3 runs
+→ canonical LHCI assertions
+→ execution completed without assertion failure
+
+Authenticated Lighthouse
+→ Playwright-established authenticated state
+→ 3 independent audits
+→ median aggregation for portfolio reporting
+```
+
+Standalone Lighthouse CI assertions and portfolio median summaries are intentionally treated as different concepts. The median summaries do not represent Lighthouse CI's assertion algorithm.
+
+[Inspect performance evidence →](docs/showcases/performance/README.md)
+
+### Failure Diagnostics
+
+A selected accessibility failure is preserved as a diagnostic case study.
+
+The evidence demonstrates that a failed quality gate is not automatically a framework regression. Reports and artifacts are used to distinguish product defects from framework, environment, infrastructure, external-platform, and known-product-issue domains.
+
+[Inspect diagnostic evidence →](docs/showcases/diagnostics/README.md)
+
+> Docker, GitHub Actions, and GHCR are implemented parts of the canonical engineering system. Their architecture is documented publicly; a dedicated sanitized public CI/CD / Docker / GHCR execution-evidence package is intentionally deferred.
 
 ---
 
@@ -330,6 +395,8 @@ Performance Workflow
 
 The current hosted performance workflow is intentionally separate from normal push and pull-request execution because the target application is shared infrastructure rather than an isolated load-test environment.
 
+The CI/CD, Docker, and GHCR implementation is documented publicly. Dedicated sanitized public execution evidence for this infrastructure layer is intentionally deferred.
+
 [Explore the CI/CD architecture →](docs/CI_CD.md)
 
 ---
@@ -373,7 +440,23 @@ This source demonstrates:
 - API, smoke, and cross-browser UI test design;
 - environment-aware configuration.
 
-Advanced Quality Engineering capabilities — including the full accessibility suite, visual regression, performance testing with k6 and Lighthouse, Docker, GHCR, and CI/CD orchestration — are intentionally represented through **architecture and real sanitized execution evidence** rather than complete source publication.
+Public representation intentionally differs by capability:
+
+```text
+API / UI / Cross-Browser
+→ selected public-safe canonical source
+→ architecture
+→ real sanitized execution evidence
+
+Accessibility / Visual Regression / Performance
+→ architecture
+→ real sanitized execution evidence
+
+Docker / GitHub Actions / GHCR
+→ implemented canonical architecture
+→ public architecture documentation
+→ dedicated sanitized execution-evidence publication deferred
+```
 
 Source publication remains deliberately selective.
 
@@ -523,6 +606,8 @@ Engineering Decisions
         +
 Real Execution Evidence
         +
+Portfolio Presentation
+        +
 Engineering Roadmap
 ```
 
@@ -535,3 +620,25 @@ Future capabilities remain explicitly identified as roadmap work until they are 
 The objective is not to expose the largest possible amount of source code.
 
 It is to make the **engineering system, implementation quality, design decisions, evidence, and evolution of the Quality Engineering approach** easy to evaluate.
+
+---
+
+## Portfolio Site
+
+The GitHub Pages presentation layer provides the fast visual path through the same engineering system:
+
+**[Open the Quality Engineering Showcase →](https://szabihudak.github.io/quality-engineering-showcase/)**
+
+It is designed for progressive depth:
+
+```text
+Portfolio overview
+        ↓
+Capability pages
+        ↓
+Architecture / CI/CD / Decisions
+        ↓
+Real execution evidence
+        ↓
+Selected canonical source
+```
