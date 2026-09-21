@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CI/CD · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="CI/CD and execution architecture demonstrating build-once container reuse, GHCR distribution, responsibility-based jobs and diagnostic evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../#capabilities">Capabilities</a>
+          <a href="../architecture/">Architecture</a>
+          <a href="./">CI/CD</a>
+          <a href="../decisions/">Decisions</a>
+          <a href="../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../">Home</a>
+              <span aria-hidden="true">/</span>
+              <span>CI/CD</span>
+            </nav>
+
+            <p class="eyebrow">Execution architecture</p>
+
+            <h1 class="capability-title">
+              CI/CD &
+              <span class="text-accent">Execution</span>
+            </h1>
+
+            <p class="capability-lead">
+              Build the execution environment once, associate it with a source
+              revision, and reuse it across explicitly owned quality
+              responsibilities.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/CI_CD.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read full CI/CD architecture ↗
+              </a>
+
+              <a class="button button-secondary" href="../architecture/">
+                View system architecture
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>CI/CD model</span>
+              <span class="status status-success">Implemented</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>Build 1×</strong>
+              <span>reuse across responsibilities</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Validation</dt>
+                <dd>Quality gate</dd>
+              </div>
+
+              <div>
+                <dt>Image</dt>
+                <dd>Docker</dd>
+              </div>
+
+              <div>
+                <dt>Registry</dt>
+                <dd>GHCR</dd>
+              </div>
+
+              <div>
+                <dt>Identity</dt>
+                <dd>Commit SHA</dd>
+              </div>
+
+              <div>
+                <dt>UI</dt>
+                <dd>3 engines</dd>
+              </div>
+
+              <div>
+                <dt>Evidence</dt>
+                <dd>Artifacts</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/CI_CD.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Inspect CI/CD documentation ↗
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Primary pipeline</p>
+              <h2>Build once. Run by responsibility.</h2>
+            </div>
+
+            <p>
+              The reusable container image defines the environment. Downstream
+              jobs define which quality responsibility executes.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Quality</strong>
+              <p>Formatting and type checking.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Build image</strong>
+              <p>Create reusable runtime.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Publish</strong>
+              <p>Tag with commit identity.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>GHCR</strong>
+              <p>Distribute execution image.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Execute</strong>
+              <p>Run owned quality jobs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Quality gate</p>
+              <h2>Validate the codebase before test execution.</h2>
+            </div>
+
+            <p>
+              Static quality checks act as prerequisites so known source-quality
+              problems do not unnecessarily propagate into downstream
+              execution.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Formatting</h3>
+              <p>
+                Code-format validation provides a fast deterministic source
+                quality signal.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Type checking</h3>
+              <p>
+                TypeScript validation catches compile-time structural problems
+                before runtime execution.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Container build</h3>
+              <p>
+                Only validated source proceeds into the reusable execution
+                image.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Immutable execution identity</p>
+              <h2>Source revision and runtime stay traceable.</h2>
+            </div>
+
+            <p>
+              Commit-specific image identity creates a direct relationship
+              between source, environment and downstream execution.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Commit SHA</span>
+              <span aria-hidden="true">↔</span>
+              <span>Container image</span>
+              <span aria-hidden="true">↔</span>
+              <span>Execution jobs</span>
+              <span aria-hidden="true">↔</span>
+              <span>Evidence</span>
+            </div>
+
+            <p>
+              Downstream jobs reuse the same image rather than independently
+              reconstructing unrelated environments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Execution ownership</p>
+              <h2>Jobs represent quality responsibilities.</h2>
+            </div>
+
+            <p>
+              The pipeline avoids a universal matrix. Each job executes only
+              where its quality concern requires it.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">API</span>
+              <h3>Single browser-independent execution</h3>
+              <p>Service-level behavior does not need browser multiplication.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">UI</span>
+              <h3>Browser matrix</h3>
+              <p>Chromium, Firefox and WebKit own cross-browser behavior.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Accessibility</span>
+              <h3>Dedicated execution</h3>
+              <p>Accessibility remains separate from the normal UI matrix.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Visual</span>
+              <h3>Canonical environment</h3>
+              <p>Screenshot comparison runs in the controlled rendering runtime.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Distribution responsibilities</p>
+              <h2>Environment and evidence use different channels.</h2>
+            </div>
+
+            <p>
+              Reusable execution infrastructure and execution evidence have
+              different lifecycle responsibilities.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">GHCR</span>
+
+              <div class="vertical-flow">
+                <div>Validated source</div>
+                <span>↓</span>
+                <div>Docker image</div>
+                <span>↓</span>
+                <div>Commit-specific identity</div>
+                <span>↓</span>
+                <div class="flow-success">Reusable execution environment</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">GitHub Actions artifacts</span>
+
+              <div class="vertical-flow">
+                <div>Test execution</div>
+                <span>↓</span>
+                <div>Reports</div>
+                <span>↓</span>
+                <div>Diagnostics</div>
+                <span>↓</span>
+                <div class="flow-success">Execution evidence</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Performance workflow</p>
+              <h2>Separate workflow ownership where runtime needs differ.</h2>
+            </div>
+
+            <p>
+              Performance execution is intentionally separated from the normal
+              functional Playwright pipeline because its tooling and
+              environmental constraints differ.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">k6</span>
+              <h3>API workload</h3>
+              <p>
+                Service performance uses k6 rather than forcing workload
+                measurement through Playwright.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Lighthouse CI</span>
+              <h3>Public browser</h3>
+              <p>
+                Directly accessible browser pages use standalone Lighthouse
+                measurement.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Playwright + Lighthouse</span>
+              <h3>Authenticated browser</h3>
+              <p>
+                Playwright establishes deterministic authenticated state before
+                measurement.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Repeated measurement</span>
+              <h3>Median policy</h3>
+              <p>
+                Multiple runs reduce dependence on one unusually fast or slow
+                browser sample.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Failure interpretation</p>
+              <h2>A red job is not a root cause.</h2>
+            </div>
+
+            <p>
+              Pipeline state is only a signal. Engineering diagnosis determines
+              whether a failure belongs to the product, framework, environment,
+              infrastructure or platform.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Job fails</strong>
+              <p>CI exposes a red signal.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Identify owner</strong>
+              <p>Determine failed responsibility.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Inspect evidence</strong>
+              <p>Use reports and diagnostics.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Classify</strong>
+              <p>Assign root-cause domain.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Respond</strong>
+              <p>Fix the owning system.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">CI/CD principles</p>
+              <h2>Reproducibility with explicit trust boundaries.</h2>
+            </div>
+
+            <p>
+              CI architecture balances environment reuse, execution ownership,
+              diagnostics and security constraints.
+            </p>
+          </div>
+
+          <div class="principles-grid">
+            <article class="principle">
+              <span class="principle-number">01</span>
+              <h3>Build once</h3>
+              <p>Create one runtime image for a validated source revision.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">02</span>
+              <h3>Run by responsibility</h3>
+              <p>Separate jobs according to quality ownership.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">03</span>
+              <h3>Reuse immutable input</h3>
+              <p>Downstream execution uses the same commit-specific image.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">04</span>
+              <h3>Separate evidence</h3>
+              <p>Reports are artifacts; container images are infrastructure.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">05</span>
+              <h3>Respect trust boundaries</h3>
+              <p>Privileged operations depend on execution context.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">06</span>
+              <h3>Diagnose in context</h3>
+              <p>Job color alone does not explain engineering root cause.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">CI/CD documentation</p>
+            <h2>Inspect the complete execution model.</h2>
+
+            <p>
+              The detailed document covers GHCR, image identity, job ownership,
+              performance execution, artifacts and trust boundaries.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/CI_CD.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read CI/CD architecture ↗
+            </a>
+
+            <a class="button button-secondary" href="../decisions/">
+              Continue to decisions
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>CI/CD & Execution Architecture.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../architecture/">Architecture</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

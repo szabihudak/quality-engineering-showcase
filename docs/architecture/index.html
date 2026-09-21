@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Architecture · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Quality Engineering architecture covering API contracts, browser automation, deterministic fixtures, accessibility, visual regression, performance, Docker and responsibility-based execution."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../#capabilities">Capabilities</a>
+          <a href="./">Architecture</a>
+          <a href="../ci-cd/">CI/CD</a>
+          <a href="../decisions/">Decisions</a>
+          <a href="../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../">Home</a>
+              <span aria-hidden="true">/</span>
+              <span>Architecture</span>
+            </nav>
+
+            <p class="eyebrow">System architecture</p>
+
+            <h1 class="capability-title">
+              Quality Engineering
+              <span class="text-accent">Architecture</span>
+            </h1>
+
+            <p class="capability-lead">
+              A layered engineering system built around explicit responsibility
+              boundaries, deterministic state, runtime validation, reproducible
+              execution and evidence-producing quality gates.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ARCHITECTURE.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read full architecture ↗
+              </a>
+
+              <a class="button button-secondary" href="../#capabilities">
+                Explore capabilities
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Architecture model</span>
+              <span class="status status-success">Implemented</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>6</strong>
+              <span>primary quality responsibilities</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>API</dt>
+                <dd>Contracts</dd>
+              </div>
+
+              <div>
+                <dt>UI</dt>
+                <dd>Cross-browser</dd>
+              </div>
+
+              <div>
+                <dt>Accessibility</dt>
+                <dd>axe-core</dd>
+              </div>
+
+              <div>
+                <dt>Visual</dt>
+                <dd>Baselines</dd>
+              </div>
+
+              <div>
+                <dt>Performance</dt>
+                <dd>k6 + LH</dd>
+              </div>
+
+              <div>
+                <dt>Runtime</dt>
+                <dd>Docker</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ARCHITECTURE.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Inspect architecture documentation ↗
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Architectural principle</p>
+              <h2>Automation is a system, not a collection of scripts.</h2>
+            </div>
+
+            <p>
+              Tests express behavior. Shared framework layers own reusable data,
+              authentication, API interaction, browser abstractions, validation,
+              lifecycle and execution responsibilities.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Behavior</h3>
+              <p>
+                Test scenarios communicate what product behavior or quality
+                characteristic is being evaluated.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Reusable infrastructure</h3>
+              <p>
+                Fixtures, factories, clients and page abstractions own shared
+                technical concerns.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Execution ownership</h3>
+              <p>
+                Each quality concern runs only where its responsibility requires
+                execution.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">System layers</p>
+              <h2>Separate scenario intent from infrastructure.</h2>
+            </div>
+
+            <p>
+              Architectural layers are deliberately distinct so test code does
+              not absorb responsibilities that belong to reusable framework
+              infrastructure.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Tests</strong>
+              <p>Behavior and quality scenarios.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Domain abstractions</strong>
+              <p>Pages, components and clients.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Fixtures</strong>
+              <p>Lifecycle and capability composition.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Runtime</strong>
+              <p>Browser, HTTP and validation.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Application</strong>
+              <p>System under test.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">API architecture</p>
+              <h2>Validate external boundaries at runtime.</h2>
+            </div>
+
+            <p>
+              TypeScript protects framework code at compile time. TypeBox and
+              AJV verify that external API responses actually satisfy the
+              expected contract at runtime.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Domain client</span>
+              <span aria-hidden="true">→</span>
+              <span>HTTP response</span>
+              <span aria-hidden="true">→</span>
+              <span>Status validation</span>
+              <span aria-hidden="true">→</span>
+              <span>AJV contract</span>
+              <span aria-hidden="true">→</span>
+              <span>Business assertion</span>
+            </div>
+
+            <p>
+              Runtime validation creates an explicit trust boundary between the
+              framework and the external provider.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Browser architecture</p>
+              <h2>Reusable behavior without hiding scenario intent.</h2>
+            </div>
+
+            <p>
+              Browser-facing responsibilities are separated into reusable page
+              and component abstractions while tests retain ownership of
+              scenario-specific expectations.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Page Objects</span>
+              <h3>Major application surfaces</h3>
+              <p>
+                Encapsulate meaningful browser interactions instead of
+                scattering selectors through test code.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Component Objects</span>
+              <h3>Reusable interface behavior</h3>
+              <p>
+                Represent independent UI components when they own meaningful
+                behavior of their own.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Fixtures</span>
+              <h3>Capability composition</h3>
+              <p>
+                Provide prepared pages, authentication, APIs and lifecycle
+                responsibilities to scenarios.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Assertions</span>
+              <h3>Scenario ownership</h3>
+              <p>
+                Keep the reason for a failure visible at the test level where
+                appropriate.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Deterministic state</p>
+              <h2>State is infrastructure.</h2>
+            </div>
+
+            <p>
+              Factories, fixtures and API-driven setup create reproducible
+              application state instead of depending on manually maintained
+              accounts or previously existing data.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Scenario need</strong>
+              <p>Define required business state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Factory</strong>
+              <p>Generate controlled test data.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>API setup</strong>
+              <p>Create application state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Fixture</strong>
+              <p>Expose prepared capability.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Scenario</strong>
+              <p>Exercise intended behavior.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Quality ownership</p>
+              <h2>Execution follows responsibility.</h2>
+            </div>
+
+            <p>
+              Different quality characteristics have different execution
+              requirements. The architecture makes those differences explicit.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">API</span>
+              <h3>Browser independent</h3>
+              <p>Contract and service behavior executes once.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">UI</span>
+              <h3>Cross-browser</h3>
+              <p>Chromium, Firefox and WebKit own browser behavior.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Accessibility</span>
+              <h3>Dedicated quality gate</h3>
+              <p>axe-core runs as its own accessibility responsibility.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Visual</span>
+              <h3>Canonical rendering</h3>
+              <p>Approved baselines require a controlled Linux environment.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">API performance</span>
+              <h3>k6</h3>
+              <p>Service workload is measured outside browser automation.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Browser performance</span>
+              <h3>Lighthouse</h3>
+              <p>Browser-observed performance uses Lighthouse measurements.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Reproducible execution</p>
+              <h2>Docker is part of the architecture.</h2>
+            </div>
+
+            <p>
+              Containerized execution aligns runtime dependencies, browsers,
+              visual rendering and CI behavior around a controlled execution
+              boundary.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Source</span>
+              <span aria-hidden="true">→</span>
+              <span>Docker image</span>
+              <span aria-hidden="true">→</span>
+              <span>Known runtime</span>
+              <span aria-hidden="true">→</span>
+              <span>Quality responsibility</span>
+              <span aria-hidden="true">→</span>
+              <span>Evidence</span>
+            </div>
+
+            <p>
+              The container owns the execution environment. The test project and
+              CI job own the quality responsibility.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering principles</p>
+              <h2>Coherence before abstraction growth.</h2>
+            </div>
+
+            <p>
+              New capabilities should reuse and extend existing ownership
+              boundaries before introducing parallel implementations.
+            </p>
+          </div>
+
+          <div class="principles-grid">
+            <article class="principle">
+              <span class="principle-number">01</span>
+              <h3>Discover</h3>
+              <p>Understand existing capabilities before designing new ones.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">02</span>
+              <h3>Reuse</h3>
+              <p>Prefer an existing responsibility when it already fits.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">03</span>
+              <h3>Extend</h3>
+              <p>Grow existing infrastructure when ownership remains coherent.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">04</span>
+              <h3>Create</h3>
+              <p>Introduce a new abstraction only when a real boundary exists.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">05</span>
+              <h3>Validate</h3>
+              <p>External boundaries require runtime evidence, not assumptions.</p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">06</span>
+              <h3>Diagnose</h3>
+              <p>Evidence exists to support engineering decisions and RCA.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Architecture documentation</p>
+            <h2>Inspect the complete engineering model.</h2>
+
+            <p>
+              The full architecture document contains the detailed responsibility
+              model, execution boundaries and public-showcase constraints.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ARCHITECTURE.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read architecture ↗
+            </a>
+
+            <a class="button button-secondary" href="../ci-cd/">
+              Continue to CI/CD
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>System architecture.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../#capabilities">Capabilities</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

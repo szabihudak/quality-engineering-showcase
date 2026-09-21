@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Engineering Decisions · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Engineering decisions and trade-offs behind the Quality Engineering framework, including runtime contracts, deterministic setup, visual baselines, performance ownership and CI architecture."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../#capabilities">Capabilities</a>
+          <a href="../architecture/">Architecture</a>
+          <a href="../ci-cd/">CI/CD</a>
+          <a href="./">Decisions</a>
+          <a href="../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../">Home</a>
+              <span aria-hidden="true">/</span>
+              <span>Engineering Decisions</span>
+            </nav>
+
+            <p class="eyebrow">Engineering decisions</p>
+
+            <h1 class="capability-title">
+              Decisions,
+              <span class="text-accent">not just tools.</span>
+            </h1>
+
+            <p class="capability-lead">
+              The framework is shaped by explicit choices about responsibility,
+              runtime validation, deterministic state, performance measurement,
+              execution ownership and diagnostic evidence.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ENGINEERING_DECISIONS.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read all decisions ↗
+              </a>
+
+              <a class="button button-secondary" href="../architecture/">
+                View architecture
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Decision record</span>
+              <span class="status status-success">Documented</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>10</strong>
+              <span>documented engineering decisions</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Architecture</dt>
+                <dd>System</dd>
+              </div>
+
+              <div>
+                <dt>Contracts</dt>
+                <dd>Runtime</dd>
+              </div>
+
+              <div>
+                <dt>Setup</dt>
+                <dd>API-driven</dd>
+              </div>
+
+              <div>
+                <dt>Visual</dt>
+                <dd>Approved</dd>
+              </div>
+
+              <div>
+                <dt>Performance</dt>
+                <dd>Separated</dd>
+              </div>
+
+              <div>
+                <dt>CI</dt>
+                <dd>Build once</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ENGINEERING_DECISIONS.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Inspect decision documentation ↗
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision model</p>
+              <h2>Every abstraction should answer a responsibility question.</h2>
+            </div>
+
+            <p>
+              Technologies are implementation choices. The stronger engineering
+              question is why a responsibility exists, where it belongs and what
+              trade-off the design accepts.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Context</span>
+              <span aria-hidden="true">→</span>
+              <span>Decision</span>
+              <span aria-hidden="true">→</span>
+              <span>Why</span>
+              <span aria-hidden="true">→</span>
+              <span>Trade-off</span>
+            </div>
+
+            <p>
+              Each documented decision records not only what was implemented but
+              also what complexity or limitation is consciously accepted.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 01</p>
+              <h2>Treat automation as an engineering system.</h2>
+            </div>
+
+            <p>
+              A scalable framework needs explicit layers and ownership rather
+              than a growing collection of unrelated test scripts.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">Context</span>
+              <h3>Automation grows</h3>
+              <p>
+                Unstructured tests accumulate duplicated setup, selectors,
+                request logic and lifecycle behavior.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">Decision</span>
+              <h3>Layer responsibilities</h3>
+              <p>
+                Separate scenarios, abstractions, fixtures, data, validation and
+                execution infrastructure.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">Trade-off</span>
+              <h3>More architecture</h3>
+              <p>
+                The framework has more structure to understand, but ownership
+                remains explicit as capabilities expand.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 02</p>
+              <h2>Validate external API responses at runtime.</h2>
+            </div>
+
+            <p>
+              Static TypeScript types cannot prove that an external provider
+              returned the expected structure.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Compile-time only</span>
+
+              <div class="vertical-flow">
+                <div>Expected TypeScript type</div>
+                <span>↓</span>
+                <div>External response arrives</div>
+                <span>↓</span>
+                <div>Type assertion trusts payload</div>
+                <span>↓</span>
+                <div>Malformed data can escape validation</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Runtime contract</span>
+
+              <div class="vertical-flow">
+                <div>External response arrives</div>
+                <span>↓</span>
+                <div>TypeBox schema</div>
+                <span>↓</span>
+                <div>AJV validation</div>
+                <span>↓</span>
+                <div class="flow-success">Typed data after validation</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 03</p>
+              <h2>Use API-driven setup when UI setup is not under test.</h2>
+            </div>
+
+            <p>
+              Browser automation should spend browser time on browser behavior
+              rather than reproducing unrelated state preparation.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Factory</span>
+              <span aria-hidden="true">→</span>
+              <span>API setup</span>
+              <span aria-hidden="true">→</span>
+              <span>Known state</span>
+              <span aria-hidden="true">→</span>
+              <span>Browser behavior</span>
+            </div>
+
+            <p>
+              The trade-off is additional API capability ownership, accepted in
+              exchange for faster and more deterministic UI scenarios.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 04</p>
+              <h2>Give accessibility dedicated execution ownership.</h2>
+            </div>
+
+            <p>
+              Accessibility is a distinct quality responsibility, not merely an
+              extra assertion copied into every browser project.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Why</span>
+              <h3>Independent signal</h3>
+              <p>
+                Accessibility violations should remain visible as their own
+                quality outcome.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Execution</span>
+              <h3>Dedicated project</h3>
+              <p>
+                The responsibility runs separately instead of multiplying
+                through the full UI browser matrix.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Evidence</span>
+              <h3>Real defect detection</h3>
+              <p>
+                Failed accessibility gates can be retained and diagnosed as
+                product defects.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Trade-off</span>
+              <h3>Separate ownership</h3>
+              <p>
+                Another explicit execution responsibility must be maintained and
+                interpreted correctly.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 05</p>
+              <h2>Treat visual baselines as approved contracts.</h2>
+            </div>
+
+            <p>
+              A changed screenshot does not automatically become the new
+              expected result.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Intentional change</span>
+
+              <div class="vertical-flow">
+                <div>Rendering difference</div>
+                <span>↓</span>
+                <div>Engineering review</div>
+                <span>↓</span>
+                <div>Explicit approval</div>
+                <span>↓</span>
+                <div class="flow-success">Baseline updated</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Unexpected change</span>
+
+              <div class="vertical-flow">
+                <div>Rendering difference</div>
+                <span>↓</span>
+                <div>Visual gate fails</div>
+                <span>↓</span>
+                <div>Difference investigated</div>
+                <span>↓</span>
+                <div>Baseline remains unchanged</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decisions 06–08</p>
+              <h2>Use the right performance layer and measure repeatedly.</h2>
+            </div>
+
+            <p>
+              Service workload and browser rendering are different
+              responsibilities. Authenticated browser performance can reuse
+              functional setup while multiple measurements reduce single-run
+              noise.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">API performance</span>
+              <h3>k6</h3>
+              <p>
+                Workload-oriented service performance remains outside browser
+                automation.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Browser performance</span>
+              <h3>Lighthouse</h3>
+              <p>
+                Browser-observed performance uses the browser measurement layer.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Authenticated measurement</span>
+              <h3>Reuse functional state</h3>
+              <p>
+                Playwright prepares trusted authenticated business state before
+                Lighthouse runs.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Measurement policy</span>
+              <h3>Multiple runs</h3>
+              <p>
+                Median aggregation reduces dependence on one noisy sample.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 09</p>
+              <h2>Build the container once and reuse it.</h2>
+            </div>
+
+            <p>
+              Downstream jobs should execute the same environment for a source
+              revision rather than independently constructing similar but
+              potentially divergent runtimes.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Source</strong>
+              <p>Validated revision.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Build</strong>
+              <p>Create image once.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Identity</strong>
+              <p>Tag by commit.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>GHCR</strong>
+              <p>Distribute runtime.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Reuse</strong>
+              <p>Execute responsibilities.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 10</p>
+              <h2>Diagnose failures by root cause, not job color.</h2>
+            </div>
+
+            <p>
+              Pipeline state is evidence, not a complete engineering
+              interpretation.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Product defect</span>
+              <h3>Correctly detected behavior</h3>
+              <p>A red test can mean the framework worked exactly as designed.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Framework regression</span>
+              <h3>Automation defect</h3>
+              <p>The implementation itself can own the failure.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Environment</span>
+              <h3>Execution conditions</h3>
+              <p>Target state or configuration can invalidate the run.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Infrastructure</span>
+              <h3>Platform failure</h3>
+              <p>Network, runtime or external services can own the problem.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision system</p>
+              <h2>A consistent engineering pattern.</h2>
+            </div>
+
+            <p>
+              The individual decisions reinforce the same underlying model.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>System thinking</span>
+              <span aria-hidden="true">→</span>
+              <span>Runtime validation</span>
+              <span aria-hidden="true">→</span>
+              <span>Deterministic state</span>
+              <span aria-hidden="true">→</span>
+              <span>Explicit ownership</span>
+              <span aria-hidden="true">→</span>
+              <span>Diagnostic evidence</span>
+            </div>
+
+            <p>
+              The technologies may evolve. Responsibility boundaries and
+              engineering reasoning remain the durable part of the design.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Engineering decisions</p>
+            <h2>Inspect the complete trade-off record.</h2>
+
+            <p>
+              The detailed decision document records context, chosen approach,
+              rationale and trade-offs for all ten architectural decisions.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ENGINEERING_DECISIONS.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read engineering decisions ↗
+            </a>
+
+            <a class="button button-secondary" href="../roadmap/">
+              Continue to roadmap
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Engineering decision record.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../architecture/">Architecture</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

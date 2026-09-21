@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Roadmap · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Quality Engineering roadmap covering the implemented automation foundation and planned Data, Cloud, AI-assisted QE, strategy, system design, security and observability capabilities."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../#capabilities">Capabilities</a>
+          <a href="../architecture/">Architecture</a>
+          <a href="../ci-cd/">CI/CD</a>
+          <a href="../decisions/">Decisions</a>
+          <a href="./">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../">Home</a>
+              <span aria-hidden="true">/</span>
+              <span>Roadmap</span>
+            </nav>
+
+            <p class="eyebrow">Engineering roadmap</p>
+
+            <h1 class="capability-title">
+              Beyond the
+              <span class="text-accent">automation foundation.</span>
+            </h1>
+
+            <p class="capability-lead">
+              The roadmap distinguishes implemented engineering capabilities
+              from current learning priorities and future Quality Engineering
+              areas. Planned work is not presented as completed capability.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ROADMAP.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read full roadmap ↗
+              </a>
+
+              <a class="button button-secondary" href="../#capabilities">
+                Review implemented foundation
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Current position</span>
+              <span class="status status-success">Foundation implemented</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>7</strong>
+              <span>implemented foundation areas</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Automation</dt>
+                <dd>Implemented</dd>
+              </div>
+
+              <div>
+                <dt>Data & Cloud</dt>
+                <dd>Next</dd>
+              </div>
+
+              <div>
+                <dt>AI-assisted QE</dt>
+                <dd>Planned</dd>
+              </div>
+
+              <div>
+                <dt>AI QA platforms</dt>
+                <dd>Planned</dd>
+              </div>
+
+              <div>
+                <dt>QE strategy</dt>
+                <dd>Planned</dd>
+              </div>
+
+              <div>
+                <dt>Systems</dt>
+                <dd>Planned</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ROADMAP.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Inspect roadmap documentation ↗
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Roadmap governance</p>
+              <h2>Status follows evidence.</h2>
+            </div>
+
+            <p>
+              A capability becomes implemented only after real engineering work,
+              validation and publication review exist.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Learn / design</strong>
+              <p>Understand the responsibility.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Implement</strong>
+              <p>Build real capability.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Validate</strong>
+              <p>Confirm engineering behavior.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Review</strong>
+              <p>Check public-safety boundary.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Publish</strong>
+              <p>Move status to implemented.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Implemented foundation</p>
+              <h2>The current engineering baseline.</h2>
+            </div>
+
+            <p>
+              These capabilities already exist in the canonical system and are
+              represented through architecture, selected source or execution
+              evidence.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Architecture</span>
+              <h3>Enterprise automation foundation</h3>
+              <p>
+                Fixtures, clients, objects, factories, authentication,
+                lifecycle, reporting and execution boundaries.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">API</span>
+              <h3>Contract testing</h3>
+              <p>
+                REST automation, TypeBox schemas, AJV validation and
+                deterministic state.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">UI</span>
+              <h3>Cross-browser automation</h3>
+              <p>
+                Playwright browser behavior across Chromium, Firefox and WebKit.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">CI/CD</span>
+              <h3>Docker & GitHub Actions</h3>
+              <p>
+                Build-once image reuse, GHCR and responsibility-based jobs.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Accessibility</span>
+              <h3>Automated quality gate</h3>
+              <p>
+                axe-core integration with public and authenticated coverage.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Visual</span>
+              <h3>Rendering contracts</h3>
+              <p>
+                Approved screenshot baselines in a canonical Linux environment.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Performance</span>
+              <h3>API & browser performance</h3>
+              <p>
+                k6 workload testing plus public and authenticated Lighthouse.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Next</p>
+              <h2>Data & Cloud Foundations.</h2>
+            </div>
+
+            <p>
+              The next phase expands quality validation beyond application
+              interfaces into data and surrounding infrastructure.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Data & SQL</span>
+
+              <div class="vertical-flow">
+                <div>SQL fundamentals</div>
+                <span>↓</span>
+                <div>Filtering & aggregation</div>
+                <span>↓</span>
+                <div>JOIN operations</div>
+                <span>↓</span>
+                <div>Window functions</div>
+                <span>↓</span>
+                <div>Data validation scenarios</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Cloud foundations</span>
+
+              <div class="vertical-flow">
+                <div>AWS fundamentals</div>
+                <span>↓</span>
+                <div>IAM</div>
+                <span>↓</span>
+                <div>S3</div>
+                <span>↓</span>
+                <div>CloudWatch</div>
+                <span>↓</span>
+                <div>Secrets management</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Planned</p>
+              <h2>AI-assisted Quality Engineering.</h2>
+            </div>
+
+            <p>
+              AI assistance is planned as an engineering workflow enhancement,
+              not as a replacement for architecture ownership or review.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Human intent</span>
+              <span aria-hidden="true">→</span>
+              <span>Existing architecture</span>
+              <span aria-hidden="true">→</span>
+              <span>AI assistance</span>
+              <span aria-hidden="true">→</span>
+              <span>Review</span>
+              <span aria-hidden="true">→</span>
+              <span>Validated integration</span>
+            </div>
+
+            <p>
+              Planned areas include Copilot, Cursor, ChatGPT-assisted workflows,
+              AI-assisted debugging and OpenAI API fundamentals.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Planned</p>
+              <h2>AI-native QA platform evaluation.</h2>
+            </div>
+
+            <p>
+              Platform evaluation will focus on engineering behavior rather than
+              simply demonstrating vendor features.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Determinism</span>
+              <h3>Can execution be trusted?</h3>
+              <p>
+                Evaluate whether behavior remains reproducible and explainable.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Observability</span>
+              <h3>Can failures be diagnosed?</h3>
+              <p>
+                Assess how much evidence and technical visibility the platform
+                provides.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Maintenance</span>
+              <h3>What changes over time?</h3>
+              <p>
+                Compare self-healing claims with real maintenance ownership and
+                debugging cost.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Control</span>
+              <h3>What remains engineer-owned?</h3>
+              <p>
+                Understand which responsibilities are abstracted and what
+                control is lost or retained.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Planned</p>
+              <h2>QE Strategy & Leadership.</h2>
+            </div>
+
+            <p>
+              The roadmap expands from implementing automation toward deciding
+              what quality risks matter and how teams should respond to them.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Strategy</span>
+              <h3>Risk-based quality</h3>
+              <p>Test pyramid, shift-left, shift-right and quality strategy.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Metrics</span>
+              <h3>Quality signals</h3>
+              <p>Flakiness, leakage, MTTD, MTTR and meaningful measurement.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Leadership</span>
+              <h3>Engineering enablement</h3>
+              <p>Mentoring, hiring considerations and technical communication.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Stakeholders</span>
+              <h3>Decision communication</h3>
+              <p>Translate technical quality signals into engineering context.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Planned</p>
+              <h2>System Design, Security & Observability.</h2>
+            </div>
+
+            <p>
+              The final technical phase expands the quality model toward
+              distributed systems and production-oriented engineering signals.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>System design</h3>
+              <p>
+                Service boundaries, microservices, environment strategy and
+                quality-signal architecture.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Security foundations</h3>
+              <p>
+                OWASP concepts, authorization risks, boundary testing and
+                security-aware automation.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Observability</h3>
+              <p>
+                Structured logs, monitoring, Grafana, Kibana and production
+                quality feedback.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Portfolio evolution</p>
+              <h2>Different capabilities produce different evidence.</h2>
+            </div>
+
+            <p>
+              Not every future Quality Engineering area should be forced into a
+              Playwright test. Evidence form follows the engineering
+              responsibility.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Automation</span>
+              <h3>Source + execution</h3>
+              <p>Canonical code, reports and architecture.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Data & Cloud</span>
+              <h3>Controlled exercises</h3>
+              <p>Queries, validation and infrastructure case studies.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">AI</span>
+              <h3>Workflow evidence</h3>
+              <p>Reviewed examples and evaluated proof-of-concept work.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Strategy & Systems</span>
+              <h3>Decision artifacts</h3>
+              <p>Architecture, metrics and engineering case studies.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Roadmap documentation</p>
+            <h2>Track verified progress, not intended completion.</h2>
+
+            <p>
+              The roadmap is updated when engineering state changes. Planned
+              learning remains clearly separated from implemented capability.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ROADMAP.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read full roadmap ↗
+            </a>
+
+            <a class="button button-secondary" href="../">
+              Return to showcase
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Engineering roadmap.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../#capabilities">Capabilities</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
