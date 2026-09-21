@@ -215,6 +215,22 @@ p {
   max-width: var(--content-width);
 }
 
+.professional-identity {
+  margin-bottom: 18px;
+}
+
+.identity-name {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.professional-identity .eyebrow {
+  margin-bottom: 0;
+}
+
 .eyebrow {
   margin-bottom: 18px;
   color: var(--accent);
@@ -340,6 +356,29 @@ p {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.professional-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 18px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.professional-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.professional-links a:hover {
+  color: var(--accent);
+}
+
+.professional-links a:focus-visible {
+  color: var(--accent);
 }
 
 .button {
