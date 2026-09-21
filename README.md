@@ -60,7 +60,6 @@ The engineering roadmap extends the portfolio into data and cloud foundations, A
 | Programmatic authentication | ✅ Implemented | Canonical source |
 | Deterministic test data | ✅ Implemented | Canonical source |
 | Network mocking | ✅ Implemented | Canonical source |
-| Cross-browser execution | ✅ Implemented | Canonical source · architecture |
 | Accessibility testing | ✅ Implemented | Architecture · [execution evidence](docs/showcases/accessibility/README.md) |
 | Visual regression | ✅ Implemented | Architecture · [execution evidence](docs/showcases/visual-regression/README.md) |
 | API performance | ✅ Implemented | Architecture · [performance evidence](docs/showcases/performance/README.md) |
