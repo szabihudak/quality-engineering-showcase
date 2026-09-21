@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>UI & Cross-Browser Testing · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="UI and cross-browser testing capability demonstrating shared Playwright scenarios across Chromium, Firefox and WebKit with deterministic setup and real execution evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../../#capabilities">Capabilities</a>
+          <a href="../../architecture/">Architecture</a>
+          <a href="../../ci-cd/">CI/CD</a>
+          <a href="../../decisions/">Decisions</a>
+          <a href="../../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="../../#capabilities">Capabilities</a>
+              <span aria-hidden="true">/</span>
+              <span>UI & Cross-Browser</span>
+            </nav>
+
+            <p class="eyebrow">Capability 02</p>
+
+            <h1 class="capability-title">
+              UI & Cross-Browser
+              <span class="text-accent">Testing</span>
+            </h1>
+
+            <p class="capability-lead">
+              Shared Playwright browser scenarios executed across Chromium,
+              Firefox and WebKit without browser-specific test duplication.
+              Browser execution is reserved for behavior actually owned by the
+              browser layer.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="../../showcases/ui/playwright-report/ui-cross-browser-execution.report.html"
+              >
+                Open real execution report ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/ui"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Inspect UI tests ↗
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Execution evidence</span>
+              <span class="status status-success">Passed</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>18 / 18</strong>
+              <span>tests passed</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Chromium</dt>
+                <dd>6 / 6</dd>
+              </div>
+
+              <div>
+                <dt>Firefox</dt>
+                <dd>6 / 6</dd>
+              </div>
+
+              <div>
+                <dt>WebKit</dt>
+                <dd>6 / 6</dd>
+              </div>
+
+              <div>
+                <dt>Spec files</dt>
+                <dd>5</dd>
+              </div>
+
+              <div>
+                <dt>Failed</dt>
+                <dd>0</dd>
+              </div>
+
+              <div>
+                <dt>Runtime</dt>
+                <dd>Docker</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="../../showcases/ui/README.md"
+            >
+              Read detailed evidence documentation →
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering responsibility</p>
+              <h2>Cross-browser where the browser owns the risk.</h2>
+            </div>
+
+            <p>
+              API behavior is not multiplied across browser engines. UI and
+              smoke scenarios are, because rendering, navigation and browser
+              interaction belong to the browser execution layer.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Shared scenarios</h3>
+              <p>
+                The same UI and smoke scenarios are reused instead of
+                maintaining separate browser-specific test suites.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Browser projects</h3>
+              <p>
+                Playwright projects provide runtime ownership while scenario
+                intent remains shared across Chromium, Firefox and WebKit.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Comparable evidence</h3>
+              <p>
+                One execution report exposes results across all three browser
+                engines from the same canonical test suite.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Browser matrix</p>
+              <h2>One suite. Three browser engines.</h2>
+            </div>
+
+            <p>
+              Cross-browser coverage validates shared behavior without creating
+              three independently maintained implementations.
+            </p>
+          </div>
+
+          <div class="default-grid">
+            <article>
+              <span>Chromium</span>
+              <strong>6 / 6</strong>
+            </article>
+
+            <article>
+              <span>Firefox</span>
+              <strong>6 / 6</strong>
+            </article>
+
+            <article>
+              <span>WebKit</span>
+              <strong>6 / 6</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">State strategy</p>
+              <h2>Use APIs for setup. Use browsers for browser behavior.</h2>
+            </div>
+
+            <p>
+              UI automation does not need to reproduce every setup step through
+              the interface. Programmatic setup reduces execution cost and
+              removes unnecessary UI dependencies.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Generate data</strong>
+              <p>Create isolated scenario input.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>API setup</strong>
+              <p>Prepare application state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Browser launch</strong>
+              <p>Start the required engine.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>UI behavior</strong>
+              <p>Exercise the user-facing flow.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Assertions</strong>
+              <p>Verify observable behavior.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Authentication strategy</p>
+              <h2>Authentication follows scenario intent.</h2>
+            </div>
+
+            <p>
+              Real UI login is retained where authentication itself is under
+              test. Other authenticated scenarios establish state
+              programmatically so they remain focused on their actual purpose.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Authentication under test</span>
+
+              <div class="vertical-flow">
+                <div>Open login interface</div>
+                <span>↓</span>
+                <div>Enter credentials</div>
+                <span>↓</span>
+                <div>Submit through UI</div>
+                <span>↓</span>
+                <div>Browser navigation</div>
+                <span>↓</span>
+                <div class="flow-success">Authenticated UI state</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Authentication as setup</span>
+
+              <div class="vertical-flow">
+                <div>Generate isolated user</div>
+                <span>↓</span>
+                <div>Programmatic authentication</div>
+                <span>↓</span>
+                <div>Establish authenticated state</div>
+                <span>↓</span>
+                <div>Open target UI</div>
+                <span>↓</span>
+                <div class="flow-success">Test intended UI behavior</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Execution responsibility</p>
+              <h2>Not every quality layer needs every browser.</h2>
+            </div>
+
+            <p>
+              Browser multiplication is a deliberate engineering decision, not
+              a default applied to the entire framework.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">API</span>
+              <h3>Browser independent</h3>
+              <p>
+                API contracts and service behavior execute once because browser
+                engines do not own that responsibility.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">UI & Smoke</span>
+              <h3>Cross-browser</h3>
+              <p>
+                Chromium, Firefox and WebKit execute shared scenarios because
+                browser behavior is part of the risk being validated.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Accessibility</span>
+              <h3>Dedicated project</h3>
+              <p>
+                Accessibility automation has its own execution responsibility
+                instead of being multiplied through the UI browser matrix.
+              </p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Visual & Performance</span>
+              <h3>Controlled runtime</h3>
+              <p>
+                Rendering and browser performance require intentionally
+                controlled environments rather than arbitrary matrix expansion.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Network control</p>
+              <h2>Failure states can be deterministic too.</h2>
+            </div>
+
+            <p>
+              The task dashboard uses Playwright route interception to produce
+              a controlled server-error response without requiring an unstable
+              backend condition.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>GET /api/tasks</span>
+              <span aria-hidden="true">→</span>
+              <span>Route interception</span>
+              <span aria-hidden="true">→</span>
+              <span>HTTP 500</span>
+              <span aria-hidden="true">→</span>
+              <span>UI state assertion</span>
+            </div>
+
+            <p>
+              Only the targeted GET request is mocked. Other request methods
+              continue normally.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Canonical source</p>
+              <h2>Inspect the implementation behind the report.</h2>
+            </div>
+
+            <p>
+              Selected public source remains traceable to the canonical
+              implementation used to produce the execution evidence.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>UI tests</span>
+              <h3>Browser scenarios</h3>
+
+              <ul>
+                <li>Authenticated-user validation</li>
+                <li>Real UI login flow</li>
+                <li>Task-dashboard behavior</li>
+                <li>Negative UI state</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/ui"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse UI tests ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Smoke tests</span>
+              <h3>Critical-path coverage</h3>
+
+              <ul>
+                <li>Public home navigation</li>
+                <li>Login surface</li>
+                <li>Shared browser execution</li>
+                <li>Fast browser-level signal</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/smoke"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse smoke tests ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Shared infrastructure</span>
+              <h3>Fixtures & browser setup</h3>
+
+              <ul>
+                <li>Reusable page fixtures</li>
+                <li>Programmatic authentication</li>
+                <li>API-driven test setup</li>
+                <li>Authenticated browser context</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/src/fixtures/test-fixtures.ts"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Inspect shared fixtures ↗
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Real execution</p>
+            <h2>Inspect all three browser results.</h2>
+
+            <p>
+              The published Playwright report contains the actual execution
+              results used as evidence for this capability.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="../../showcases/ui/playwright-report/ui-cross-browser-execution.report.html"
+            >
+              Open Playwright report ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="../../showcases/ui/README.md"
+            >
+              Read evidence documentation
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>UI & Cross-Browser Testing capability.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../">Home</a>
+          <a href="../../#capabilities">Capabilities</a>
+
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Performance Engineering · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Performance engineering capability demonstrating k6 API load testing, Lighthouse CI and authenticated Lighthouse quality gates with real execution evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../../" aria-label="Quality Engineering Showcase home">
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+          <a href="../../#capabilities">Capabilities</a>
+          <a href="../../architecture/">Architecture</a>
+          <a href="../../ci-cd/">CI/CD</a>
+          <a href="../../decisions/">Decisions</a>
+          <a href="../../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="../../#capabilities">Capabilities</a>
+              <span aria-hidden="true">/</span>
+              <span>Performance Engineering</span>
+            </nav>
+
+            <p class="eyebrow">Capability 05</p>
+
+            <h1 class="capability-title">
+              Performance
+              <span class="text-accent">Engineering</span>
+            </h1>
+
+            <p class="capability-lead">
+              Complementary API-load and browser-performance quality gates using
+              k6, Lighthouse CI and authenticated Playwright-managed browser
+              state.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="../../showcases/performance/k6/task-read-load.html"
+              >
+                Open k6 report ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="../../showcases/performance/README.md"
+              >
+                Read evidence documentation
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Quality-gate evidence</span>
+              <span class="status status-success">Passed</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>3 / 3</strong>
+              <span>performance layers passed</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>API</dt>
+                <dd>k6</dd>
+              </div>
+
+              <div>
+                <dt>Public browser</dt>
+                <dd>LHCI</dd>
+              </div>
+
+              <div>
+                <dt>Authenticated</dt>
+                <dd>Lighthouse</dd>
+              </div>
+
+              <div>
+                <dt>k6 p95</dt>
+                <dd>257.33 ms</dd>
+              </div>
+
+              <div>
+                <dt>Task failures</dt>
+                <dd>0%</dd>
+              </div>
+
+              <div>
+                <dt>Browser policy</dt>
+                <dd>Passed</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="../../showcases/performance/README.md"
+            >
+              Read detailed performance evidence →
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering responsibility</p>
+              <h2>Performance is not one number.</h2>
+            </div>
+
+            <p>
+              API workload behavior, public browser rendering and authenticated
+              browser rendering measure different risks and therefore use
+              different execution models.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>API workload</h3>
+              <p>
+                k6 measures authenticated task-read behavior under a controlled
+                baseline load.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Public browser</h3>
+              <p>
+                Lighthouse CI evaluates a public application entry point using
+                three independent measurements and assertion-based policy.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Authenticated browser</h3>
+              <p>
+                Playwright establishes authenticated state before Lighthouse
+                measures the protected dashboard.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">API performance</p>
+              <h2>Controlled authenticated workload.</h2>
+            </div>
+
+            <p>
+              Deterministic setup and cleanup are kept outside the measured
+              task-read operation.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Register</strong>
+              <p>Create performance user.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Authenticate</strong>
+              <p>Obtain application access.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Create task</strong>
+              <p>Prepare deterministic state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Measure reads</strong>
+              <p>2 VUs for 30 seconds.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Cleanup</strong>
+              <p>Remove test data.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">k6 execution</p>
+              <h2>Explicit latency and failure thresholds.</h2>
+            </div>
+
+            <p>
+              The quality gate evaluates the dedicated measured operation rather
+              than combining setup, authentication and cleanup into one
+              undifferentiated latency value.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Task-read latency</span>
+              <h3>p95 &lt; 500 ms</h3>
+              <p>Observed p95: <strong>257.33 ms</strong>.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Task-read failures</span>
+              <h3>Rate &lt; 1%</h3>
+              <p>Observed failure rate: <strong>0.00%</strong>.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Load profile</span>
+              <h3>2 VUs · 30 seconds</h3>
+              <p>52 completed iterations with no interrupted iterations.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Checks</span>
+              <h3>56 / 56 passed</h3>
+              <p>Task-read failures: 0 / 52 · HTTP failures: 0 / 56.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Public browser performance</p>
+              <h2>Three Lighthouse CI measurements.</h2>
+            </div>
+
+            <p>
+              Multiple runs expose measurement variance rather than selecting
+              only the strongest browser-performance sample.
+            </p>
+          </div>
+
+          <div class="default-grid">
+            <article>
+              <span>Performance median</span>
+              <strong>0.79</strong>
+            </article>
+
+            <article>
+              <span>LCP median</span>
+              <strong>5473 ms</strong>
+            </article>
+
+            <article>
+              <span>TBT median</span>
+              <strong>53 ms</strong>
+            </article>
+          </div>
+
+          <div class="engineering-callout" style="margin-top: 16px">
+            <div class="engineering-callout-flow">
+              <span>Score ≥ 0.70</span>
+              <span>·</span>
+              <span>CLS ≤ 0.10</span>
+              <span>·</span>
+              <span>TBT ≤ 300 ms</span>
+              <span>·</span>
+              <span>LCP ≤ 6000 ms</span>
+            </div>
+
+            <p>
+              The canonical Lighthouse CI execution completed without assertion
+              failure.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Authenticated browser performance</p>
+              <h2>Measure the application state users actually reach.</h2>
+            </div>
+
+            <p>
+              Playwright creates authenticated application state and passes that
+              state into Lighthouse so protected routes can be measured without
+              replacing application authentication.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Task fixture</strong>
+              <p>Prepare deterministic data.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Authenticated context</strong>
+              <p>Establish browser state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Dashboard ready</strong>
+              <p>Verify target application state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Lighthouse</strong>
+              <p>Run three measurements.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Median policy</strong>
+              <p>Evaluate browser metrics.</p>
+            </div>
+          </div>
+
+          <div class="default-grid" style="margin-top: 24px">
+            <article>
+              <span>Performance median</span>
+              <strong>0.97</strong>
+            </article>
+
+            <article>
+              <span>LCP median</span>
+              <strong>2578.19 ms</strong>
+            </article>
+
+            <article>
+              <span>TBT median</span>
+              <strong>65 ms</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Real reports</p>
+              <h2>Every measurement remains inspectable.</h2>
+            </div>
+
+            <p>
+              The public showcase retains all three public and all three
+              authenticated Lighthouse measurements rather than publishing only
+              selected results.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>API performance</span>
+              <h3>k6 dashboard</h3>
+
+              <ul>
+                <li>2 VUs</li>
+                <li>30-second workload</li>
+                <li>Explicit thresholds</li>
+                <li>Real interactive report</li>
+              </ul>
+
+              <a href="../../showcases/performance/k6/task-read-load.html">
+                Open k6 report →
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Public browser</span>
+              <h3>Lighthouse CI</h3>
+
+              <ul>
+                <li>3 independent measurements</li>
+                <li>Public application entry page</li>
+                <li>Assertion-based execution</li>
+                <li>All reports retained</li>
+              </ul>
+
+              <a
+                href="../../showcases/performance/lighthouse-public/public-home.run-1.report.html"
+              >
+                Open public report →
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Authenticated browser</span>
+              <h3>Playwright + Lighthouse</h3>
+
+              <ul>
+                <li>Authenticated dashboard</li>
+                <li>3 independent measurements</li>
+                <li>Median aggregation</li>
+                <li>Shared threshold policy</li>
+              </ul>
+
+              <a
+                href="../../showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-1.report.html"
+              >
+                Open authenticated report →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Implementation representation</p>
+              <h2>Evidence without duplicating private performance code.</h2>
+            </div>
+
+            <p>
+              The canonical performance implementation, thresholds and
+              orchestration remain in the source-of-truth framework. The public
+              portfolio exposes architecture and reviewed execution evidence.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>Architecture</span>
+              <h3>Performance ownership</h3>
+
+              <ul>
+                <li>k6 for service workload</li>
+                <li>Lighthouse for browser metrics</li>
+                <li>Separate execution semantics</li>
+                <li>Shared quality policy</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ARCHITECTURE.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read architecture ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>CI/CD</span>
+              <h3>Performance execution</h3>
+
+              <ul>
+                <li>Separate performance workflow</li>
+                <li>Hosted target constraints</li>
+                <li>k6 responsibility</li>
+                <li>Lighthouse responsibility</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/CI_CD.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read CI/CD documentation ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Evidence</span>
+              <h3>Measured execution</h3>
+
+              <ul>
+                <li>k6 report</li>
+                <li>3 public Lighthouse reports</li>
+                <li>3 authenticated reports</li>
+                <li>Reviewed public-safe artifacts</li>
+              </ul>
+
+              <a href="../../showcases/performance/README.md">
+                Read evidence documentation →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Performance evidence</p>
+            <h2>Inspect the actual measurements.</h2>
+
+            <p>
+              The portfolio retains the real k6 and Lighthouse artifacts rather
+              than reconstructing metrics for presentation.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="../../showcases/performance/k6/task-read-load.html"
+            >
+              Open k6 report ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="../../showcases/performance/README.md"
+            >
+              Read all performance evidence
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Performance Engineering capability.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../">Home</a>
+          <a href="../../#capabilities">Capabilities</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

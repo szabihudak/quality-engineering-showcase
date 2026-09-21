@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Accessibility Testing · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Accessibility testing capability demonstrating Playwright and axe-core quality gates across public and authenticated application states with real defect evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../../#capabilities">Capabilities</a>
+          <a href="../../architecture/">Architecture</a>
+          <a href="../../ci-cd/">CI/CD</a>
+          <a href="../../decisions/">Decisions</a>
+          <a href="../../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="../../#capabilities">Capabilities</a>
+              <span aria-hidden="true">/</span>
+              <span>Accessibility</span>
+            </nav>
+
+            <p class="eyebrow">Capability 03</p>
+
+            <h1 class="capability-title">
+              Accessibility
+              <span class="text-accent">Testing</span>
+            </h1>
+
+            <p class="capability-lead">
+              Automated WCAG-oriented accessibility quality gates using
+              Playwright and axe-core across both public and authenticated
+              application states.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="../../showcases/accessibility/playwright-report/"
+              >
+                Open diagnostic report ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="../../showcases/accessibility/README.md"
+              >
+                Read evidence documentation
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card accessibility-evidence-card">
+            <div class="evidence-card-header">
+              <span>Quality-gate evidence</span>
+              <span class="status status-attention">Defects detected</span>
+            </div>
+
+            <div class="evidence-score accessibility-score">
+              <strong>2</strong>
+              <span>reproducible product defects detected</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Tests executed</dt>
+                <dd>2</dd>
+              </div>
+
+              <div>
+                <dt>Rule</dt>
+                <dd>color-contrast</dd>
+              </div>
+
+              <div>
+                <dt>Impact</dt>
+                <dd>serious</dd>
+              </div>
+
+              <div>
+                <dt>Observed</dt>
+                <dd>3.81:1</dd>
+              </div>
+
+              <div>
+                <dt>Required</dt>
+                <dd>4.5:1</dd>
+              </div>
+
+              <div>
+                <dt>Classification</dt>
+                <dd>Product defect</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="../../showcases/diagnostics/README.md"
+            >
+              Read root-cause analysis →
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering responsibility</p>
+              <h2>A failing test can mean the framework worked correctly.</h2>
+            </div>
+
+            <p>
+              Accessibility validation is expected to fail when the application
+              violates the configured policy. The goal is not to manufacture an
+              all-green history but to produce trustworthy quality signals.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Scan application state</h3>
+              <p>
+                axe-core evaluates the rendered application against the
+                configured automated accessibility policy.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Return violations</h3>
+              <p>
+                Detected violations remain actionable test output rather than
+                being silently downgraded or suppressed.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Fail the quality gate</h3>
+              <p>
+                The zero-violation expectation fails when the application does
+                not satisfy the configured automated policy.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Detection 01</p>
+              <h2>Public home page.</h2>
+            </div>
+
+            <p>
+              The public-page scan detected insufficient contrast on the
+              Register navigation element.
+            </p>
+          </div>
+
+          <div class="defect-layout">
+            <article class="defect-details">
+              <div class="defect-meta">
+                <span class="status status-attention">Serious</span>
+                <span>color-contrast</span>
+              </div>
+
+              <dl class="defect-facts">
+                <div>
+                  <dt>Target</dt>
+                  <dd><code>.bg-primary &gt; span</code></dd>
+                </div>
+
+                <div>
+                  <dt>Observed contrast</dt>
+                  <dd>3.81:1</dd>
+                </div>
+
+                <div>
+                  <dt>Required contrast</dt>
+                  <dd>4.5:1</dd>
+                </div>
+
+                <div>
+                  <dt>Classification</dt>
+                  <dd>Product defect</dd>
+                </div>
+              </dl>
+            </article>
+
+            <figure class="evidence-image">
+              <img
+                src="../../showcases/accessibility/home-page-violation.png"
+                alt="Accessibility violation screenshot from the public home page"
+              />
+
+              <figcaption>
+                Real failure screenshot retained from the accessibility
+                execution evidence.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Detection 02</p>
+              <h2>Authenticated dashboard.</h2>
+            </div>
+
+            <p>
+              The authenticated dashboard independently reproduced the same
+              contrast issue on the active Task Board navigation element.
+            </p>
+          </div>
+
+          <div class="defect-layout">
+            <article class="defect-details">
+              <div class="defect-meta">
+                <span class="status status-attention">Serious</span>
+                <span>color-contrast</span>
+              </div>
+
+              <dl class="defect-facts">
+                <div>
+                  <dt>Target</dt>
+                  <dd><code>a[data-testid="nav-task-board"]</code></dd>
+                </div>
+
+                <div>
+                  <dt>Observed contrast</dt>
+                  <dd>3.81:1</dd>
+                </div>
+
+                <div>
+                  <dt>Required contrast</dt>
+                  <dd>4.5:1</dd>
+                </div>
+
+                <div>
+                  <dt>Classification</dt>
+                  <dd>Product defect</dd>
+                </div>
+              </dl>
+            </article>
+
+            <figure class="evidence-image">
+              <img
+                src="../../showcases/accessibility/authenticated-dashboard-violation.png"
+                alt="Accessibility violation screenshot from the authenticated dashboard"
+              />
+
+              <figcaption>
+                The same accessibility issue was reproduced in authenticated
+                application state.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Coverage model</p>
+              <h2>Accessibility beyond public pages.</h2>
+            </div>
+
+            <p>
+              The accessibility layer reuses deterministic authenticated state
+              so automated scans can evaluate application areas that are not
+              reachable anonymously.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Public application state</span>
+
+              <div class="vertical-flow">
+                <div>Open public page</div>
+                <span>↓</span>
+                <div>Wait for stable application state</div>
+                <span>↓</span>
+                <div>Run axe-core scan</div>
+                <span>↓</span>
+                <div>Evaluate WCAG-oriented policy</div>
+                <span>↓</span>
+                <div class="flow-attention">Violation detected</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Authenticated state</span>
+
+              <div class="vertical-flow">
+                <div>Create authenticated test state</div>
+                <span>↓</span>
+                <div>Open protected application page</div>
+                <span>↓</span>
+                <div>Run same accessibility scanner</div>
+                <span>↓</span>
+                <div>Evaluate same policy</div>
+                <span>↓</span>
+                <div class="flow-attention">Violation reproduced</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Root-cause classification</p>
+              <h2>Red execution does not equal framework regression.</h2>
+            </div>
+
+            <p>
+              The diagnostic process distinguishes whether a failed quality gate
+              belongs to the product, framework, environment, infrastructure or
+              an external dependency.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Execution fails</strong>
+              <p>Accessibility assertion turns red.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Inspect evidence</strong>
+              <p>Report and screenshots expose the violation.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Check reproducibility</strong>
+              <p>Issue appears in two application states.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Confirm framework</strong>
+              <p>The scanner behaves as designed.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Classify</strong>
+              <p>Product accessibility defect.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Evidence policy</p>
+              <h2>No artificial green results.</h2>
+            </div>
+
+            <p>
+              The detected violations remain failures. No rule suppression,
+              severity downgrade or showcase-only exclusion is introduced to
+              make the report appear successful.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Real product issue</span>
+              <span aria-hidden="true">→</span>
+              <span>Quality gate fails</span>
+              <span aria-hidden="true">→</span>
+              <span>Evidence retained</span>
+              <span aria-hidden="true">→</span>
+              <span>Root cause classified</span>
+            </div>
+
+            <p>
+              This capability demonstrates defect detection and diagnostic
+              quality, not a manufactured all-green execution history.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Canonical source</p>
+              <h2>Inspect the implementation behind the quality gate.</h2>
+            </div>
+
+            <p>
+              The public repository contains the shared accessibility scanner
+              and fixture integration used by the published framework
+              architecture.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>Accessibility layer</span>
+              <h3>Scanner implementation</h3>
+
+              <ul>
+                <li>Shared accessibility scanner</li>
+                <li>axe-core integration</li>
+                <li>Reusable scanning capability</li>
+                <li>Centralized accessibility behavior</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src/accessibility"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse accessibility source ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Fixture integration</span>
+              <h3>Public & authenticated state</h3>
+
+              <ul>
+                <li>Public accessibility fixture</li>
+                <li>Authenticated accessibility fixture</li>
+                <li>Programmatic authentication reuse</li>
+                <li>Shared application lifecycle</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/src/fixtures/test-fixtures.ts"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Inspect shared fixtures ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Diagnostic evidence</span>
+              <h3>Failure classification</h3>
+
+              <ul>
+                <li>Real accessibility failures</li>
+                <li>Failure screenshots</li>
+                <li>Reproducibility analysis</li>
+                <li>Product-defect classification</li>
+              </ul>
+
+              <a href="../../showcases/diagnostics/README.md">
+                Read diagnostic analysis →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Real diagnostic evidence</p>
+            <h2>Inspect the detected defects.</h2>
+
+            <p>
+              The published report is a sanitized copy of the real
+              accessibility execution. The detected failures are intentionally
+              preserved.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="../../showcases/accessibility/playwright-report/"
+            >
+              Open Playwright report ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="../../showcases/diagnostics/README.md"
+            >
+              Read root-cause analysis
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Accessibility Testing capability.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../">Home</a>
+          <a href="../../#capabilities">Capabilities</a>
+
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

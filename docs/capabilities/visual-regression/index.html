@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Visual Regression · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Visual regression capability demonstrating deterministic Playwright screenshot comparison against approved version-controlled Linux baselines."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../../" aria-label="Quality Engineering Showcase home">
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+          <a href="../../#capabilities">Capabilities</a>
+          <a href="../../architecture/">Architecture</a>
+          <a href="../../ci-cd/">CI/CD</a>
+          <a href="../../decisions/">Decisions</a>
+          <a href="../../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="../../#capabilities">Capabilities</a>
+              <span aria-hidden="true">/</span>
+              <span>Visual Regression</span>
+            </nav>
+
+            <p class="eyebrow">Capability 04</p>
+
+            <h1 class="capability-title">
+              Visual
+              <span class="text-accent">Regression</span>
+            </h1>
+
+            <p class="capability-lead">
+              Deterministic Playwright screenshot comparison against approved,
+              version-controlled baselines in a controlled Linux rendering
+              environment.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="../../showcases/visual-regression/playwright-report/"
+              >
+                Open real execution report ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="../../showcases/visual-regression/README.md"
+              >
+                Read evidence documentation
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Execution evidence</span>
+              <span class="status status-success">Passed</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>2 / 2</strong>
+              <span>visual checks passed</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Environment</dt>
+                <dd>Linux</dd>
+              </div>
+
+              <div>
+                <dt>Engine</dt>
+                <dd>Playwright</dd>
+              </div>
+
+              <div>
+                <dt>Full page</dt>
+                <dd>Covered</dd>
+              </div>
+
+              <div>
+                <dt>Component</dt>
+                <dd>Covered</dd>
+              </div>
+
+              <div>
+                <dt>Animations</dt>
+                <dd>Disabled</dd>
+              </div>
+
+              <div>
+                <dt>Caret</dt>
+                <dd>Hidden</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="../../showcases/visual-regression/README.md"
+            >
+              Read detailed evidence documentation →
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering responsibility</p>
+              <h2>Rendering is a contract too.</h2>
+            </div>
+
+            <p>
+              Functional assertions verify behavior. Visual regression adds a
+              separate quality boundary that detects unexpected rendering
+              changes against explicitly approved baselines.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Controlled state</h3>
+              <p>
+                Test data and authenticated application state are established
+                deterministically before screenshot capture.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Approved baseline</h3>
+              <p>
+                Expected snapshots are version controlled with the canonical
+                visual specification.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Pixel comparison</h3>
+              <p>
+                Current rendering is compared against the approved baseline and
+                unexpected differences fail the gate.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Execution flow</p>
+              <h2>Deterministic state before screenshot comparison.</h2>
+            </div>
+
+            <p>
+              Visual coverage does not depend on manually prepared application
+              state.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Generate data</strong>
+              <p>Create controlled task state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>API setup</strong>
+              <p>Prepare application data.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Authenticated UI</strong>
+              <p>Open stable target state.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Capture</strong>
+              <p>Take deterministic screenshot.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Compare</strong>
+              <p>Evaluate approved baseline.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Baseline 01</p>
+              <h2>Authenticated dashboard.</h2>
+            </div>
+
+            <p>
+              The full-page baseline represents the authenticated dashboard
+              after deterministic task data has been created.
+            </p>
+          </div>
+
+          <figure class="evidence-image">
+            <img
+              src="../../showcases/visual-regression/task-dashboard-visual-linux.png"
+              alt="Approved visual baseline for the authenticated task dashboard"
+            />
+
+            <figcaption>
+              Canonical Linux baseline used as visual execution evidence.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Baseline 02</p>
+              <h2>Task-card component.</h2>
+            </div>
+
+            <p>
+              Component-level comparison provides a smaller visual boundary
+              when full-page comparison would add unnecessary noise.
+            </p>
+          </div>
+
+          <figure class="evidence-image">
+            <img
+              src="../../showcases/visual-regression/task-card-visual-linux.png"
+              alt="Approved visual baseline for the task-card component"
+            />
+
+            <figcaption>
+              Canonical component-level baseline from the visual specification.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Comparison stability</p>
+              <h2>Remove transient noise, not meaningful differences.</h2>
+            </div>
+
+            <p>
+              The comparison configuration suppresses browser behavior that
+              would create unnecessary visual instability.
+            </p>
+          </div>
+
+          <div class="default-grid">
+            <article>
+              <span>animations</span>
+              <strong>disabled</strong>
+            </article>
+
+            <article>
+              <span>caret</span>
+              <strong>hidden</strong>
+            </article>
+
+            <article>
+              <span>rendering</span>
+              <strong>Linux</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Baseline ownership</p>
+              <h2>Approval remains explicit.</h2>
+            </div>
+
+            <p>
+              CI compares against approved snapshots. It does not automatically
+              accept new rendering simply because the application changed.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Expected change</span>
+
+              <div class="vertical-flow">
+                <div>Intentional UI modification</div>
+                <span>↓</span>
+                <div>Review rendered difference</div>
+                <span>↓</span>
+                <div>Explicit baseline approval</div>
+                <span>↓</span>
+                <div class="flow-success">New baseline committed</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Unexpected change</span>
+
+              <div class="vertical-flow">
+                <div>Rendering changes unexpectedly</div>
+                <span>↓</span>
+                <div>Pixel comparison detects mismatch</div>
+                <span>↓</span>
+                <div>Visual gate fails</div>
+                <span>↓</span>
+                <div>Difference investigated</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Implementation representation</p>
+              <h2>Evidence without a parallel public framework.</h2>
+            </div>
+
+            <p>
+              The source-of-truth visual implementation and approved baselines
+              remain in the canonical framework. The public repository exposes
+              reviewed evidence and architecture without maintaining a second
+              visual implementation.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>Execution evidence</span>
+              <h3>Playwright report</h3>
+
+              <ul>
+                <li>Real canonical execution</li>
+                <li>2 visual checks</li>
+                <li>Successful comparison result</li>
+                <li>Sanitized for publication</li>
+              </ul>
+
+              <a href="../../showcases/visual-regression/playwright-report/">
+                Open execution report →
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Baseline evidence</span>
+              <h3>Approved snapshots</h3>
+
+              <ul>
+                <li>Full-page baseline</li>
+                <li>Component baseline</li>
+                <li>Canonical Linux rendering</li>
+                <li>Evidence copies only</li>
+              </ul>
+
+              <a href="../../showcases/visual-regression/README.md">
+                Read baseline documentation →
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Architecture</span>
+              <h3>Execution ownership</h3>
+
+              <ul>
+                <li>Deterministic rendering</li>
+                <li>Explicit baseline review</li>
+                <li>Linux execution environment</li>
+                <li>Separate visual responsibility</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/docs/ARCHITECTURE.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read architecture ↗
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Real execution</p>
+            <h2>Inspect the visual quality gate.</h2>
+
+            <p>
+              The published report comes from the real canonical
+              visual-regression execution in the controlled Linux environment.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="../../showcases/visual-regression/playwright-report/"
+            >
+              Open Playwright report ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="../../showcases/visual-regression/README.md"
+            >
+              Read evidence documentation
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Visual Regression capability.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../">Home</a>
+          <a href="../../#capabilities">Capabilities</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

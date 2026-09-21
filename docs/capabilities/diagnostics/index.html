@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Failure Diagnostics · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Failure diagnostics capability demonstrating evidence-driven root-cause classification using real Playwright and accessibility failure evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../../" aria-label="Quality Engineering Showcase home">
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+          <a href="../../#capabilities">Capabilities</a>
+          <a href="../../architecture/">Architecture</a>
+          <a href="../../ci-cd/">CI/CD</a>
+          <a href="../../decisions/">Decisions</a>
+          <a href="../../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="../../#capabilities">Capabilities</a>
+              <span aria-hidden="true">/</span>
+              <span>Failure Diagnostics</span>
+            </nav>
+
+            <p class="eyebrow">Capability 06</p>
+
+            <h1 class="capability-title">
+              Failure
+              <span class="text-accent">Diagnostics</span>
+            </h1>
+
+            <p class="capability-lead">
+              Evidence-driven root-cause analysis that separates product
+              defects from framework, environment, infrastructure and external
+              platform failures.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="../../showcases/accessibility/playwright-report/"
+              >
+                Open diagnostic report ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="../../showcases/diagnostics/README.md"
+              >
+                Read diagnostic analysis
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card accessibility-evidence-card">
+            <div class="evidence-card-header">
+              <span>Diagnostic case</span>
+              <span class="status status-attention">Product defect</span>
+            </div>
+
+            <div class="evidence-score accessibility-score">
+              <strong>2</strong>
+              <span>reproduced accessibility failures</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Layer</dt>
+                <dd>Accessibility</dd>
+              </div>
+
+              <div>
+                <dt>Rule</dt>
+                <dd>color-contrast</dd>
+              </div>
+
+              <div>
+                <dt>Impact</dt>
+                <dd>serious</dd>
+              </div>
+
+              <div>
+                <dt>States</dt>
+                <dd>2</dd>
+              </div>
+
+              <div>
+                <dt>Framework</dt>
+                <dd>Healthy</dd>
+              </div>
+
+              <div>
+                <dt>Root cause</dt>
+                <dd>Product</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="../../showcases/diagnostics/README.md"
+            >
+              Read complete diagnostic evidence →
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering responsibility</p>
+              <h2>A red result needs classification, not assumption.</h2>
+            </div>
+
+            <p>
+              Failed automation does not automatically mean broken automation.
+              Diagnosis begins by identifying which system responsibility
+              actually produced the failure.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Collect evidence</h3>
+              <p>
+                Reports, screenshots, runtime output and failure artifacts
+                preserve enough context for investigation.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Reproduce behavior</h3>
+              <p>
+                Reproducibility helps distinguish stable product behavior from
+                transient environment or infrastructure failures.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Classify root cause</h3>
+              <p>
+                Failures are assigned to the product, framework, environment,
+                infrastructure or external platform as evidence supports.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Diagnostic model</p>
+              <h2>From failure to root cause.</h2>
+            </div>
+
+            <p>
+              The investigation process follows execution responsibility rather
+              than treating all failures as equivalent.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>Failure</strong>
+              <p>Quality gate turns red.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Responsibility</strong>
+              <p>Identify owning test layer.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>Evidence</strong>
+              <p>Inspect available artifacts.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>Reproduce</strong>
+              <p>Confirm stable behavior.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Classify</strong>
+              <p>Assign supported root cause.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Failure domains</p>
+              <h2>Separate ownership before remediation.</h2>
+            </div>
+
+            <p>
+              Different failure domains require different responses. Root-cause
+              classification prevents framework changes from being used to hide
+              genuine application defects.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">Product</span>
+              <h3>Application behavior</h3>
+              <p>Real quality defects exposed by correctly functioning tests.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Framework</span>
+              <h3>Automation implementation</h3>
+              <p>Incorrect locators, fixtures, assertions or framework logic.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Environment</span>
+              <h3>Target state</h3>
+              <p>Configuration or deployment conditions affecting execution.</p>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Infrastructure</span>
+              <h3>Execution platform</h3>
+              <p>Runtime, network, container or CI infrastructure problems.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Selected diagnostic case</p>
+              <h2>Accessibility failure reproduced twice.</h2>
+            </div>
+
+            <p>
+              The same contrast problem was detected in both public and
+              authenticated application states.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Public state</span>
+
+              <div class="vertical-flow">
+                <div>Home page scan</div>
+                <span>↓</span>
+                <div>color-contrast violation</div>
+                <span>↓</span>
+                <div>3.81:1 observed</div>
+                <span>↓</span>
+                <div>4.5:1 required</div>
+                <span>↓</span>
+                <div class="flow-attention">Quality gate fails</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Authenticated state</span>
+
+              <div class="vertical-flow">
+                <div>Dashboard scan</div>
+                <span>↓</span>
+                <div>same rule violation</div>
+                <span>↓</span>
+                <div>3.81:1 observed</div>
+                <span>↓</span>
+                <div>4.5:1 required</div>
+                <span>↓</span>
+                <div class="flow-attention">Failure reproduced</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Root-cause conclusion</p>
+              <h2>The framework behaved as designed.</h2>
+            </div>
+
+            <p>
+              Repeated detection across two application states supports a
+              product-defect classification rather than an isolated automation
+              failure.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>axe-core violation</span>
+              <span aria-hidden="true">→</span>
+              <span>zero-violation assertion fails</span>
+              <span aria-hidden="true">→</span>
+              <span>issue reproduced</span>
+              <span aria-hidden="true">→</span>
+              <span>framework confirmed</span>
+              <span aria-hidden="true">→</span>
+              <span>product defect</span>
+            </div>
+
+            <p>
+              The correct engineering response is to preserve and investigate
+              the product signal, not weaken the quality gate.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Diagnostic artifacts</p>
+              <h2>Failure evidence is collected intentionally.</h2>
+            </div>
+
+            <p>
+              Artifact policy provides useful context around failures without
+              generating every expensive diagnostic artifact on every successful
+              execution.
+            </p>
+          </div>
+
+          <div class="default-grid">
+            <article>
+              <span>report</span>
+              <strong>HTML</strong>
+            </article>
+
+            <article>
+              <span>screenshot</span>
+              <strong>on failure</strong>
+            </article>
+
+            <article>
+              <span>video</span>
+              <strong>retained</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Evidence ownership</p>
+              <h2>Reuse evidence instead of duplicating artifacts.</h2>
+            </div>
+
+            <p>
+              The diagnostics capability references the existing accessibility
+              report and screenshots because they are the actual artifacts from
+              the investigated execution.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>Execution report</span>
+              <h3>Accessibility failure run</h3>
+
+              <ul>
+                <li>Real failed quality gate</li>
+                <li>Public state failure</li>
+                <li>Authenticated state failure</li>
+                <li>Sanitized publication</li>
+              </ul>
+
+              <a href="../../showcases/accessibility/playwright-report/">
+                Open diagnostic report →
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Failure evidence</span>
+              <h3>Screenshots</h3>
+
+              <ul>
+                <li>Public navigation defect</li>
+                <li>Authenticated navigation defect</li>
+                <li>Visible product context</li>
+                <li>Shared root cause</li>
+              </ul>
+
+              <a href="../../showcases/accessibility/README.md">
+                View accessibility evidence →
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Analysis</span>
+              <h3>Root-cause documentation</h3>
+
+              <ul>
+                <li>Failure domains</li>
+                <li>Reproducibility reasoning</li>
+                <li>Framework-health distinction</li>
+                <li>Product classification</li>
+              </ul>
+
+              <a href="../../showcases/diagnostics/README.md">
+                Read diagnostic analysis →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Diagnostic evidence</p>
+            <h2>Inspect the failure before judging the framework.</h2>
+
+            <p>
+              The selected case demonstrates why quality engineering requires
+              root-cause classification rather than simply counting green and
+              red tests.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="../../showcases/accessibility/playwright-report/"
+            >
+              Open diagnostic report ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="../../showcases/diagnostics/README.md"
+            >
+              Read complete analysis
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Failure Diagnostics capability.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../">Home</a>
+          <a href="../../#capabilities">Capabilities</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

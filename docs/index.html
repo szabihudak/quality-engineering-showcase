@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="Senior SDET and Quality Engineering portfolio demonstrating API, UI, cross-browser, accessibility, visual regression, performance, Docker and CI/CD engineering with real execution evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./" aria-label="Quality Engineering Showcase home">
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="#capabilities">Capabilities</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#principles">Engineering</a>
+          <a href="#roadmap">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">Senior SDET · Quality Engineering</p>
+
+            <h1>
+              Engineering quality systems
+              <span class="text-accent">that produce evidence.</span>
+            </h1>
+
+            <p class="hero-copy">
+              A production-style Playwright and TypeScript Quality Engineering
+              framework demonstrating maintainable automation architecture,
+              deterministic execution, executable quality gates and real
+              diagnostic evidence.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#capabilities">
+                Explore capabilities
+              </a>
+
+              <a class="button button-secondary" href="#evidence">
+                View execution evidence
+              </a>
+            </div>
+
+            <div class="technology-line" aria-label="Core technologies">
+              <span>Playwright</span>
+              <span>TypeScript</span>
+              <span>Docker</span>
+              <span>GitHub Actions</span>
+              <span>k6</span>
+              <span>Lighthouse</span>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Engineering system summary">
+            <div class="panel-label">Engineering system</div>
+
+            <div class="system-flow">
+              <div class="system-node">
+                <span class="node-index">01</span>
+                <span>Canonical source</span>
+              </div>
+
+              <div class="system-connector" aria-hidden="true"></div>
+
+              <div class="system-node">
+                <span class="node-index">02</span>
+                <span>Deterministic execution</span>
+              </div>
+
+              <div class="system-connector" aria-hidden="true"></div>
+
+              <div class="system-node">
+                <span class="node-index">03</span>
+                <span>Quality gate</span>
+              </div>
+
+              <div class="system-connector" aria-hidden="true"></div>
+
+              <div class="system-node">
+                <span class="node-index">04</span>
+                <span>Evidence & diagnosis</span>
+              </div>
+            </div>
+
+            <div class="panel-footer">
+              <span class="status-dot"></span>
+              Evidence-backed implementation
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="evidence" class="section section-border">
+        <div class="container">
+          <div class="section-heading compact-heading">
+            <div>
+              <p class="eyebrow">Verified execution</p>
+              <h2>Claims backed by real framework runs.</h2>
+            </div>
+
+            <p>
+              Execution evidence is published only when it originates from the
+              canonical implementation and passes a public-safety review.
+            </p>
+          </div>
+
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <p class="metric-value">28/28</p>
+              <h3>API tests passed</h3>
+              <p>
+                Runtime contracts, authentication, validation and negative paths.
+              </p>
+            </article>
+
+            <article class="metric-card">
+              <p class="metric-value">18/18</p>
+              <h3>UI tests passed</h3>
+              <p>
+                Shared UI and smoke scenarios across three browser engines.
+              </p>
+            </article>
+
+            <article class="metric-card">
+              <p class="metric-value">3</p>
+              <h3>Browser engines</h3>
+              <p>
+                Chromium, Firefox and WebKit execution from the same test suite.
+              </p>
+            </article>
+
+            <article class="metric-card metric-card-attention">
+              <p class="metric-value">2</p>
+              <h3>A11y defects detected</h3>
+              <p>
+                Real serious color-contrast violations preserved as diagnostic
+                evidence.
+              </p>
+            </article>
+
+            <article class="metric-card">
+              <p class="metric-value">PASS</p>
+              <h3>Visual regression</h3>
+              <p>
+                Deterministic Linux rendering against approved canonical
+                baselines.
+              </p>
+            </article>
+
+            <article class="metric-card">
+              <p class="metric-value">PASS</p>
+              <h3>Performance gates</h3>
+              <p>
+                k6 API workload plus public and authenticated Lighthouse
+                auditing.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="capabilities" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Capabilities</p>
+              <h2>Quality engineering beyond test scripts.</h2>
+            </div>
+
+            <p>
+              Each capability is treated as an engineering responsibility with
+              explicit ownership, execution boundaries and evidence.
+            </p>
+          </div>
+
+          <div class="capability-grid">
+            <article class="capability-card">
+              <div class="card-topline">
+                <span class="capability-index">01</span>
+                <span class="status status-success">Implemented</span>
+              </div>
+
+              <h3>API & Contract Testing</h3>
+
+              <p>
+                Browser-independent API automation with TypeBox schemas and AJV
+                runtime contract validation.
+              </p>
+
+              <ul class="feature-list">
+                <li>28 / 28 execution pass</li>
+                <li>Authentication boundaries</li>
+                <li>Positive and negative scenarios</li>
+                <li>Deterministic test data</li>
+              </ul>
+
+              <div class="card-actions">
+                <a href="./capabilities/api/">Explore capability</a>
+
+                <a
+                  href="./showcases/api/playwright-report/api-execution.report.html"
+                >
+                  Real report ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="capability-card">
+              <div class="card-topline">
+                <span class="capability-index">02</span>
+                <span class="status status-success">Implemented</span>
+              </div>
+
+              <h3>UI & Cross-Browser</h3>
+
+              <p>
+                Shared browser scenarios executed across Chromium, Firefox and
+                WebKit without browser-specific duplication.
+              </p>
+
+              <ul class="feature-list">
+                <li>18 / 18 execution pass</li>
+                <li>Real UI login coverage</li>
+                <li>Programmatic authentication</li>
+                <li>API-driven setup and mocking</li>
+              </ul>
+
+              <div class="card-actions">
+                <a href="./capabilities/ui/">Explore capability</a>
+
+                <a
+                  href="./showcases/ui/playwright-report/ui-cross-browser-execution.report.html"
+                >
+                  Real report ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="capability-card">
+              <div class="card-topline">
+                <span class="capability-index">03</span>
+                <span class="status status-attention">Defects detected</span>
+              </div>
+
+              <h3>Accessibility</h3>
+
+              <p>
+                axe-core quality gates that preserve real failures instead of
+                hiding product accessibility problems.
+              </p>
+
+              <ul class="feature-list">
+                <li>Public and authenticated coverage</li>
+                <li>WCAG-oriented automated checks</li>
+                <li>Serious color-contrast defects</li>
+                <li>Failure screenshots and diagnostics</li>
+              </ul>
+
+              <div class="card-actions">
+                <a href="./capabilities/accessibility/">Explore capability</a>
+
+                <a href="./showcases/accessibility/playwright-report/">
+                  Diagnostic report ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="capability-card">
+              <div class="card-topline">
+                <span class="capability-index">04</span>
+                <span class="status status-success">Implemented</span>
+              </div>
+
+              <h3>Visual Regression</h3>
+
+              <p>
+                Deterministic screenshot comparison with version-controlled,
+                review-owned Linux baselines.
+              </p>
+
+              <ul class="feature-list">
+                <li>Full-page coverage</li>
+                <li>Component-level comparison</li>
+                <li>Deterministic API state setup</li>
+                <li>Noise reduction controls</li>
+              </ul>
+
+              <div class="card-actions">
+                <a href="./capabilities/visual-regression/">
+                  Explore capability
+                </a>
+
+                <a href="./showcases/visual-regression/playwright-report/">
+                  Real report ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="capability-card">
+              <div class="card-topline">
+                <span class="capability-index">05</span>
+                <span class="status status-success">Implemented</span>
+              </div>
+
+              <h3>Performance Engineering</h3>
+
+              <p>
+                Separate service and browser performance responsibilities with
+                explicit threshold-based quality gates.
+              </p>
+
+              <ul class="feature-list">
+                <li>k6 authenticated API workload</li>
+                <li>Public Lighthouse CI</li>
+                <li>Authenticated Lighthouse</li>
+                <li>Shared browser performance policy</li>
+              </ul>
+
+              <div class="card-actions">
+                <a href="./capabilities/performance/">Explore capability</a>
+
+                <a href="./showcases/performance/k6/task-read-load.html">
+                  k6 report ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="capability-card">
+              <div class="card-topline">
+                <span class="capability-index">06</span>
+                <span class="status status-success">Implemented</span>
+              </div>
+
+              <h3>Failure Diagnostics</h3>
+
+              <p>
+                Failure evidence is used to separate product defects from
+                framework, environment and infrastructure failures.
+              </p>
+
+              <ul class="feature-list">
+                <li>Evidence-driven root cause analysis</li>
+                <li>Failure artifact ownership</li>
+                <li>Product vs framework classification</li>
+                <li>Reusable diagnostic evidence</li>
+              </ul>
+
+              <div class="card-actions">
+                <a href="./capabilities/diagnostics/">Explore capability</a>
+
+                <a href="./showcases/accessibility/playwright-report/">
+                  Example failure ↗
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="architecture" class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Architecture</p>
+              <h2>Execution follows responsibility.</h2>
+            </div>
+
+            <p>
+              The framework does not multiply every test through every runtime.
+              Each quality concern executes where its behavior is actually owned.
+            </p>
+          </div>
+
+          <div class="architecture-layout">
+            <div
+              class="architecture-map"
+              aria-label="Quality engineering architecture"
+            >
+              <div class="architecture-root">Quality Engineering System</div>
+
+              <div class="architecture-columns">
+                <div class="architecture-column">
+                  <span class="architecture-label">API</span>
+                  <strong>Contracts</strong>
+                  <span>TypeBox</span>
+                  <span>AJV</span>
+                  <span>Auth</span>
+                </div>
+
+                <div class="architecture-column">
+                  <span class="architecture-label">UI</span>
+                  <strong>Browser behavior</strong>
+                  <span>Fixtures</span>
+                  <span>Page objects</span>
+                  <span>Cross-browser</span>
+                </div>
+
+                <div class="architecture-column">
+                  <span class="architecture-label">Quality gates</span>
+                  <strong>Specialized layers</strong>
+                  <span>Accessibility</span>
+                  <span>Visual</span>
+                  <span>Performance</span>
+                </div>
+              </div>
+
+              <div class="architecture-foundation">
+                Docker · GitHub Actions · GHCR · Evidence
+              </div>
+            </div>
+
+            <div class="architecture-copy">
+              <div class="architecture-rule">
+                <span>API</span>
+                <p>Browser independent → execute once.</p>
+              </div>
+
+              <div class="architecture-rule">
+                <span>UI</span>
+                <p>Browser owned → Chromium, Firefox and WebKit.</p>
+              </div>
+
+              <div class="architecture-rule">
+                <span>Accessibility</span>
+                <p>Dedicated quality responsibility → Chromium.</p>
+              </div>
+
+              <div class="architecture-rule">
+                <span>Visual</span>
+                <p>Rendering contract → deterministic Linux environment.</p>
+              </div>
+
+              <div class="architecture-rule">
+                <span>Performance</span>
+                <p>
+                  k6 for API workload · Lighthouse for browser measurement.
+                </p>
+              </div>
+
+              <a
+                class="text-link"
+                href="./architecture/"
+              >
+                Explore architecture
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="principles" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering principles</p>
+              <h2>Designed for maintainability and trust.</h2>
+            </div>
+
+            <p>
+              The framework optimizes for reproducibility, explicit ownership
+              and useful quality signals rather than raw test-count growth.
+            </p>
+          </div>
+
+          <div class="principles-grid">
+            <article class="principle">
+              <span class="principle-number">01</span>
+              <h3>Deterministic state</h3>
+              <p>
+                Factories, fixtures and API-driven setup reduce dependency on
+                shared or manually prepared application state.
+              </p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">02</span>
+              <h3>Runtime contracts</h3>
+              <p>
+                External API responses are validated at runtime before business
+                assertions trust their structure.
+              </p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">03</span>
+              <h3>Execution ownership</h3>
+              <p>
+                Test layers run only where their responsibility requires them,
+                avoiding unnecessary execution duplication.
+              </p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">04</span>
+              <h3>Evidence over claims</h3>
+              <p>
+                Public capability statements are backed by implementation,
+                architecture or reviewed real execution evidence.
+              </p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">05</span>
+              <h3>Reproducible execution</h3>
+              <p>
+                Docker and reusable CI environments reduce machine-specific
+                differences and execution drift.
+              </p>
+            </article>
+
+            <article class="principle">
+              <span class="principle-number">06</span>
+              <h3>Failure diagnosis</h3>
+              <p>
+                A red test result is classified before it is treated as a
+                framework problem.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container evidence-flow-layout">
+          <div>
+            <p class="eyebrow">Engineering evidence model</p>
+            <h2>From implementation to diagnosis.</h2>
+
+            <p class="section-copy">
+              The public portfolio is intentionally downstream of the canonical
+              framework. Evidence is published only after execution and review.
+            </p>
+          </div>
+
+          <div class="evidence-flow">
+            <div class="flow-step">
+              <span>01</span>
+              <strong>Canonical source</strong>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">→</div>
+
+            <div class="flow-step">
+              <span>02</span>
+              <strong>Execution</strong>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">→</div>
+
+            <div class="flow-step">
+              <span>03</span>
+              <strong>Quality gate</strong>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">→</div>
+
+            <div class="flow-step">
+              <span>04</span>
+              <strong>Evidence</strong>
+            </div>
+
+            <div class="flow-arrow" aria-hidden="true">→</div>
+
+            <div class="flow-step">
+              <span>05</span>
+              <strong>Diagnosis</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering roadmap</p>
+              <h2>Built to evolve beyond automation.</h2>
+            </div>
+
+            <p>
+              Future capabilities remain explicitly labelled as roadmap work
+              until implementation and validation are complete.
+            </p>
+          </div>
+
+          <div class="roadmap">
+            <article class="roadmap-stage roadmap-stage-active">
+              <span class="roadmap-status">Implemented</span>
+              <h3>Automation foundation</h3>
+              <p>
+                API · UI · Cross-browser · Accessibility · Visual · Performance ·
+                Docker · CI/CD
+              </p>
+            </article>
+
+            <article class="roadmap-stage">
+              <span class="roadmap-status">Next</span>
+              <h3>Data & Cloud</h3>
+              <p>SQL · AWS · IAM · S3 · CloudWatch · Secrets</p>
+            </article>
+
+            <article class="roadmap-stage">
+              <span class="roadmap-status">Planned</span>
+              <h3>AI-assisted QE</h3>
+              <p>
+                Copilot · Cursor · ChatGPT workflows · OpenAI fundamentals
+              </p>
+            </article>
+
+            <article class="roadmap-stage">
+              <span class="roadmap-status">Planned</span>
+              <h3>QE strategy & systems</h3>
+              <p>
+                Leadership · Quality metrics · System design · Security ·
+                Observability
+              </p>
+            </article>
+          </div>
+
+          <div class="section-action">
+            <a
+              class="button button-secondary"
+              href="./roadmap/"
+            >
+              Explore full roadmap
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Quality Engineering Showcase</p>
+            <h2>Inspect the engineering, not just the summary.</h2>
+
+            <p>
+              Review the selected canonical source, technical documentation and
+              real execution evidence directly in the repository.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/szabihudak/quality-engineering-showcase"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View GitHub repository ↗
+            </a>
+
+            <a class="button button-secondary" href="#capabilities">
+              Browse evidence
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>Senior SDET / Quality Engineering case study.</p>
+        </div>
+
+        <div class="footer-links">
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+
+          <a href="#main-content">Back to top ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

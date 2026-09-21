@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API & Contract Testing · Quality Engineering Showcase</title>
+
+    <meta
+      name="description"
+      content="API and contract testing capability demonstrating Playwright API automation, TypeBox schemas, AJV runtime validation, authentication boundaries and real execution evidence."
+    />
+
+    <meta name="theme-color" content="#0b0d10" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="../../"
+          aria-label="Quality Engineering Showcase home"
+        >
+          <span class="brand-mark" aria-hidden="true">QE</span>
+          <span class="brand-text">Showcase</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav
+          id="primary-navigation"
+          class="primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="../../#capabilities">Capabilities</a>
+          <a href="../../architecture/">Architecture</a>
+          <a href="../../ci-cd/">CI/CD</a>
+          <a href="../../decisions/">Decisions</a>
+          <a href="../../roadmap/">Roadmap</a>
+
+          <a
+            class="nav-github"
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="capability-hero section">
+        <div class="container capability-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="../../">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="../../#capabilities">Capabilities</a>
+              <span aria-hidden="true">/</span>
+              <span>API & Contract Testing</span>
+            </nav>
+
+            <p class="eyebrow">Capability 01</p>
+
+            <h1 class="capability-title">
+              API & Contract
+              <span class="text-accent">Testing</span>
+            </h1>
+
+            <p class="capability-lead">
+              Browser-independent API automation with schema-first runtime
+              contracts, reusable authentication, deterministic test data and
+              explicit negative-path validation.
+            </p>
+
+            <div class="capability-hero-actions">
+              <a
+                class="button button-primary"
+                href="../../showcases/api/playwright-report/api-execution.report.html"
+              >
+                Open real execution report ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/api"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Inspect canonical tests ↗
+              </a>
+            </div>
+          </div>
+
+          <aside class="evidence-card evidence-card-primary">
+            <div class="evidence-card-header">
+              <span>Execution evidence</span>
+              <span class="status status-success">Passed</span>
+            </div>
+
+            <div class="evidence-score">
+              <strong>28 / 28</strong>
+              <span>tests passed</span>
+            </div>
+
+            <dl class="evidence-facts">
+              <div>
+                <dt>Project</dt>
+                <dd>api</dd>
+              </div>
+
+              <div>
+                <dt>Spec files</dt>
+                <dd>4</dd>
+              </div>
+
+              <div>
+                <dt>Failed</dt>
+                <dd>0</dd>
+              </div>
+
+              <div>
+                <dt>Flaky</dt>
+                <dd>0</dd>
+              </div>
+
+              <div>
+                <dt>Skipped</dt>
+                <dd>0</dd>
+              </div>
+
+              <div>
+                <dt>Runtime</dt>
+                <dd>Docker</dd>
+              </div>
+            </dl>
+
+            <a
+              class="evidence-card-link"
+              href="../../showcases/api/README.md"
+            >
+              Read detailed evidence documentation →
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Engineering responsibility</p>
+              <h2>Validate behavior before trusting types.</h2>
+            </div>
+
+            <p>
+              Compile-time TypeScript types describe what the framework expects.
+              They do not prove that an external provider actually returned that
+              structure at runtime.
+            </p>
+          </div>
+
+          <div class="content-split">
+            <article class="content-panel">
+              <span class="panel-number">01</span>
+              <h3>Transport validation</h3>
+              <p>
+                The framework verifies expected HTTP behavior before moving to
+                payload-level assertions.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">02</span>
+              <h3>Runtime contract validation</h3>
+              <p>
+                TypeBox schemas and AJV validate the real provider response
+                before business assertions trust the parsed data.
+              </p>
+            </article>
+
+            <article class="content-panel">
+              <span class="panel-number">03</span>
+              <h3>Business behavior</h3>
+              <p>
+                Scenario-level assertions then validate observable application
+                behavior on top of the verified contract.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Contract pipeline</p>
+              <h2>Schema-first runtime verification.</h2>
+            </div>
+
+            <p>
+              The contract layer sits between raw provider data and business
+              assertions so malformed successful responses do not silently pass
+              through typed test code.
+            </p>
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step">
+              <span>01</span>
+              <strong>HTTP response</strong>
+              <p>Receive provider output.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>02</span>
+              <strong>Status assertion</strong>
+              <p>Validate transport behavior.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>03</span>
+              <strong>JSON parsing</strong>
+              <p>Parse runtime payload.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>04</span>
+              <strong>AJV validation</strong>
+              <p>Check TypeBox contract.</p>
+            </div>
+
+            <div class="pipeline-arrow" aria-hidden="true">→</div>
+
+            <div class="pipeline-step">
+              <span>05</span>
+              <strong>Business assertions</strong>
+              <p>Validate scenario intent.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Coverage model</p>
+              <h2>Business capabilities, not isolated requests.</h2>
+            </div>
+
+            <p>
+              Coverage is organized around provider behavior and application
+              responsibilities instead of treating each HTTP request as an
+              unrelated technical check.
+            </p>
+          </div>
+
+          <div class="coverage-grid">
+            <article class="coverage-card">
+              <span class="coverage-label">User registration</span>
+
+              <ul>
+                <li>Valid registration</li>
+                <li>Password boundary behavior</li>
+                <li>Duplicate user</li>
+                <li>Empty fields</li>
+                <li>Missing required fields</li>
+              </ul>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Authentication</span>
+
+              <ul>
+                <li>Valid credentials</li>
+                <li>Wrong password</li>
+                <li>Malformed credentials</li>
+                <li>Missing credentials</li>
+                <li>Unknown user</li>
+              </ul>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Current user</span>
+
+              <ul>
+                <li>Authenticated request</li>
+                <li>Missing token</li>
+                <li>Invalid token</li>
+              </ul>
+            </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">Task creation</span>
+
+              <ul>
+                <li>Provider contract validation</li>
+                <li>Default description behavior</li>
+                <li>Default priority behavior</li>
+                <li>Default status behavior</li>
+                <li>Authentication failures</li>
+                <li>Required-field validation</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Authentication boundaries</p>
+              <h2>Successful and rejected behavior are both testable contracts.</h2>
+            </div>
+
+            <p>
+              A controlled rejection is a successful test result when the API
+              returns the expected security behavior and error contract.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Successful path</span>
+
+              <div class="vertical-flow">
+                <div>Valid credentials</div>
+                <span>↓</span>
+                <div>Authentication</div>
+                <span>↓</span>
+                <div>Bearer access token</div>
+                <span>↓</span>
+                <div>Protected API operation</div>
+                <span>↓</span>
+                <div class="flow-success">Expected business response</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">Rejected path</span>
+
+              <div class="vertical-flow">
+                <div>Missing / invalid credentials</div>
+                <span>↓</span>
+                <div>Protected API operation</div>
+                <span>↓</span>
+                <div>Unauthorized response</div>
+                <span>↓</span>
+                <div>Expected error contract</div>
+                <span>↓</span>
+                <div class="flow-success">Test passes as designed</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Deterministic setup</p>
+              <h2>Generated data instead of shared accounts.</h2>
+            </div>
+
+            <p>
+              Test factories create unique execution data so scenarios remain
+              independent from manually maintained users and previously created
+              application state.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Scenario</span>
+              <span aria-hidden="true">→</span>
+              <span>Factory</span>
+              <span aria-hidden="true">→</span>
+              <span>Unique data</span>
+              <span aria-hidden="true">→</span>
+              <span>API execution</span>
+              <span aria-hidden="true">→</span>
+              <span>Assertions</span>
+            </div>
+
+            <p>
+              Synthetic <code>@example.com</code> identities visible in the
+              execution report are generated automation data and do not represent
+              real users.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Provider behavior</p>
+              <h2>Defaults are observable contract behavior.</h2>
+            </div>
+
+            <p>
+              Optional request fields are validated against the behavior exposed
+              by the provider rather than duplicated as implementation logic
+              inside the test framework.
+            </p>
+          </div>
+
+          <div class="default-grid">
+            <article>
+              <span>description omitted</span>
+              <strong>null</strong>
+            </article>
+
+            <article>
+              <span>priority omitted</span>
+              <strong>medium</strong>
+            </article>
+
+            <article>
+              <span>status omitted</span>
+              <strong>backlog</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Canonical source</p>
+              <h2>Execution evidence remains traceable to implementation.</h2>
+            </div>
+
+            <p>
+              The public repository contains selected canonical source copied
+              from the verified implementation rather than simplified showcase
+              examples.
+            </p>
+          </div>
+
+          <div class="source-grid">
+            <article class="source-card">
+              <span>Tests</span>
+              <h3>API scenarios</h3>
+
+              <ul>
+                <li>user-registration.spec.ts</li>
+                <li>user-authentication.spec.ts</li>
+                <li>user-get-current-user.spec.ts</li>
+                <li>create-task.spec.ts</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/api"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse tests ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Contracts</span>
+              <h3>Runtime schemas</h3>
+
+              <ul>
+                <li>TypeBox schemas</li>
+                <li>SchemaValidator</li>
+                <li>AJV compilation</li>
+                <li>Runtime response checks</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src/api"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse API layer ↗
+              </a>
+            </article>
+
+            <article class="source-card">
+              <span>Infrastructure</span>
+              <h3>Shared setup</h3>
+
+              <ul>
+                <li>User data factory</li>
+                <li>Task data factory</li>
+                <li>Shared fixtures</li>
+                <li>Environment-aware execution</li>
+              </ul>
+
+              <a
+                href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Browse shared source ↗
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container final-cta-inner">
+          <div>
+            <p class="eyebrow">Execution evidence</p>
+            <h2>Inspect the real run.</h2>
+
+            <p>
+              The published HTML report originates from the real Docker-based
+              canonical API execution. No artificial passing results were created
+              for presentation.
+            </p>
+          </div>
+
+          <div class="final-actions">
+            <a
+              class="button button-primary"
+              href="../../showcases/api/playwright-report/api-execution.report.html"
+            >
+              Open Playwright report ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="../../showcases/api/README.md"
+            >
+              Read evidence documentation
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Quality Engineering Showcase</strong>
+          <p>API & Contract Testing capability.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../">Home</a>
+          <a href="../../#capabilities">Capabilities</a>
+          <a
+            href="https://github.com/szabihudak/quality-engineering-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>
