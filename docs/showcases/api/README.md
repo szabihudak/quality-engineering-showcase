@@ -227,11 +227,15 @@ The real Playwright HTML report from the Docker-based API execution is published
 
 [Open the rendered API Playwright report](https://szabihudak.github.io/quality-engineering-showcase/showcases/api/playwright-report/api-execution.report.html)
 
-The report is retained in its standard Playwright report structure:
+The report source is retained in this repository under:
+
+[`playwright-report/`](./playwright-report/)
+
+Current structure:
 
 ```text
 playwright-report/
-└── index.html
+└── api-execution.report.html
 ```
 
 The report originates from the real canonical API execution.
