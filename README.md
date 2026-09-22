@@ -18,7 +18,7 @@ The focus goes beyond writing automated tests. It demonstrates how different qua
 
 **Data & Cloud → AI-Assisted QA → AI QA Platforms → QE & Leadership → System Design, Security & Observability**
 
-**[Explore the portfolio site →](https://szabihudak.github.io/quality-engineering-showcase/)** · [Architecture](#architecture-at-a-glance) · [Evidence](#execution-evidence) · [Runnable Framework](#runnable-public-framework) · [Roadmap](#framework-roadmap)
+**[Explore the portfolio site →](https://szabihudak.github.io/quality-engineering-showcase/)** · [Architecture](#architecture-at-a-glance) · [Evidence](#execution-evidence) · [Roadmap](#framework-roadmap)
 
 ---
 
@@ -405,7 +405,7 @@ The CI/CD, Docker, and GHCR implementation is documented publicly. Dedicated san
 
 This repository is intentionally **not a public mirror of the complete framework**.
 
-The core API and UI automation architecture is published here as **public-safe canonical source**, copied directly from the verified private implementation without showcase-specific rewrites.
+The core API and UI automation architecture is published here as **selected public-safe source copied directly from the verified canonical implementation**, without showcase-specific rewrites.
 
 The published source includes:
 
@@ -461,18 +461,6 @@ Docker / GitHub Actions / GHCR
 Source publication remains deliberately selective.
 
 The goal is to make the **core API and UI architecture fully inspectable** while demonstrating broader Quality Engineering capability without publishing the complete canonical framework or creating a parallel framework that must be maintained independently.
-
----
-
-## Runnable Public Framework
-
-Alongside this curated showcase, a standalone public Playwright + TypeScript framework is available for direct inspection, cloning, and local execution.
-
-It demonstrates the core API, UI, contract-validation, cross-browser, Docker, and CI engineering patterns represented throughout this portfolio.
-
-**[Explore the runnable Playwright Enterprise Framework →](https://github.com/szabihudak/playwright-enterprise-framework)**
-
-The runnable repository is intentionally separate from the complete canonical framework and from this curated evidence layer.
 
 ---
 
