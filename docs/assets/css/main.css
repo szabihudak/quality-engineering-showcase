@@ -586,7 +586,8 @@ p {
 
 .metric-card p:last-child {
   margin-bottom: 0;
-  font-size: 0.91rem;
+  font-size: 0.96rem;
+  line-height: 1.65;
 }
 
 /* Capability Cards */
@@ -658,7 +659,8 @@ p {
 .capability-card > p {
   min-height: 76px;
   margin-bottom: 24px;
-  font-size: 0.92rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
 }
 
 .feature-list {
@@ -673,7 +675,8 @@ p {
   position: relative;
   padding-left: 16px;
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .feature-list li::before {
@@ -696,9 +699,13 @@ p {
   border-top: 1px solid var(--border);
 }
 
-.card-actions a,
+.card-actions a {
+  font-size: 0.86rem;
+  font-weight: 620;
+}
+
 .text-link {
-  font-size: 0.79rem;
+  font-size: 0.82rem;
   font-weight: 620;
 }
 
@@ -784,8 +791,8 @@ p {
 }
 
 .architecture-column span:not(.architecture-label) {
-  color: var(--text-muted);
-  font-size: 0.79rem;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
 }
 
 .architecture-foundation {
@@ -799,7 +806,7 @@ p {
     "SFMono-Regular",
     Consolas,
     monospace;
-  font-size: 0.75rem;
+  font-size: 0.82rem;
 }
 
 .architecture-copy {
@@ -816,13 +823,14 @@ p {
   display: block;
   margin-bottom: 5px;
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   font-weight: 660;
 }
 
 .architecture-rule p {
   margin-bottom: 0;
-  font-size: 0.87rem;
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
 
 .architecture-copy .text-link {
@@ -897,7 +905,8 @@ p {
 
 .principle p {
   margin-bottom: 0;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 /* Evidence Flow */
@@ -937,8 +946,8 @@ p {
 
 .flow-step strong {
   display: block;
-  font-size: 0.78rem;
-  line-height: 1.4;
+  font-size: 0.84rem;
+  line-height: 1.45;
 }
 
 .flow-arrow {
@@ -991,7 +1000,8 @@ p {
 
 .roadmap-stage p {
   margin-bottom: 0;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .section-action {
