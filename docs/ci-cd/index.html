@@ -8,7 +8,7 @@
 
     <meta
       name="description"
-      content="CI/CD and execution architecture demonstrating build-once container reuse, GHCR distribution, responsibility-based jobs and diagnostic evidence."
+      content="CI/CD and execution architecture demonstrating build-once container reuse, GHCR distribution, database execution, responsibility-based jobs, GitHub-native summaries and diagnostic evidence."
     />
 
     <meta name="theme-color" content="#0b0d10" />
@@ -144,8 +144,8 @@
               </div>
 
               <div>
-                <dt>Public evidence</dt>
-                <dd>Deferred</dd>
+                <dt>Database</dt>
+                <dd>Dedicated job</dd>
               </div>
             </dl>
 
@@ -318,6 +318,15 @@
             </article>
 
             <article class="coverage-card">
+              <span class="coverage-label">Database</span>
+              <h3>Dedicated persistence execution</h3>
+              <p>
+                Persistence validation runs independently from browser-engine
+                compatibility.
+              </p>
+            </article>
+
+            <article class="coverage-card">
               <span class="coverage-label">UI</span>
               <h3>Browser matrix</h3>
               <p>Chromium, Firefox and WebKit own cross-browser behavior.</p>
@@ -368,18 +377,53 @@
             </article>
 
             <article class="flow-card">
-              <span class="flow-card-label">GitHub Actions artifacts</span>
+              <span class="flow-card-label">GitHub execution evidence</span>
 
               <div class="vertical-flow">
                 <div>Test execution</div>
                 <span>↓</span>
-                <div>Reports</div>
+                <div>GitHub-native summary</div>
                 <span>↓</span>
-                <div>Diagnostics</div>
+                <div>Reports and diagnostics</div>
                 <span>↓</span>
                 <div class="flow-success">Execution evidence</div>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">GitHub-native reporting</p>
+              <h2>Surface quality signals without replacing detailed evidence.</h2>
+            </div>
+
+            <p>
+              Playwright, k6 and Lighthouse provide concise GitHub-native
+              execution summaries while retaining their responsibility-specific
+              reports and diagnostics for deeper investigation.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Execution</span>
+              <span aria-hidden="true">→</span>
+              <span>Quality result</span>
+              <span aria-hidden="true">→</span>
+              <span>GitHub summary</span>
+              <span aria-hidden="true">+</span>
+              <span>Detailed evidence</span>
+            </div>
+
+            <p>
+              The summary is a presentation layer. The underlying test runner,
+              threshold policy or quality assertion remains responsible for the
+              actual result.
+            </p>
           </div>
         </div>
       </section>
@@ -474,7 +518,7 @@
             <div class="pipeline-step">
               <span>03</span>
               <strong>Inspect evidence</strong>
-              <p>Use reports and diagnostics.</p>
+              <p>Use summaries, reports and diagnostics.</p>
             </div>
 
             <div class="pipeline-arrow" aria-hidden="true">→</div>
@@ -532,7 +576,10 @@
             <article class="principle">
               <span class="principle-number">04</span>
               <h3>Separate evidence</h3>
-              <p>Reports are artifacts; container images are infrastructure.</p>
+              <p>
+                Summaries and reports are evidence; container images are
+                infrastructure.
+              </p>
             </article>
 
             <article class="principle">
@@ -558,7 +605,7 @@
 
             <p>
               The detailed document covers GHCR, image identity, job ownership,
-              performance execution, artifacts and trust boundaries.
+              performance execution, summaries, artifacts and trust boundaries.
             </p>
           </div>
 
