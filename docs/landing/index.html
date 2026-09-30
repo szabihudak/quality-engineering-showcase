@@ -9,7 +9,7 @@
     content="Senior SDET and Quality Engineering portfolio — Playwright, TypeScript, deterministic validation, AI-Assisted QE and AI-Assisted Engineering."
   />
   <meta name="theme-color" content="#08111f" />
-  <link rel="stylesheet" href="./showcase.css?v=20261001-0120" />
+  <link rel="stylesheet" href="./showcase.css?v=20261001-0131" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -22,7 +22,7 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="../#ai-workflows">AI Workflows</a>
+        <a href="#ai-workflows">AI Workflows</a>
         <a href="#capabilities">Capabilities</a>
         <a
           href="https://github.com/szabihudak/playwright-enterprise-framework"
@@ -201,26 +201,131 @@
       </div>
     </section>
 
+
+    <section id="ai-workflows" class="workflow-section">
+      <div class="wrap">
+        <div class="section-heading-dark">
+          <p class="eyebrow">AI Workflows</p>
+          <h2>Three AI workflows. One engineering boundary.</h2>
+          <p>
+            AI supports diagnosis, test design and implementation while deterministic
+            validation and human engineering ownership remain the final control boundary.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="workflow-card">
+            <div class="workflow-card-head">
+              <span class="workflow-number">01</span>
+              <div>
+                <span class="workflow-type">AI-Assisted QE</span>
+                <h3>AI Failure Analysis</h3>
+              </div>
+            </div>
+
+            <div class="workflow-steps">
+              <div class="workflow-step"><span>01</span><strong>Playwright Failure</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>02</span><strong>Execution Evidence</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>03</span><strong>Evidence Sanitization</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step accent"><span>04</span><strong>OpenAI Analysis</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>05</span><strong>Structured Diagnosis</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step human"><span>06</span><strong>Human Review</strong></div>
+            </div>
+          </article>
+
+          <article class="workflow-card">
+            <div class="workflow-card-head">
+              <span class="workflow-number">02</span>
+              <div>
+                <span class="workflow-type">AI-Assisted QE</span>
+                <h3>AI Test Suite Generation</h3>
+              </div>
+            </div>
+
+            <div class="workflow-steps">
+              <div class="workflow-step"><span>01</span><strong>Feature Context</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>02</span><strong>Risk &amp; Behavior Inputs</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step accent"><span>03</span><strong>OpenAI</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>04</span><strong>Structured Test Suite</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step human"><span>05</span><strong>Human Review</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>06</span><strong>Approved Coverage</strong></div>
+            </div>
+          </article>
+
+          <article class="workflow-card">
+            <div class="workflow-card-head">
+              <span class="workflow-number">03</span>
+              <div>
+                <span class="workflow-type">AI-Assisted Engineering</span>
+                <h3>Engineering &amp; MCP</h3>
+              </div>
+            </div>
+
+            <div class="workflow-steps">
+              <div class="workflow-step"><span>01</span><strong>Repository Context</strong></div>
+              <div class="workflow-arrow">+</div>
+              <div class="workflow-step"><span>02</span><strong>OpenAPI / Playwright MCP</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step accent"><span>03</span><strong>Copilot / Agent</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>04</span><strong>Implementation Proposal</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step human"><span>05</span><strong>Human Feedback</strong></div>
+              <div class="workflow-arrow">↓</div>
+              <div class="workflow-step"><span>06</span><strong>Deterministic Validation</strong></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="workflow-foundation">
+          <span>Structured Evidence</span>
+          <i>·</i>
+          <span>Deterministic Validation</span>
+          <i>·</i>
+          <span>Human Engineering Ownership</span>
+        </div>
+      </div>
+    </section>
+
     <section id="capabilities" class="capabilities-section">
       <div class="wrap">
-        <div class="capabilities-head">
+        <div class="section-heading-dark">
           <p class="eyebrow">Capabilities</p>
-          <h2>Execution-backed quality capabilities.</h2>
+          <h2>Quality engineering beyond test scripts.</h2>
+          <p>
+            The same implemented capabilities as the full portfolio, with direct access
+            to capability detail, execution evidence and selected public source.
+          </p>
         </div>
 
         <div class="capabilities-grid">
-          <article class="capability-card">
-            <div class="capability-top">
-              <span class="capability-icon">&lt;/&gt;</span>
-              <h3>API &amp; Contracts</h3>
+          <article class="capability-card has-execution">
+            <div class="card-topline">
+              <span class="capability-index">01</span>
+              <span class="status status-success">Implemented</span>
             </div>
-            <div class="capability-result">
-              <strong>28 / 28</strong>
-              <span>tests passed</span>
+            <h3>API &amp; Contract Testing</h3>
+            <p>Browser-independent API automation with TypeBox schemas and AJV runtime contract validation.</p>
+            <ul class="feature-list">
+              <li>28 / 28 execution pass</li>
+              <li>Authentication boundaries</li>
+              <li>Positive and negative scenarios</li>
+              <li>Deterministic test data</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/api/">Explore capability</a>
+              <a class="card-link-evidence" href="../showcases/api/playwright-report/api-execution.report.html">Inspect evidence ↗</a>
             </div>
-            <a class="evidence-link" href="../showcases/api/playwright-report/api-execution.report.html">
-              Open execution result <span>↗</span>
-            </a>
             <div class="resource-block">
               <span class="resource-label">Resources</span>
               <div class="resource-links">
@@ -231,28 +336,79 @@
           </article>
 
           <article class="capability-card">
-            <div class="capability-top">
-              <span class="capability-icon">◫</span>
-              <h3>Database Validation</h3>
+            <div class="card-topline">
+              <span class="capability-index">02</span>
+              <span class="status status-success">Implemented</span>
             </div>
-            <div class="capability-result muted-result">
-              <strong>Validated</strong>
-              <span>public execution package deferred</span>
+            <h3>Database Validation</h3>
+            <p>Typed PostgreSQL persistence validation with explicit separation between application behavior and direct database verification.</p>
+            <ul class="feature-list">
+              <li>Typed PostgreSQL clients</li>
+              <li>Persistence verification</li>
+              <li>Dedicated database project</li>
+              <li>Guarded explicit reset lifecycle</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/database/">Explore capability</a>
+              <a class="card-link-evidence" href="../capabilities/database/">Validation model</a>
             </div>
           </article>
 
           <article class="capability-card">
-            <div class="capability-top">
-              <span class="capability-icon">▱</span>
-              <h3>UI &amp; Cross-Browser</h3>
+            <div class="card-topline">
+              <span class="capability-index">03</span>
+              <span class="status status-success">Implemented</span>
             </div>
-            <div class="capability-result">
-              <strong>18 / 18</strong>
-              <span>tests passed · 3 browsers</span>
+            <h3>AI-Assisted Quality Engineering</h3>
+            <p>Framework-owned AI capabilities for structured failure analysis and risk-driven test suite generation with runtime validation and mandatory human review.</p>
+            <ul class="feature-list">
+              <li>AI Failure Analysis</li>
+              <li>AI Test Suite Generation</li>
+              <li>Structured OpenAI outputs</li>
+              <li>Evidence sanitization and human review</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/ai-assisted-qe/">Explore capability</a>
+              <a class="card-link-evidence" href="../capabilities/ai-assisted-qe/#validation-status">Inspect validation ↗</a>
             </div>
-            <a class="evidence-link" href="../showcases/ui/playwright-report/ui-cross-browser-execution.report.html">
-              Open execution result <span>↗</span>
-            </a>
+          </article>
+
+          <article class="capability-card">
+            <div class="card-topline">
+              <span class="capability-index">04</span>
+              <span class="status status-success">Validated</span>
+            </div>
+            <h3>AI-Assisted Engineering &amp; MCP</h3>
+            <p>Repository-aware Copilot and Agent workflows grounded in Golden Templates, authoritative contract evidence and real browser discovery.</p>
+            <ul class="feature-list">
+              <li>GitHub Copilot and Copilot Agent</li>
+              <li>Golden Template engineering</li>
+              <li>OpenAPI MCP contract discovery</li>
+              <li>Playwright MCP browser exploration</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/ai-assisted-engineering/">Explore capability</a>
+              <a class="card-link-evidence" href="../capabilities/ai-assisted-engineering/#validated-workflows">Inspect validation ↗</a>
+            </div>
+          </article>
+
+          <article class="capability-card has-execution">
+            <div class="card-topline">
+              <span class="capability-index">05</span>
+              <span class="status status-success">Implemented</span>
+            </div>
+            <h3>UI &amp; Cross-Browser</h3>
+            <p>Shared browser scenarios executed across Chromium, Firefox and WebKit without browser-specific duplication.</p>
+            <ul class="feature-list">
+              <li>18 / 18 execution pass</li>
+              <li>Real UI login coverage</li>
+              <li>Programmatic authentication</li>
+              <li>API-driven setup and mocking</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/ui/">Explore capability</a>
+              <a class="card-link-evidence" href="../showcases/ui/playwright-report/ui-cross-browser-execution.report.html">Inspect evidence ↗</a>
+            </div>
             <div class="resource-block">
               <span class="resource-label">Resources</span>
               <div class="resource-links">
@@ -262,18 +418,23 @@
             </div>
           </article>
 
-          <article class="capability-card">
-            <div class="capability-top">
-              <span class="capability-icon">⌘</span>
-              <h3>Accessibility</h3>
+          <article class="capability-card has-execution">
+            <div class="card-topline">
+              <span class="capability-index">06</span>
+              <span class="status status-attention">Defects detected</span>
             </div>
-            <div class="capability-result attention-result">
-              <strong>2</strong>
-              <span>serious defects detected</span>
+            <h3>Accessibility Testing</h3>
+            <p>axe-core quality gates that preserve real failures instead of hiding product accessibility problems.</p>
+            <ul class="feature-list">
+              <li>Public and authenticated coverage</li>
+              <li>WCAG-oriented automated checks</li>
+              <li>Serious color-contrast defects</li>
+              <li>Failure screenshots and diagnostics</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/accessibility/">Explore capability</a>
+              <a class="card-link-evidence" href="../showcases/accessibility/playwright-report/">Inspect diagnostics ↗</a>
             </div>
-            <a class="evidence-link" href="../showcases/accessibility/playwright-report/">
-              Open execution result <span>↗</span>
-            </a>
             <div class="resource-block">
               <span class="resource-label">Resources</span>
               <div class="resource-links">
@@ -283,39 +444,60 @@
             </div>
           </article>
 
-          <article class="capability-card">
-            <div class="capability-top">
-              <span class="capability-icon">◇</span>
-              <h3>Visual Regression</h3>
+          <article class="capability-card has-execution">
+            <div class="card-topline">
+              <span class="capability-index">07</span>
+              <span class="status status-success">Implemented</span>
             </div>
-            <div class="capability-result">
-              <strong>2 / 2</strong>
-              <span>visual tests passed</span>
+            <h3>Visual Regression</h3>
+            <p>Deterministic screenshot comparison with version-controlled, review-owned Linux baselines.</p>
+            <ul class="feature-list">
+              <li>Full-page coverage</li>
+              <li>Component-level comparison</li>
+              <li>Deterministic API state setup</li>
+              <li>Noise reduction controls</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/visual-regression/">Explore capability</a>
+              <a class="card-link-evidence" href="../showcases/visual-regression/playwright-report/">Inspect evidence ↗</a>
             </div>
-            <a class="evidence-link" href="../showcases/visual-regression/playwright-report/">
-              Open execution result <span>↗</span>
-            </a>
+          </article>
+
+          <article class="capability-card has-execution">
+            <div class="card-topline">
+              <span class="capability-index">08</span>
+              <span class="status status-success">Implemented</span>
+            </div>
+            <h3>Performance Engineering</h3>
+            <p>Separate service and browser performance responsibilities with explicit threshold-based quality gates.</p>
+            <ul class="feature-list">
+              <li>k6 authenticated API workload</li>
+              <li>Public Lighthouse CI</li>
+              <li>Authenticated Lighthouse</li>
+              <li>Shared browser performance policy</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/performance/">Explore capability</a>
+              <a class="card-link-evidence" href="../showcases/performance/k6/task-read-load.html">Inspect evidence ↗</a>
+            </div>
           </article>
 
           <article class="capability-card">
-            <div class="capability-top">
-              <span class="capability-icon">⌁</span>
-              <h3>Performance</h3>
+            <div class="card-topline">
+              <span class="capability-index">09</span>
+              <span class="status status-success">Implemented</span>
             </div>
-            <div class="capability-result">
-              <strong>PASS</strong>
-              <span>k6 + Lighthouse evidence</span>
-            </div>
-            <div class="evidence-group">
-              <a class="evidence-link compact" href="../showcases/performance/k6/task-read-load.html">
-                k6 result <span>↗</span>
-              </a>
-              <a class="evidence-link compact" href="../showcases/performance/lighthouse-public/public-home.run-1.report.html">
-                Lighthouse <span>↗</span>
-              </a>
-              <a class="evidence-link compact" href="../showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-1.report.html">
-                Authenticated <span>↗</span>
-              </a>
+            <h3>Failure Diagnostics</h3>
+            <p>Failure evidence is used to separate product defects from framework, environment and infrastructure failures.</p>
+            <ul class="feature-list">
+              <li>Evidence-driven root cause analysis</li>
+              <li>Failure artifact ownership</li>
+              <li>Product vs framework classification</li>
+              <li>Reusable diagnostic evidence</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-link-primary" href="../capabilities/diagnostics/">Explore capability</a>
+              <a class="card-link-evidence" href="../showcases/accessibility/playwright-report/">Inspect example ↗</a>
             </div>
           </article>
         </div>
