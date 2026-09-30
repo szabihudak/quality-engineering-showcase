@@ -30,7 +30,8 @@ IMPLEMENTED
 ├── Accessibility
 ├── Visual Regression
 ├── Performance Testing
-└── AI-Assisted Quality Engineering
+├── AI-Assisted Quality Engineering
+└── AI-Assisted Engineering
         │
         ▼
 NEXT
@@ -373,15 +374,43 @@ AWS is currently a roadmap capability and is not presented as an implemented fra
 
 **Status: Implemented / Validated**
 
-This phase explores how AI-assisted development can improve Quality Engineering workflows without bypassing architectural ownership.
+This phase applies framework-owned AI capabilities to Quality Engineering workflows while preserving deterministic validation, evidence boundaries, and human engineering review.
 
 Implemented framework-owned AI capabilities include:
 
 - AI Failure Analysis;
-- AI Test Scenario Generation;
+- AI Test Suite Generation;
 - structured OpenAI API integration;
 - runtime schema validation of AI output;
 - mandatory human review.
+
+The engineering model is:
+
+```text
+Quality Engineering Evidence
+          ↓
+Framework-Owned AI Capability
+          ↓
+Structured AI Output
+          ↓
+Runtime Validation
+          ↓
+Human Engineering Review
+          ↓
+Deterministic Engineering Action
+```
+
+Framework-owned AI output remains advisory and requires human review.
+
+AI Failure Analysis has been validated locally end-to-end against a controlled real Playwright failure. Its CI integration exists, while complete artifact-download-to-AI-analysis CI validation remains a documented non-blocking evidence gap.
+
+---
+
+# Implemented — AI-Assisted Engineering
+
+**Status: Implemented / Validated**
+
+This capability applies repository-aware AI assistance to engineering workflows while preserving architectural ownership, deterministic validation, and human review.
 
 Validated AI-assisted engineering areas include:
 
@@ -431,10 +460,6 @@ Create
 AI assistance changes the development workflow.
 
 It does not replace engineering ownership, architectural review, or validation.
-
-Framework-owned AI output remains advisory and requires human review.
-
-AI Failure Analysis has been validated locally end-to-end against a controlled real Playwright failure. Its CI integration exists, while complete artifact-download-to-AI-analysis CI validation remains a documented non-blocking evidence gap.
 
 ---
 
@@ -668,6 +693,7 @@ Different roadmap areas may produce different forms of evidence.
 | Performance | Metrics + reports |
 | Cloud | Architecture / controlled integration evidence |
 | AI-Assisted QE | Documented workflow + validated implementation and reviewed examples |
+| AI-Assisted Engineering | Documented workflow + deterministic validation + human review |
 | AI QA Platforms | Evaluation + proof of concept |
 | QE Strategy | Strategy / metrics case study |
 | System Design | Architecture case study |
@@ -691,14 +717,19 @@ This distinction is intentional.
 ```text
 Quality Engineering Portfolio
 │
-├── Automation Framework
+├── Traditional QE
 │   ├── API
 │   ├── Database
 │   ├── UI
 │   ├── Accessibility
 │   ├── Visual
-│   ├── Performance
-│   └── AI-Assisted QE
+│   └── Performance
+│
+├── AI-Assisted QE
+│   ├── AI Failure Analysis
+│   └── AI Test Suite Generation
+│
+├── AI-Assisted Engineering
 │
 ├── Cloud Foundations
 │
@@ -707,6 +738,18 @@ Quality Engineering Portfolio
 ├── QE Strategy & Leadership
 │
 └── System Design / Security / Observability
+```
+
+The three implemented engineering pillars are:
+
+```text
+Traditional QE
+        +
+AI-Assisted QE
+        +
+AI-Assisted Engineering
+        ↓
+Deterministic Validation + Human Engineering Review
 ```
 
 The Playwright framework is therefore the **engineering foundation of the portfolio**, not a container into which every future Quality Engineering topic must be forced.
@@ -725,6 +768,7 @@ Accessibility                ✅
 Visual Regression            ✅
 Performance                  ✅
 AI-Assisted QE               ✅
+AI-Assisted Engineering      ✅
                              │
                              ▼
 AI QA Platform Evaluation    ◇ NEXT
