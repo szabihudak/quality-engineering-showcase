@@ -59,7 +59,7 @@ Domain Abstractions
   ↓
 Fixtures & Deterministic State
   ↓
-API / Browser / Validation Capabilities
+API / Database / Browser / Validation Capabilities
   ↓
 Execution Environment
 ```
@@ -167,7 +167,51 @@ That is intentional: end-to-end coverage and focused behavioral coverage are dif
 
 ---
 
-## 4. Give Accessibility Dedicated Execution Ownership
+## 4. Keep Database Validation Behind a Typed Persistence Boundary
+
+### Context
+
+Some scenarios require evidence from persisted application state rather than only from the API or browser surface.
+
+Direct SQL scattered throughout tests would couple scenario code to persistence details and create another uncontrolled infrastructure boundary.
+
+### Decision
+
+Database validation is exposed through a typed PostgreSQL persistence capability.
+
+Conceptually:
+
+```text
+Test / Fixture
+      ↓
+Typed Database Capability
+      ↓
+PostgreSQL
+      ↓
+Persisted State
+      ↓
+Scenario Assertion
+```
+
+Tests consume the persistence capability rather than owning connection and query infrastructure independently.
+
+### Why
+
+This keeps database responsibilities consistent with the rest of the framework.
+
+Infrastructure owns connection and persistence concerns while tests retain ownership of scenario-specific expectations.
+
+It also makes database validation reusable without turning individual test files into database integration layers.
+
+### Trade-off
+
+The framework gains an additional infrastructure boundary that requires lifecycle and environment management.
+
+That complexity is accepted where persistence-level evidence adds value beyond API or browser assertions.
+
+---
+
+## 5. Give Accessibility Dedicated Execution Ownership
 
 ### Context
 
@@ -201,7 +245,7 @@ It is therefore treated as one repeatable quality signal and is not presented as
 
 ---
 
-## 5. Treat Visual Baselines as Approved Contracts
+## 6. Treat Visual Baselines as Approved Contracts
 
 ### Context
 
@@ -247,7 +291,7 @@ Those constraints are accepted in exchange for meaningful and reproducible visua
 
 ---
 
-## 6. Separate API and Browser Performance Responsibilities
+## 7. Separate API and Browser Performance Responsibilities
 
 ### Context
 
@@ -287,7 +331,7 @@ That complexity is justified because the measurements represent different system
 
 ---
 
-## 7. Reuse Functional Setup for Authenticated Performance Measurement
+## 8. Reuse Functional Setup for Authenticated Performance Measurement
 
 ### Context
 
@@ -335,7 +379,7 @@ That dependency is intentional because those capabilities are the canonical owne
 
 ---
 
-## 8. Use Multiple Lighthouse Measurements
+## 9. Use Multiple Lighthouse Measurements
 
 ### Context
 
@@ -375,7 +419,7 @@ The additional execution time and policy discipline are accepted because they pr
 
 ---
 
-## 9. Build the Container Once and Reuse It
+## 10. Build the Container Once and Reuse It
 
 ### Context
 
@@ -437,7 +481,51 @@ That complexity is preferable to rebuilding unrelated environments or treating c
 
 ---
 
-## 10. Diagnose CI Failures by Root Cause, Not Job Color
+## 11. Use GitHub Summaries as an Evidence Layer, Not a Quality Gate
+
+### Context
+
+Detailed reports and execution artifacts are useful for investigation but require additional navigation and may not always be immediately available.
+
+CI still needs a concise way to communicate the result of each quality responsibility directly from the workflow.
+
+### Decision
+
+Playwright, k6, and Lighthouse execution produce GitHub-native summaries in addition to their detailed evidence.
+
+Conceptually:
+
+```text
+Execution
+    ↓
+Quality Result
+    ↓
+GitHub Summary
+    +
+Detailed Evidence
+```
+
+The summary presents the result.
+
+It does not decide the result.
+
+### Why
+
+This keeps reporting separate from quality-gate ownership.
+
+Engineers can see the most important execution information directly in GitHub while retaining detailed reports and diagnostics for deeper investigation.
+
+The same presentation principle can be reused across different execution technologies without forcing them into one reporting library.
+
+### Trade-off
+
+Summary generation introduces another presentation layer that must remain aligned with the underlying runner output.
+
+It is intentionally kept lightweight rather than becoming a second reporting system.
+
+---
+
+## 12. Diagnose CI Failures by Root Cause, Not Job Color
 
 ### Context
 
@@ -464,6 +552,7 @@ Interpret failures through responsibility ownership and diagnostic evidence.
 
 Depending on the execution responsibility, evidence can include:
 
+- GitHub-native execution summaries;
 - HTML reports;
 - traces;
 - screenshots;
@@ -505,6 +594,160 @@ Retention and public publication therefore require deliberate lifecycle and safe
 
 ---
 
+## 13. Keep AI-Assisted Engineering Inside Existing Architecture
+
+### Context
+
+AI tools can generate tests, implementation proposals, failure explanations, and engineering suggestions quickly.
+
+Without repository context and validation boundaries, that speed can also create:
+
+- duplicate abstractions;
+- inconsistent patterns;
+- incorrect assumptions about contracts;
+- invented application behavior;
+- code that appears plausible but violates framework ownership.
+
+### Decision
+
+AI-assisted engineering operates inside the existing repository architecture.
+
+The validated workflow is:
+
+```text
+Repository Context + Authoritative Evidence
+                    ↓
+               AI Proposal
+                    ↓
+               Human Review
+                    ↓
+            Targeted Feedback
+                    ↓
+              Implementation
+                    ↓
+        Deterministic Validation
+                    ↓
+              Human Approval
+```
+
+Repository instructions and Golden Templates define the expected engineering patterns.
+
+Copilot and Agent workflows use those patterns as constraints rather than creating an independent AI-specific architecture.
+
+### Why
+
+AI assistance is most useful when it accelerates work without weakening engineering ownership.
+
+The framework therefore treats AI output as a proposal that must survive the same architectural and deterministic validation standards as human-authored work.
+
+The governing principle is:
+
+> **Architecture drives generated code, not the other way around.**
+
+### Trade-off
+
+Human review remains necessary.
+
+This deliberately limits full autonomous generation, but preserves architectural consistency and makes AI-assisted changes reviewable.
+
+---
+
+## 14. Separate Repository Evidence from MCP-Sourced Evidence
+
+### Context
+
+AI-assisted engineering can require information from more than one authoritative source.
+
+Repository context describes how the framework is designed.
+
+External system evidence can describe what an API contract or browser surface actually exposes.
+
+Treating those sources as interchangeable can cause incorrect assumptions.
+
+### Decision
+
+Keep evidence provenance explicit.
+
+```text
+Repository Evidence
+        +
+Authoritative External Evidence
+        ↓
+AI-Assisted Proposal
+        ↓
+Human Review
+        ↓
+Deterministic Validation
+```
+
+OpenAPI MCP provides contract discovery evidence.
+
+Playwright MCP provides browser exploration evidence.
+
+Repository context remains responsible for framework architecture and implementation conventions.
+
+### Why
+
+The model should not infer external contracts from repository patterns or infer repository architecture from external exploration.
+
+Separating evidence sources makes the reasoning boundary clearer and reduces unsupported generation.
+
+### Trade-off
+
+The workflow requires explicit evidence gathering before some AI-assisted tasks.
+
+That additional step is accepted because it improves traceability and reduces the risk of plausible but unsupported implementation.
+
+---
+
+## 15. Keep Framework-Owned AI Output Advisory
+
+### Context
+
+AI failure analysis and AI test scenario generation can provide useful engineering input.
+
+Their outputs are probabilistic rather than deterministic execution evidence.
+
+Treating generated analysis or scenarios as authoritative would give the model ownership that belongs to the engineering system and human reviewer.
+
+### Decision
+
+Framework-owned AI capabilities produce advisory output.
+
+```text
+Engineering Evidence
+        ↓
+AI Analysis / Proposal
+        ↓
+Human Review
+        ↓
+Engineering Decision
+```
+
+AI Failure Analysis supports diagnosis.
+
+AI Test Scenario Generation supports test design.
+
+Neither replaces deterministic execution or human approval.
+
+### Why
+
+This allows AI capabilities to add value without weakening the framework's evidence model.
+
+Deterministic systems remain responsible for proving execution behavior.
+
+AI assists interpretation and design.
+
+### Trade-off
+
+The workflow retains a human decision point and therefore does not optimize for full autonomy.
+
+That is intentional.
+
+The goal is reliable AI-assisted Quality Engineering, not autonomous ownership of quality decisions.
+
+---
+
 ## Decision Model
 
 Taken together, these decisions follow a consistent pattern:
@@ -525,6 +768,10 @@ Use the appropriate measurement layer
 Preserve reproducibility
         ↓
 Produce diagnostic evidence
+        ↓
+Use AI within architectural boundaries
+        ↓
+Require deterministic validation
         ↓
 Interpret results in context
 ```
