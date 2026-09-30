@@ -8,7 +8,7 @@
 
     <meta
       name="description"
-      content="Quality Engineering roadmap covering the implemented automation foundation and planned Data, Cloud, AI-assisted QE, strategy, system design, security and observability capabilities."
+      content="Quality Engineering roadmap covering the implemented automation, database and AI-assisted QE foundation, with AI-native QA platform evaluation, strategy, system design, security and observability as the next development areas."
     />
 
     <meta name="theme-color" content="#0b0d10" />
@@ -113,7 +113,7 @@
             </div>
 
             <div class="evidence-score">
-              <strong>7</strong>
+              <strong>9</strong>
               <span>implemented foundation areas</span>
             </div>
 
@@ -124,18 +124,18 @@
               </div>
 
               <div>
-                <dt>Data & Cloud</dt>
-                <dd>Next</dd>
+                <dt>Database validation</dt>
+                <dd>Implemented</dd>
               </div>
 
               <div>
                 <dt>AI-assisted QE</dt>
-                <dd>Planned</dd>
+                <dd>Implemented</dd>
               </div>
 
               <div>
                 <dt>AI QA platforms</dt>
-                <dd>Planned</dd>
+                <dd>Next</dd>
               </div>
 
               <div>
@@ -252,6 +252,15 @@
             </article>
 
             <article class="coverage-card">
+              <span class="coverage-label">Database</span>
+              <h3>Persistence validation</h3>
+              <p>
+                Typed PostgreSQL access and database-level validation of
+                application state and persistence behavior.
+              </p>
+            </article>
+
+            <article class="coverage-card">
               <span class="coverage-label">UI</span>
               <h3>Cross-browser automation</h3>
               <p>
@@ -263,7 +272,8 @@
               <span class="coverage-label">CI/CD</span>
               <h3>Docker & GitHub Actions</h3>
               <p>
-                Build-once image reuse, GHCR and responsibility-based jobs.
+                Build-once image reuse, GHCR, responsibility-based jobs and
+                GitHub-native execution summaries.
               </p>
             </article>
 
@@ -290,6 +300,16 @@
                 k6 workload testing plus public and authenticated Lighthouse.
               </p>
             </article>
+
+            <article class="coverage-card">
+              <span class="coverage-label">AI-assisted QE</span>
+              <h3>AI engineering workflows</h3>
+              <p>
+                AI failure analysis, AI test design, repository-aware Copilot
+                and Agent workflows, Golden Templates and MCP-assisted
+                discovery.
+              </p>
+            </article>
           </div>
         </div>
       </section>
@@ -298,13 +318,14 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Next</p>
-              <h2>Data & Cloud Foundations.</h2>
+              <p class="eyebrow">Implemented</p>
+              <h2>Data & SQL Foundations.</h2>
             </div>
 
             <p>
-              The next phase expands quality validation beyond application
-              interfaces into data and surrounding infrastructure.
+              Database validation extends quality engineering beyond application
+              interfaces into the persistence layer. Broader cloud foundations
+              remain future learning.
             </p>
           </div>
 
@@ -313,20 +334,20 @@
               <span class="flow-card-label">Data & SQL</span>
 
               <div class="vertical-flow">
-                <div>SQL fundamentals</div>
+                <div>Typed PostgreSQL access</div>
                 <span>↓</span>
-                <div>Filtering & aggregation</div>
+                <div>Database fixtures</div>
                 <span>↓</span>
-                <div>JOIN operations</div>
+                <div>Persistence validation</div>
                 <span>↓</span>
-                <div>Window functions</div>
+                <div>Application state verification</div>
                 <span>↓</span>
-                <div>Data validation scenarios</div>
+                <div>Deterministic database scenarios</div>
               </div>
             </article>
 
             <article class="flow-card">
-              <span class="flow-card-label">Cloud foundations</span>
+              <span class="flow-card-label">Cloud foundations · Planned</span>
 
               <div class="vertical-flow">
                 <div>AWS fundamentals</div>
@@ -348,32 +369,43 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Planned</p>
+              <p class="eyebrow">Implemented</p>
               <h2>AI-assisted Quality Engineering.</h2>
             </div>
 
             <p>
-              AI assistance is planned as an engineering workflow enhancement,
-              not as a replacement for architecture ownership or review.
+              AI assistance extends the engineering workflow while architecture
+              ownership, deterministic validation and final approval remain
+              human responsibilities.
             </p>
           </div>
 
           <div class="engineering-callout">
             <div class="engineering-callout-flow">
-              <span>Human intent</span>
+              <span>Repository context</span>
               <span aria-hidden="true">→</span>
-              <span>Existing architecture</span>
+              <span>Authoritative evidence</span>
               <span aria-hidden="true">→</span>
-              <span>AI assistance</span>
+              <span>AI proposal</span>
               <span aria-hidden="true">→</span>
-              <span>Review</span>
+              <span>Human review</span>
               <span aria-hidden="true">→</span>
-              <span>Validated integration</span>
+              <span>Deterministic validation</span>
             </div>
 
             <p>
-              Planned areas include Copilot, Cursor, ChatGPT-assisted workflows,
-              AI-assisted debugging and OpenAI API fundamentals.
+              Implemented capabilities include AI failure analysis and AI test
+              scenario generation. The engineering workflow also validates
+              repository-aware Copilot assistance, Agent workflows, Golden
+              Template guidance, OpenAPI MCP contract discovery and Playwright
+              MCP browser exploration.
+            </p>
+
+            <p>
+              AI outputs remain advisory and require human review. Local
+              framework capabilities have been validated at their documented
+              boundaries. Full CI validation of the artifact-download-to-AI
+              failure-analysis path remains a non-blocking evidence gap.
             </p>
           </div>
         </div>
@@ -383,13 +415,14 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Planned</p>
+              <p class="eyebrow">Next</p>
               <h2>AI-native QA platform evaluation.</h2>
             </div>
 
             <p>
-              Platform evaluation will focus on engineering behavior rather than
-              simply demonstrating vendor features.
+              The next phase evaluates mabl against the existing engineering
+              model, focusing on real platform behavior rather than simply
+              demonstrating vendor features.
             </p>
           </div>
 
@@ -415,8 +448,8 @@
               <span class="coverage-label">Maintenance</span>
               <h3>What changes over time?</h3>
               <p>
-                Compare self-healing claims with real maintenance ownership and
-                debugging cost.
+                Compare self-healing behavior with real maintenance ownership,
+                false-healing risk and debugging cost.
               </p>
             </article>
 
@@ -542,15 +575,21 @@
             </article>
 
             <article class="coverage-card">
-              <span class="coverage-label">Data & Cloud</span>
-              <h3>Controlled exercises</h3>
-              <p>Queries, validation and infrastructure case studies.</p>
+              <span class="coverage-label">Database</span>
+              <h3>Persistence evidence</h3>
+              <p>
+                Typed database access, deterministic scenarios and persistence
+                validation.
+              </p>
             </article>
 
             <article class="coverage-card">
               <span class="coverage-label">AI</span>
               <h3>Workflow evidence</h3>
-              <p>Reviewed examples and evaluated proof-of-concept work.</p>
+              <p>
+                Validated AI capabilities, reviewed proposals and deterministic
+                engineering verification.
+              </p>
             </article>
 
             <article class="coverage-card">
