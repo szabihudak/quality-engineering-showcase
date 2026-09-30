@@ -34,7 +34,8 @@ flowchart TD
     QE --> AX[Accessibility]
     QE --> VR[Visual Regression]
     QE --> PERF[Performance]
-    QE --> AI[AI-Assisted QE]
+    QE --> AIQE[AI-Assisted QE]
+    QE --> AIENG[AI-Assisted Engineering]
     QE --> CICD[CI/CD & Execution]
 
     API --> CLIENT[Domain API Clients]
@@ -57,11 +58,12 @@ flowchart TD
     PERF --> K6[k6]
     PERF --> LH[Lighthouse]
 
-    AI --> AIFA[AI Failure Analysis]
-    AI --> AITD[AI Test Design]
-    AI --> AIDEV[Repository-Aware AI Engineering]
-    AIDEV --> MCP[MCP-Assisted Discovery]
-    AIDEV --> HUMAN[Human Review & Deterministic Validation]
+    AIQE --> AIFA[AI Failure Analysis]
+    AIQE --> AITS[AI Test Suite Generation]
+
+    AIENG --> COPILOT[GitHub Copilot & Agent]
+    AIENG --> MCP[MCP-Assisted Discovery]
+    AIENG --> HUMAN[Human Review & Deterministic Validation]
 
     CICD --> DOCKER[Docker]
     DOCKER --> GHCR[GHCR]
@@ -525,47 +527,47 @@ This reduces dependence on a single potentially noisy browser run.
 
 ## AI-Assisted Quality Engineering Architecture
 
-AI-assisted Quality Engineering is integrated into the framework as an advisory engineering capability.
+AI-Assisted Quality Engineering is integrated into the framework through framework-owned AI capabilities.
 
-It does not replace deterministic tests, repository architecture, or human approval.
-
-The governing model is:
-
-```text
-Repository Context + Authoritative Evidence
-                    ↓
-               AI Proposal
-                    ↓
-               Human Review
-                    ↓
-            Targeted Feedback
-                    ↓
-              Implementation
-                    ↓
-        Deterministic Validation
-                    ↓
-              Human Approval
-```
+It does not replace deterministic tests or human approval.
 
 ### Framework-Owned AI Capabilities
 
-The framework includes two direct AI-assisted capabilities:
+The framework includes two direct AI-assisted QE capabilities:
 
 ```text
 AI-Assisted QE
-├── Failure Analysis
-└── Test Scenario Generation
+├── AI Failure Analysis
+└── AI Test Suite Generation
 ```
 
 AI Failure Analysis consumes structured failure evidence and produces advisory diagnostic output.
 
-AI Test Scenario Generation uses structured engineering context to propose test scenarios for human review.
+AI Test Suite Generation uses structured engineering context to propose test coverage for human review.
 
 These outputs are intentionally not treated as authoritative execution results.
 
-### Repository-Aware AI Engineering
+The governing model is:
 
-AI-assisted development is governed by the existing repository architecture.
+```text
+Quality Engineering Evidence / Context
+                    ↓
+          Framework-Owned AI Capability
+                    ↓
+             Structured Output
+                    ↓
+            Runtime Validation
+                    ↓
+               Human Review
+```
+
+---
+
+## AI-Assisted Engineering Architecture
+
+AI-Assisted Engineering is a separate engineering responsibility from framework-owned AI-Assisted QE capabilities.
+
+It uses repository context and authoritative external evidence to assist implementation while preserving existing architectural ownership.
 
 Repository instructions and Golden Templates guide generated proposals toward established framework patterns rather than allowing AI tools to invent parallel conventions.
 
@@ -579,7 +581,25 @@ The validated workflow includes:
 - Copilot Agent engineering workflows;
 - Golden Template discovery and structural compliance;
 - targeted human feedback and refinement;
+- OpenAPI MCP contract discovery;
+- Playwright MCP browser exploration;
 - deterministic validation before approval.
+
+The governing model is:
+
+```text
+Repository Context
+        +
+Authoritative External Evidence
+        ↓
+AI-Assisted Engineering
+        ↓
+Implementation Proposal
+        ↓
+Human Review
+        ↓
+Deterministic Validation
+```
 
 ### MCP-Assisted Discovery
 
@@ -591,25 +611,11 @@ Playwright MCP is used for browser exploration.
 
 These sources complement repository evidence rather than replacing it.
 
-The distinction is explicit:
-
-```text
-Repository Evidence
-        +
-Authoritative External Evidence
-        ↓
-AI-Assisted Proposal
-        ↓
-Human Review
-        ↓
-Deterministic Validation
-```
-
 ### AI Validation Boundary
 
 AI output remains advisory.
 
-Generated analysis, scenarios, and implementation proposals require human review and deterministic validation before they are accepted.
+Generated analysis, test-suite proposals, and implementation proposals require human review and deterministic validation before they are accepted.
 
 The framework-owned AI capabilities have been validated locally at their documented boundaries.
 
@@ -622,17 +628,18 @@ Full CI validation of the artifact-download-to-AI failure-analysis path remains 
 A central architectural principle is that **execution follows responsibility**.
 
 ```text
-Capability             Execution Responsibility
-─────────────────────────────────────────────────
-API                    Browser-independent
-Database               Browser-independent
-UI                     Cross-browser
-Accessibility          Dedicated browser quality check
-Visual Regression      Canonical rendering environment
-API Performance        k6
-Browser Performance    Lighthouse + Chromium
-AI Failure Analysis    Advisory analysis of failure evidence
-AI Test Design         Advisory scenario generation + human review
+Capability                Execution Responsibility
+────────────────────────────────────────────────────
+API                       Browser-independent
+Database                  Browser-independent
+UI                        Cross-browser
+Accessibility             Dedicated browser quality check
+Visual Regression         Canonical rendering environment
+API Performance           k6
+Browser Performance       Lighthouse + Chromium
+AI Failure Analysis       Advisory analysis of failure evidence
+AI Test Suite Generation  Advisory test-design output + human review
+AI-Assisted Engineering   Repository-aware assistance + deterministic validation
 ```
 
 This is deliberately different from running every test against every available execution target.
@@ -787,7 +794,7 @@ Reports, summaries, traces, screenshots, visual comparisons, accessibility findi
 
 ### Keep AI Assistance Inside Engineering Boundaries
 
-AI-generated analysis, scenarios, and implementation proposals are inputs to engineering decisions rather than substitutes for deterministic validation or human approval.
+AI-generated analysis, test-suite proposals, and implementation proposals are inputs to engineering decisions rather than substitutes for deterministic validation or human approval.
 
 Repository architecture and authoritative evidence constrain AI-assisted work.
 
