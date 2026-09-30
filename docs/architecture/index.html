@@ -8,7 +8,7 @@
 
     <meta
       name="description"
-      content="Quality Engineering architecture covering API contracts, database validation, browser automation, deterministic fixtures, accessibility, visual regression, performance, AI-assisted Quality Engineering, Docker and responsibility-based execution."
+      content="Quality Engineering architecture covering API contracts, database validation, browser automation, deterministic fixtures, accessibility, visual regression, performance, AI-assisted Quality Engineering, AI-assisted Engineering, Docker and responsibility-based execution."
     />
 
     <meta name="theme-color" content="#0b0d10" />
@@ -87,8 +87,8 @@
             <p class="capability-lead">
               A layered engineering system built around explicit responsibility
               boundaries, deterministic state, runtime validation, reproducible
-              execution, AI-assisted engineering and evidence-producing quality
-              gates.
+              execution, AI-assisted Quality Engineering, AI-assisted
+              Engineering and evidence-producing quality gates.
             </p>
 
             <div class="capability-hero-actions">
@@ -114,7 +114,7 @@
             </div>
 
             <div class="evidence-score">
-              <strong>8</strong>
+              <strong>9</strong>
               <span>primary quality responsibilities</span>
             </div>
 
@@ -152,6 +152,11 @@
               <div>
                 <dt>AI-assisted QE</dt>
                 <dd>Analysis + Design</dd>
+              </div>
+
+              <div>
+                <dt>AI-assisted engineering</dt>
+                <dd>Copilot + MCP</dd>
               </div>
 
               <div>
@@ -524,22 +529,61 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">AI-assisted Quality Engineering</p>
-              <h2>AI operates inside engineering boundaries.</h2>
+              <h2>Framework-owned AI supports quality engineering.</h2>
             </div>
 
             <p>
-              AI-assisted workflows combine repository context and authoritative
-              evidence with human review and deterministic validation.
+              Framework-owned AI capabilities consume controlled engineering
+              evidence or context and produce structured advisory output for
+              human review.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>QE evidence / context</span>
+              <span aria-hidden="true">→</span>
+              <span>Framework-owned AI</span>
+              <span aria-hidden="true">→</span>
+              <span>Structured output</span>
+              <span aria-hidden="true">→</span>
+              <span>Runtime validation</span>
+              <span aria-hidden="true">→</span>
+              <span>Human review</span>
+            </div>
+
+            <p>
+              The framework includes AI Failure Analysis and AI Test Suite
+              Generation. These capabilities remain advisory and do not replace
+              deterministic execution, scenario assertions or human approval.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">AI-assisted Engineering</p>
+              <h2>Repository architecture governs AI-assisted implementation.</h2>
+            </div>
+
+            <p>
+              Repository-aware Copilot and Agent workflows combine existing
+              architecture with authoritative external evidence while human
+              review and deterministic validation remain the final control
+              boundary.
             </p>
           </div>
 
           <div class="engineering-callout">
             <div class="engineering-callout-flow">
               <span>Repository context</span>
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">+</span>
               <span>Authoritative evidence</span>
               <span aria-hidden="true">→</span>
-              <span>AI proposal</span>
+              <span>Copilot / Agent</span>
               <span aria-hidden="true">→</span>
               <span>Human review</span>
               <span aria-hidden="true">→</span>
@@ -547,11 +591,11 @@
             </div>
 
             <p>
-              The framework includes AI failure analysis and AI test scenario
-              generation. Repository-aware Copilot and Agent workflows use
-              Golden Templates, while OpenAPI MCP and Playwright MCP provide
-              contract and browser discovery evidence. AI output remains
-              advisory and requires human approval.
+              Golden Templates constrain implementation patterns, OpenAPI MCP
+              provides contract discovery evidence and Playwright MCP provides
+              browser exploration evidence. AI-assisted engineering does not
+              introduce a parallel architecture or replace engineering
+              ownership.
             </p>
           </div>
         </div>
