@@ -708,3 +708,326 @@ h1 span {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Landing AI workflows */
+
+.workflow-section {
+  padding: 108px 0 112px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(circle at 76% 18%, rgba(41, 103, 190, .08), transparent 26rem),
+    transparent;
+}
+
+.section-heading-dark {
+  display: grid;
+  grid-template-columns: 1.05fr .75fr;
+  gap: 54px;
+  align-items: end;
+  margin-bottom: 40px;
+}
+
+.section-heading-dark .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: -24px;
+}
+
+.section-heading-dark h2 {
+  margin: 0;
+  font-size: clamp(2.45rem, 4vw, 4.25rem);
+  line-height: .98;
+  letter-spacing: -.05em;
+}
+
+.section-heading-dark > p:last-child {
+  margin: 0;
+  max-width: 580px;
+  color: #8da0ba;
+  font-size: .9rem;
+  line-height: 1.65;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.workflow-card {
+  min-height: 470px;
+  padding: 24px 22px;
+  border: 1px solid rgba(96, 157, 227, .34);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(18, 33, 56, .78), rgba(8, 19, 33, .75));
+}
+
+.workflow-card-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.workflow-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(80, 155, 240, .45);
+  border-radius: 10px;
+  color: #61b1ff;
+  font-size: .68rem;
+  font-weight: 800;
+}
+
+.workflow-type {
+  display: block;
+  margin-bottom: 5px;
+  color: #5da8ff;
+  font-size: .61rem;
+  font-weight: 780;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.workflow-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -.02em;
+}
+
+.workflow-steps {
+  display: grid;
+  justify-items: stretch;
+}
+
+.workflow-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid rgba(97, 151, 213, .24);
+  border-radius: 9px;
+  background: rgba(10, 22, 38, .65);
+}
+
+.workflow-step span {
+  color: #5ba9ff;
+  font-size: .61rem;
+  font-weight: 800;
+}
+
+.workflow-step strong {
+  font-size: .76rem;
+  font-weight: 650;
+}
+
+.workflow-step.accent {
+  border-color: rgba(70, 151, 255, .46);
+  background:
+    linear-gradient(90deg, rgba(30, 94, 170, .18), rgba(10, 22, 38, .68));
+}
+
+.workflow-step.human {
+  border-color: rgba(130, 154, 188, .32);
+}
+
+.workflow-arrow {
+  padding: 3px 0;
+  color: #4ca1ff;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.workflow-foundation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 15px 20px;
+  border: 1px solid rgba(60, 148, 255, .42);
+  border-radius: 12px;
+  color: #a9bad0;
+  background: rgba(10, 22, 38, .58);
+  font-size: .72rem;
+}
+
+.workflow-foundation i {
+  color: #4da1ff;
+  font-style: normal;
+}
+
+/* Capability cards aligned with portfolio home */
+
+.capabilities-section {
+  padding: 108px 0 120px;
+}
+
+.capabilities-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.capability-card {
+  min-height: 0;
+  padding: 20px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(14, 27, 46, .68), rgba(8, 18, 31, .72));
+}
+
+.capability-card.has-execution {
+  border-color: rgba(74, 156, 255, .48);
+  background:
+    linear-gradient(180deg, rgba(20, 46, 78, .80), rgba(9, 24, 42, .80));
+  box-shadow: inset 0 1px 0 rgba(104, 181, 255, .05);
+}
+
+.card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.capability-index {
+  color: #5ea9ff;
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.status {
+  padding: 5px 8px;
+  border: 1px solid rgba(93, 146, 207, .24);
+  border-radius: 999px;
+  color: #8da0ba;
+  background: rgba(255,255,255,.02);
+  font-size: .59rem;
+  font-weight: 750;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.status-success {
+  color: #75d7b1;
+  border-color: rgba(67, 178, 134, .24);
+}
+
+.status-attention {
+  color: #ffb86b;
+  border-color: rgba(255, 184, 107, .28);
+}
+
+.capability-card h3 {
+  margin: 0 0 10px;
+  font-size: .98rem;
+  letter-spacing: -.02em;
+}
+
+.capability-card > p {
+  margin: 0;
+  min-height: 56px;
+  color: #8fa1b9;
+  font-size: .72rem;
+  line-height: 1.5;
+}
+
+.feature-list {
+  display: grid;
+  gap: 5px;
+  padding: 14px 0 0 16px;
+  margin: 0;
+  color: #b3c0d0;
+  font-size: .68rem;
+  line-height: 1.35;
+}
+
+.feature-list li::marker {
+  color: #4f9eff;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 18px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.card-link-primary,
+.card-link-evidence {
+  font-size: .7rem;
+  font-weight: 720;
+}
+
+.card-link-primary {
+  color: #e8f2ff;
+}
+
+.card-link-evidence {
+  color: #60abff;
+}
+
+.resource-block {
+  margin-top: 13px;
+  padding-top: 0;
+}
+
+.resource-label {
+  margin-bottom: 7px;
+  font-size: .58rem;
+}
+
+.resource-links {
+  gap: 8px 12px;
+}
+
+.resource-links a {
+  font-size: .66rem;
+}
+
+@media (max-width: 980px) {
+  .workflow-grid,
+  .capabilities-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-heading-dark {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .section-heading-dark .eyebrow {
+    grid-column: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .workflow-section,
+  .capabilities-section {
+    padding: 78px 0 88px;
+  }
+
+  .workflow-grid,
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-card {
+    min-height: 0;
+  }
+
+  .capability-card > p {
+    min-height: 0;
+  }
+}
