@@ -12,7 +12,7 @@ The focus goes beyond writing automated tests. It demonstrates how different qua
 
 ### Technology
 
-**Playwright · TypeScript · Node.js · TypeBox · AJV · axe-core · Docker · GitHub Actions · GHCR · k6 · Lighthouse**
+**Playwright · TypeScript · Node.js · PostgreSQL · TypeBox · AJV · axe-core · Docker · GitHub Actions · GHCR · k6 · Lighthouse · OpenAI · GitHub Copilot · OpenAPI MCP · Playwright MCP**
 
 ### Engineering Roadmap
 
