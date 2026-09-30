@@ -15,7 +15,8 @@ Its architecture is built around several principles:
 - execution appropriate to the quality concern being measured;
 - reproducible environments;
 - actionable diagnostics;
-- reuse of existing framework capabilities before introducing new abstractions.
+- reuse of existing framework capabilities before introducing new abstractions;
+- AI assistance governed by repository architecture, deterministic validation, and human review.
 
 This document intentionally focuses on architectural responsibilities and engineering decisions rather than exposing the complete internal implementation.
 
@@ -28,15 +29,20 @@ flowchart TD
     QE[Quality Engineering System]
 
     QE --> API[API & Contract Testing]
+    QE --> DB[Database Validation]
     QE --> UI[Browser Automation]
     QE --> AX[Accessibility]
     QE --> VR[Visual Regression]
     QE --> PERF[Performance]
+    QE --> AI[AI-Assisted QE]
     QE --> CICD[CI/CD & Execution]
 
     API --> CLIENT[Domain API Clients]
     CLIENT --> CONTRACT[TypeBox Contracts]
     CONTRACT --> AJV[AJV Runtime Validation]
+
+    DB --> PG[PostgreSQL]
+    PG --> PERSIST[Persistence Validation]
 
     UI --> OBJECTS[Page / Component Objects]
     OBJECTS --> FIX[Fixtures]
@@ -51,6 +57,12 @@ flowchart TD
     PERF --> K6[k6]
     PERF --> LH[Lighthouse]
 
+    AI --> AIFA[AI Failure Analysis]
+    AI --> AITD[AI Test Design]
+    AI --> AIDEV[Repository-Aware AI Engineering]
+    AIDEV --> MCP[MCP-Assisted Discovery]
+    AIDEV --> HUMAN[Human Review & Deterministic Validation]
+
     CICD --> DOCKER[Docker]
     DOCKER --> GHCR[GHCR]
     GHCR --> JOBS[Responsibility-Based Execution]
@@ -58,7 +70,9 @@ flowchart TD
 
 The architecture separates reusable infrastructure from the tests that consume it.
 
-Individual test suites therefore express **what behavior or quality characteristic is being evaluated**, while shared framework layers own reusable setup, data, authentication, contracts, and execution concerns.
+Individual test suites therefore express **what behavior or quality characteristic is being evaluated**, while shared framework layers own reusable setup, data, authentication, contracts, persistence, and execution concerns.
+
+AI-assisted workflows operate within these existing architectural boundaries rather than defining a parallel implementation model.
 
 ---
 
@@ -73,7 +87,7 @@ Reusable Domain Abstractions
           ↓
 Fixtures & Deterministic State
           ↓
-Clients / Browser / Validation
+Clients / Database / Browser / Validation
           ↓
 Configuration & Execution Environment
           ↓
@@ -88,6 +102,8 @@ Page and Component Objects encapsulate browser-facing behavior.
 
 API clients encapsulate domain-level HTTP interaction.
 
+Database capabilities provide typed persistence access and validation.
+
 Fixtures compose reusable capabilities and lifecycle responsibilities.
 
 Factories create deterministic data.
@@ -95,6 +111,8 @@ Factories create deterministic data.
 Schemas define external response contracts.
 
 CI and Docker provide reproducible execution boundaries.
+
+AI-assisted engineering operates against the same repository architecture and validation boundaries.
 
 This separation keeps scenario code focused while infrastructure remains reusable across multiple quality responsibilities.
 
@@ -166,6 +184,41 @@ This creates an explicit contract boundary between the automation system and the
 
 ---
 
+## Database Validation Architecture
+
+Database validation is treated as a dedicated persistence responsibility rather than embedding raw database access directly inside test scenarios.
+
+Conceptually:
+
+```text
+Test / Fixture
+     ↓
+Typed Database Capability
+     ↓
+PostgreSQL
+     ↓
+Persisted Application State
+     ↓
+Database Assertions
+```
+
+The database layer provides controlled access to persisted application state when validation requires evidence below the API or browser boundary.
+
+This supports scenarios where application behavior must be verified against the state actually stored by the system.
+
+Database access follows the same architectural principles as the rest of the framework:
+
+- typed boundaries;
+- deterministic setup;
+- reusable infrastructure;
+- explicit lifecycle ownership;
+- scenario-level assertions;
+- separation of persistence concerns from browser interaction.
+
+The database layer complements API and browser validation rather than replacing either of them.
+
+---
+
 ## Browser Automation Architecture
 
 Browser-facing automation separates scenario intent from reusable interface behavior.
@@ -219,6 +272,7 @@ Fixture Composition
    ├── Authentication
    ├── Page / Component Access
    ├── API Capabilities
+   ├── Database Capabilities
    ├── Deterministic Test Data
    └── Lifecycle Management
 ```
@@ -259,7 +313,7 @@ Deterministic data improves:
 - debugging;
 - isolation;
 - failure investigation;
-- reuse across API and browser scenarios.
+- reuse across API, database, and browser scenarios.
 
 Where application state can be created through an existing API capability, browser tests can reuse that capability instead of reproducing setup through UI interactions.
 
@@ -315,7 +369,7 @@ Real API coverage and mocked UI behavior therefore serve different testing respo
 
 Browser coverage is assigned according to responsibility.
 
-API tests are browser-independent and therefore do not need to be multiplied across browser engines.
+API and database tests are browser-independent and therefore do not need to be multiplied across browser engines.
 
 Browser behavior is exercised across:
 
@@ -331,13 +385,16 @@ The ownership model is:
 API
 → execute once
 
+Database
+→ execute once
+
 UI
 → Chromium
 → Firefox
 → WebKit
 ```
 
-This provides meaningful browser coverage without paying for redundant API execution.
+This provides meaningful browser coverage without paying for redundant API or database execution.
 
 ---
 
@@ -416,13 +473,13 @@ Performance
     └── Lighthouse
 ```
 
-### API Performance — k6
+### API Performance: k6
 
 k6 owns API workload-oriented performance testing.
 
 Its responsibility is different from browser automation and therefore does not need to run through Playwright.
 
-### Browser Performance — Lighthouse
+### Browser Performance: Lighthouse
 
 Lighthouse owns browser-observed performance measurements.
 
@@ -466,6 +523,100 @@ This reduces dependence on a single potentially noisy browser run.
 
 ---
 
+## AI-Assisted Quality Engineering Architecture
+
+AI-assisted Quality Engineering is integrated into the framework as an advisory engineering capability.
+
+It does not replace deterministic tests, repository architecture, or human approval.
+
+The governing model is:
+
+```text
+Repository Context + Authoritative Evidence
+                    ↓
+               AI Proposal
+                    ↓
+               Human Review
+                    ↓
+            Targeted Feedback
+                    ↓
+              Implementation
+                    ↓
+        Deterministic Validation
+                    ↓
+              Human Approval
+```
+
+### Framework-Owned AI Capabilities
+
+The framework includes two direct AI-assisted capabilities:
+
+```text
+AI-Assisted QE
+├── Failure Analysis
+└── Test Scenario Generation
+```
+
+AI Failure Analysis consumes structured failure evidence and produces advisory diagnostic output.
+
+AI Test Scenario Generation uses structured engineering context to propose test scenarios for human review.
+
+These outputs are intentionally not treated as authoritative execution results.
+
+### Repository-Aware AI Engineering
+
+AI-assisted development is governed by the existing repository architecture.
+
+Repository instructions and Golden Templates guide generated proposals toward established framework patterns rather than allowing AI tools to invent parallel conventions.
+
+The operating principle is:
+
+> **Architecture drives generated code, not the other way around.**
+
+The validated workflow includes:
+
+- repository-aware Copilot-assisted test generation;
+- Copilot Agent engineering workflows;
+- Golden Template discovery and structural compliance;
+- targeted human feedback and refinement;
+- deterministic validation before approval.
+
+### MCP-Assisted Discovery
+
+MCP integrations provide authoritative external evidence during AI-assisted engineering.
+
+OpenAPI MCP is used for contract discovery.
+
+Playwright MCP is used for browser exploration.
+
+These sources complement repository evidence rather than replacing it.
+
+The distinction is explicit:
+
+```text
+Repository Evidence
+        +
+Authoritative External Evidence
+        ↓
+AI-Assisted Proposal
+        ↓
+Human Review
+        ↓
+Deterministic Validation
+```
+
+### AI Validation Boundary
+
+AI output remains advisory.
+
+Generated analysis, scenarios, and implementation proposals require human review and deterministic validation before they are accepted.
+
+The framework-owned AI capabilities have been validated locally at their documented boundaries.
+
+Full CI validation of the artifact-download-to-AI failure-analysis path remains a non-blocking evidence gap.
+
+---
+
 ## Execution Ownership
 
 A central architectural principle is that **execution follows responsibility**.
@@ -474,11 +625,14 @@ A central architectural principle is that **execution follows responsibility**.
 Capability             Execution Responsibility
 ─────────────────────────────────────────────────
 API                    Browser-independent
+Database               Browser-independent
 UI                     Cross-browser
 Accessibility          Dedicated browser quality check
 Visual Regression      Canonical rendering environment
 API Performance        k6
 Browser Performance    Lighthouse + Chromium
+AI Failure Analysis    Advisory analysis of failure evidence
+AI Test Design         Advisory scenario generation + human review
 ```
 
 This is deliberately different from running every test against every available execution target.
@@ -529,6 +683,7 @@ publish commit-SHA image
 GHCR
         ↓
         ├── API
+        ├── Database
         ├── Accessibility
         ├── Visual Regression
         └── UI Browser Matrix
@@ -547,6 +702,10 @@ The Playwright project and CI job provide the execution responsibility.
 
 Performance testing has separate workflow ownership because its runtime and environmental constraints differ from the standard functional pipeline.
 
+GitHub-native job summaries provide an execution evidence layer for Playwright, k6, and Lighthouse results.
+
+Artifact publication complements these summaries when artifact storage is available.
+
 For more detail, see [CI/CD](CI_CD.md).
 
 ---
@@ -557,13 +716,14 @@ Failure evidence is part of framework design.
 
 Depending on execution context, Playwright diagnostics can include:
 
+- GitHub-native execution summaries;
 - HTML reports;
 - traces;
 - screenshots;
 - retained video;
 - execution artifacts.
 
-Performance tooling produces its own measurement evidence.
+Performance tooling produces its own measurement evidence and GitHub-native summaries.
 
 The purpose of diagnostics is not merely artifact generation.
 
@@ -576,6 +736,8 @@ What state was the system in?
 Can the failure be reproduced?
 Is this a product, test, environment, or infrastructure problem?
 ```
+
+AI-assisted failure analysis can consume structured failure evidence to support diagnosis, while the resulting analysis remains advisory and subject to human review.
 
 Public demo evidence is reviewed separately before publication and does not expose raw private execution artifacts by default.
 
@@ -603,7 +765,7 @@ This prevents parallel implementations of the same responsibility and keeps the 
 
 Tests should primarily communicate the behavior being evaluated.
 
-Reusable infrastructure owns common setup, data, authentication, API interaction, and environment concerns.
+Reusable infrastructure owns common setup, data, authentication, API interaction, database access, and environment concerns.
 
 ### Prefer Deterministic Initialization
 
@@ -621,7 +783,13 @@ Architecture should express those differences rather than hiding them behind a u
 
 ### Treat Evidence as an Engineering Output
 
-Reports, traces, screenshots, visual comparisons, accessibility findings, and performance measurements exist to support diagnosis and engineering decisions.
+Reports, summaries, traces, screenshots, visual comparisons, accessibility findings, and performance measurements exist to support diagnosis and engineering decisions.
+
+### Keep AI Assistance Inside Engineering Boundaries
+
+AI-generated analysis, scenarios, and implementation proposals are inputs to engineering decisions rather than substitutes for deterministic validation or human approval.
+
+Repository architecture and authoritative evidence constrain AI-assisted work.
 
 ---
 
@@ -637,6 +805,7 @@ Public material is selected to demonstrate:
 - representative implementation patterns;
 - engineering decisions;
 - execution ownership;
+- AI-assisted engineering workflows;
 - real reviewed evidence.
 
 Sensitive or unnecessarily operational details remain outside the public showcase.
