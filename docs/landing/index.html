@@ -1,577 +1,426 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Szabolcs Hudak · Senior SDET & Quality Engineering</title>
-
-    <meta
-      name="description"
-      content="Modern Quality Engineering portfolio by Szabolcs Hudak — Senior SDET focused on test automation architecture, Playwright, TypeScript, CI/CD, AI-Assisted QE and AI-Assisted Engineering."
-    />
-
-    <meta name="theme-color" content="#f6f8fb" />
-
-    <link rel="stylesheet" href="./showcase.css" />
-  </head>
-
-  <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <div class="page-glow page-glow-one" aria-hidden="true"></div>
-    <div class="page-glow page-glow-two" aria-hidden="true"></div>
-
-    <header class="site-header">
-      <div class="shell header-inner">
-        <a class="brand" href="./" aria-label="Szabolcs Hudak showcase home">
-          <span class="brand-mark">SH</span>
-          <span class="brand-copy">
-            <strong>Szabolcs Hudak</strong>
-            <small>Senior SDET</small>
-          </span>
-        </a>
-
-        <nav class="desktop-nav" aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#expertise">Expertise</a>
-          <a href="#architecture">Architecture</a>
-          <a href="#stack">Stack</a>
-        </nav>
-
-        <div class="header-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Toggle color theme"
-            data-theme-toggle
-          >
-            <span class="theme-toggle-sun" aria-hidden="true">☀</span>
-            <span class="theme-toggle-moon" aria-hidden="true">◐</span>
-          </button>
-
-          <a
-            class="header-link"
-            href="https://github.com/szabihudak"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub ↗
-          </a>
-        </div>
-      </div>
-    </header>
-
-    <main id="main-content">
-      <section class="hero">
-        <div class="shell hero-grid">
-          <div class="hero-copy-block" data-reveal>
-            <div class="hero-kicker">
-              <span class="status-dot"></span>
-              Senior SDET · Quality Engineering · AI-Assisted Engineering
-            </div>
-
-            <h1>
-              Engineering quality
-              <span>beyond test automation.</span>
-            </h1>
-
-            <p class="hero-copy">
-              I design quality engineering systems across API, UI, data and
-              CI/CD — combining deterministic automation with modern
-              AI-assisted engineering.
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="#work">
-                Explore my work
-                <span aria-hidden="true">→</span>
-              </a>
-
-              <a class="button button-secondary" href="../">
-                Full technical portfolio
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-
-            <div class="hero-meta">
-              <a
-                href="https://www.linkedin.com/in/szabolcs-v-hudak/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn ↗
-              </a>
-
-              <a
-                href="https://github.com/szabihudak"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub ↗
-              </a>
-
-              <span>EU · Remote</span>
-            </div>
-          </div>
-
-          <div class="hero-visual" data-reveal data-delay="120">
-            <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
-            <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
-
-            <div class="flow-console">
-              <div class="flow-console-top">
-                <span>Engineering system</span>
-                <span class="console-status">
-                  <span class="status-dot"></span>
-                  validated
-                </span>
-              </div>
-
-              <div class="flow-sequence">
-                <div class="flow-node">
-                  <span>01</span>
-                  <strong>Source</strong>
-                  <small>architecture + context</small>
-                </div>
-
-                <div class="flow-connector" aria-hidden="true"></div>
-
-                <div class="flow-node">
-                  <span>02</span>
-                  <strong>Execute</strong>
-                  <small>deterministic runtime</small>
-                </div>
-
-                <div class="flow-connector" aria-hidden="true"></div>
-
-                <div class="flow-node">
-                  <span>03</span>
-                  <strong>Validate</strong>
-                  <small>quality gates</small>
-                </div>
-
-                <div class="flow-connector" aria-hidden="true"></div>
-
-                <div class="flow-node flow-node-accent">
-                  <span>04</span>
-                  <strong>Evidence</strong>
-                  <small>review + diagnosis</small>
-                </div>
-              </div>
-
-              <div class="console-footer">
-                <span>architecture-first</span>
-                <span>human-reviewed</span>
-                <span>evidence-backed</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="proof-strip" aria-label="Engineering proof points">
-        <div class="shell proof-grid">
-          <article class="proof-item" data-reveal>
-            <strong>20</strong>
-            <span>years in software testing & automation</span>
-          </article>
-
-          <article class="proof-item" data-reveal data-delay="70">
-            <strong>650+</strong>
-            <span>automated tests in current professional work</span>
-          </article>
-
-          <article class="proof-item" data-reveal data-delay="140">
-            <strong>28/28</strong>
-            <span>API execution evidence</span>
-          </article>
-
-          <article class="proof-item" data-reveal data-delay="210">
-            <strong>18/18</strong>
-            <span>cross-browser UI execution</span>
-          </article>
-
-          <article class="proof-item" data-reveal data-delay="280">
-            <strong>3</strong>
-            <span>browser engines</span>
-          </article>
-        </div>
-      </section>
-
-      <section id="expertise" class="section">
-        <div class="shell">
-          <div class="section-heading" data-reveal>
-            <div>
-              <span class="section-index">01 / Expertise</span>
-              <h2>One quality system. Multiple engineering layers.</h2>
-            </div>
-
-            <p>
-              Test automation is one part of the system. Architecture, runtime
-              validation, evidence and engineering ownership matter just as much.
-            </p>
-          </div>
-
-          <div class="bento-grid">
-            <article class="bento-card bento-card-large" data-reveal>
-              <div class="card-label">Quality Engineering</div>
-
-              <h3>
-                API to browser.
-                <span>Evidence all the way through.</span>
-              </h3>
-
-              <p>
-                Production-style automation across API contracts, database
-                validation, browser flows, accessibility, visual regression
-                and performance.
-              </p>
-
-              <div class="tag-cloud">
-                <span>API</span>
-                <span>Database</span>
-                <span>UI</span>
-                <span>Accessibility</span>
-                <span>Visual</span>
-                <span>Performance</span>
-              </div>
-            </article>
-
-            <article class="bento-card" data-reveal data-delay="90">
-              <div class="card-label">Core stack</div>
-
-              <div class="stack-lockup">
-                <strong>Playwright</strong>
-                <span>+</span>
-                <strong>TypeScript</strong>
-              </div>
-
-              <p>
-                Architecture-first browser and API automation with reusable
-                fixtures, runtime validation and deterministic state.
-              </p>
-            </article>
-
-            <article class="bento-card bento-card-accent" data-reveal data-delay="160">
-              <div class="card-label">AI-Assisted QE</div>
-
-              <h3>AI that advises. Deterministic systems that decide.</h3>
-
-              <div class="mini-flow">
-                <span>Failure Analysis</span>
-                <span>→</span>
-                <span>Test Design</span>
-                <span>→</span>
-                <span>Human Review</span>
-              </div>
-            </article>
-
-            <article class="bento-card" data-reveal data-delay="230">
-              <div class="card-label">AI-Assisted Engineering</div>
-
-              <h3>Repository-aware implementation workflows.</h3>
-
-              <div class="tag-cloud">
-                <span>GitHub Copilot</span>
-                <span>Agents</span>
-                <span>OpenAPI MCP</span>
-                <span>Playwright MCP</span>
-              </div>
-            </article>
-
-            <article class="bento-card bento-card-wide" data-reveal data-delay="300">
-              <div class="card-label">CI/CD & Execution</div>
-
-              <div class="wide-card-layout">
-                <div>
-                  <h3>Build once. Validate everywhere it matters.</h3>
-
-                  <p>
-                    Dockerized execution, GitHub Actions quality gates,
-                    reusable environments and evidence-driven diagnostics.
-                  </p>
-                </div>
-
-                <div class="ci-flow" aria-label="CI CD execution flow">
-                  <span>Source</span>
-                  <i>→</i>
-                  <span>Build</span>
-                  <i>→</i>
-                  <span>Execute</span>
-                  <i>→</i>
-                  <span>Evidence</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" class="section section-soft">
-        <div class="shell">
-          <div class="section-heading" data-reveal>
-            <div>
-              <span class="section-index">02 / Selected work</span>
-              <h2>Engineering work worth opening.</h2>
-            </div>
-
-            <p>
-              A short route into the deeper technical portfolio. Each case links
-              to the detailed architecture and implementation evidence.
-            </p>
-          </div>
-
-          <div class="work-grid">
-            <article class="work-card work-card-featured" data-reveal>
-              <div class="work-card-topline">
-                <span>01</span>
-                <span>Enterprise QE Framework</span>
-              </div>
-
-              <h3>Production-style Quality Engineering architecture.</h3>
-
-              <p>
-                Playwright + TypeScript framework spanning API, database,
-                cross-browser UI, accessibility, visual and performance
-                engineering.
-              </p>
-
-              <div class="work-diagram">
-                <span>API</span>
-                <i>→</i>
-                <span>DB</span>
-                <i>→</i>
-                <span>UI</span>
-                <i>→</i>
-                <span>Evidence</span>
-              </div>
-
-              <a href="../architecture/">
-                Explore architecture
-                <span aria-hidden="true">↗</span>
-              </a>
-            </article>
-
-            <article class="work-card" data-reveal data-delay="100">
-              <div class="work-card-topline">
-                <span>02</span>
-                <span>AI Failure Analysis</span>
-              </div>
-
-              <h3>Structured diagnosis from real failure evidence.</h3>
-
-              <div class="work-flow">
-                <span>Failure</span>
-                <span>↓</span>
-                <span>Evidence</span>
-                <span>↓</span>
-                <span>AI Analysis</span>
-                <span>↓</span>
-                <span>Human Review</span>
-              </div>
-
-              <a href="../capabilities/ai-assisted-qe/">
-                Explore AI-Assisted QE
-                <span aria-hidden="true">↗</span>
-              </a>
-            </article>
-
-            <article class="work-card" data-reveal data-delay="180">
-              <div class="work-card-topline">
-                <span>03</span>
-                <span>AI-Assisted Engineering</span>
-              </div>
-
-              <h3>Copilot, Agents and MCP inside engineering boundaries.</h3>
-
-              <div class="work-flow">
-                <span>Repository</span>
-                <span>+</span>
-                <span>MCP Evidence</span>
-                <span>↓</span>
-                <span>AI Proposal</span>
-                <span>↓</span>
-                <span>Validation</span>
-              </div>
-
-              <a href="../capabilities/ai-assisted-engineering/">
-                Explore engineering workflow
-                <span aria-hidden="true">↗</span>
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="architecture" class="section">
-        <div class="shell">
-          <div class="section-heading" data-reveal>
-            <div>
-              <span class="section-index">03 / Architecture</span>
-              <h2>Three pillars. One control boundary.</h2>
-            </div>
-
-            <p>
-              Traditional Quality Engineering, framework-owned AI and
-              AI-assisted implementation remain distinct responsibilities.
-            </p>
-          </div>
-
-          <div class="architecture-stage" data-reveal>
-            <div class="architecture-pillar">
-              <div class="architecture-number">01</div>
-              <span class="architecture-label">Quality Engineering</span>
-              <h3>Deterministic execution</h3>
-
-              <ul>
-                <li>API & contracts</li>
-                <li>Database validation</li>
-                <li>Cross-browser UI</li>
-                <li>Accessibility</li>
-                <li>Visual regression</li>
-                <li>Performance</li>
-              </ul>
-            </div>
-
-            <div class="architecture-pillar architecture-pillar-ai">
-              <div class="architecture-number">02</div>
-              <span class="architecture-label">AI-Assisted QE</span>
-              <h3>Framework-owned intelligence</h3>
-
-              <ul>
-                <li>Failure analysis</li>
-                <li>Test suite generation</li>
-                <li>Structured outputs</li>
-                <li>Advisory results</li>
-              </ul>
-            </div>
-
-            <div class="architecture-pillar architecture-pillar-ai">
-              <div class="architecture-number">03</div>
-              <span class="architecture-label">AI-Assisted Engineering</span>
-              <h3>Repository-aware implementation</h3>
-
-              <ul>
-                <li>GitHub Copilot</li>
-                <li>Agent workflows</li>
-                <li>OpenAPI MCP</li>
-                <li>Playwright MCP</li>
-              </ul>
-            </div>
-
-            <div class="architecture-foundation">
-              <span>Deterministic Validation</span>
-              <i>+</i>
-              <span>Human Engineering Review</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="stack" class="stack-section">
-        <div class="stack-marquee" aria-label="Technology stack">
-          <div class="stack-track">
-            <span>PLAYWRIGHT</span>
-            <span>TYPESCRIPT</span>
-            <span>POSTGRESQL</span>
-            <span>DOCKER</span>
-            <span>GITHUB ACTIONS</span>
-            <span>K6</span>
-            <span>LIGHTHOUSE</span>
-            <span>OPENAI</span>
-            <span>MCP</span>
-
-            <span aria-hidden="true">PLAYWRIGHT</span>
-            <span aria-hidden="true">TYPESCRIPT</span>
-            <span aria-hidden="true">POSTGRESQL</span>
-            <span aria-hidden="true">DOCKER</span>
-            <span aria-hidden="true">GITHUB ACTIONS</span>
-            <span aria-hidden="true">K6</span>
-            <span aria-hidden="true">LIGHTHOUSE</span>
-            <span aria-hidden="true">OPENAI</span>
-            <span aria-hidden="true">MCP</span>
-          </div>
-        </div>
-
-        <div class="shell evolution" data-reveal>
-          <span class="section-index">04 / Engineering evolution</span>
-
-          <div class="evolution-line">
-            <span>C#</span>
-            <i>→</i>
-            <span>Java</span>
-            <i>→</i>
-            <span>Selenium</span>
-            <i>→</i>
-            <span>Appium</span>
-            <i>→</i>
-            <span>Cypress</span>
-            <i>→</i>
-            <span>Playwright</span>
-            <i>→</i>
-            <span>AI-Assisted Engineering</span>
-          </div>
-
-          <p>
-            Twenty years of automation evolution — from framework construction
-            and test architecture to modern Quality Engineering systems.
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Szabolcs Hudak · Quality Engineering</title>
+  <meta name="description" content="Senior SDET and Quality Engineering portfolio — automation architecture, Playwright, TypeScript, CI/CD, AI-Assisted QE and AI-Assisted Engineering." />
+  <meta name="theme-color" content="#f8fafc" />
+  <link rel="stylesheet" href="./showcase.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="identity" href="./">
+        <span class="identity-mark">SH</span>
+        <span>Szabolcs Hudak</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#system">System</a>
+        <a href="#ai">AI Flows</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#journey">Journey</a>
+      </nav>
+
+      <a class="small-cta" href="../">Full portfolio <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Senior SDET · Quality Engineering</p>
+          <h1>Engineering quality <span>beyond automation.</span></h1>
+          <p class="lead">
+            I design quality engineering systems that connect deterministic automation,
+            evidence and modern AI-assisted engineering.
           </p>
-        </div>
-      </section>
 
-      <section class="final-section">
-        <div class="shell final-grid">
-          <div data-reveal>
-            <span class="section-index">05 / Go deeper</span>
-
-            <h2>
-              Want the
-              <span>engineering details?</span>
-            </h2>
-
-            <p>
-              Architecture, engineering decisions, execution evidence and
-              reproducible framework runs are available in the full technical
-              portfolio.
-            </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#system">Explore the system <span>→</span></a>
+            <a class="button secondary" href="../architecture/">Technical architecture <span>↗</span></a>
           </div>
 
-          <div class="final-actions" data-reveal data-delay="120">
-            <a class="button button-primary button-large" href="../">
-              Explore full technical portfolio
-              <span aria-hidden="true">→</span>
-            </a>
+          <div class="proof-row" aria-label="Experience highlights">
+            <div><strong>20+</strong><span>years</span></div>
+            <div><strong>650+</strong><span>automated tests*</span></div>
+            <div><strong>API · UI · DB</strong><span>multi-layer validation</span></div>
+            <div><strong>CI/CD</strong><span>quality gates</span></div>
+          </div>
+          <p class="proof-note">*Current professional automation scope.</p>
+        </div>
 
-            <div class="final-links">
-              <a
-                href="https://github.com/szabihudak"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub ↗
-              </a>
+        <div class="hero-visual reveal delay-1" aria-label="Quality engineering system diagram">
+          <div class="system-illustration">
+            <div class="orbit orbit-a"></div>
+            <div class="orbit orbit-b"></div>
 
-              <a
-                href="https://www.linkedin.com/in/szabolcs-v-hudak/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn ↗
-              </a>
+            <div class="side-node side-node-left">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+                <circle cx="12" cy="12" r="3.5"/>
+              </svg>
+              <span>AI</span>
             </div>
+
+            <div class="quality-stack">
+              <div class="stack-card stack-ui"><span class="stack-icon">▱</span><strong>UI</strong></div>
+              <div class="stack-card stack-api"><span class="stack-icon">&lt;/&gt;</span><strong>API</strong></div>
+              <div class="stack-card stack-db"><span class="stack-icon">◫</span><strong>Database</strong></div>
+              <div class="stack-card stack-perf"><span class="stack-icon">⌁</span><strong>Performance</strong></div>
+              <div class="stack-card stack-a11y"><span class="stack-icon">⌘</span><strong>Accessibility</strong></div>
+              <div class="stack-base">
+                <span class="shield">✓</span>
+                <strong>Reliable Software</strong>
+              </div>
+            </div>
+
+            <div class="side-node side-node-right">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16M6 4v6M18 4v6M5 12h14v7H5z"/>
+              </svg>
+              <span>CI/CD</span>
+            </div>
+
+            <svg class="connection-map" viewBox="0 0 640 470" aria-hidden="true">
+              <path d="M120 190 C180 190 180 135 245 135"/>
+              <path d="M120 215 C185 215 185 230 245 230"/>
+              <path d="M520 190 C470 190 470 105 395 105"/>
+              <path d="M520 215 C465 215 465 315 395 315"/>
+            </svg>
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-inner">
-        <span>Szabolcs Hudak · Senior SDET</span>
-        <span>Quality Engineering · Test Automation Architecture</span>
       </div>
-    </footer>
+    </section>
 
-    <script src="./showcase.js"></script>
-  </body>
+    <section id="system" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">The three pillars</p>
+          <h2>A unified quality engineering system.</h2>
+          <p>Clear ownership boundaries, shared evidence and one validation foundation.</p>
+        </div>
+
+        <div class="pillars reveal delay-1">
+          <article class="pillar">
+            <div class="pillar-top">
+              <span class="num">01</span>
+              <span class="icon-chip">
+                <svg viewBox="0 0 24 24"><path d="M4 6l8-4 8 4-8 4-8-4zM4 6v9l8 5 8-5V6M12 10v10"/></svg>
+              </span>
+            </div>
+            <h3>Quality Engineering</h3>
+            <p>Deterministic validation across the application stack.</p>
+            <ul>
+              <li>API & Contracts</li>
+              <li>Database Validation</li>
+              <li>Browser Automation</li>
+              <li>Accessibility & Visual</li>
+              <li>Performance</li>
+            </ul>
+          </article>
+
+          <article class="pillar">
+            <div class="pillar-top">
+              <span class="num">02</span>
+              <span class="icon-chip">
+                <svg viewBox="0 0 24 24"><path d="M12 3l1.5 5 4.5 1.5-4.5 1.5-1.5 5-1.5-5L6 9.5 10.5 8 12 3zM18.5 14l.8 2.4 2.2.8-2.2.8-.8 2.5-.8-2.5-2.2-.8 2.2-.8.8-2.4z"/></svg>
+              </span>
+            </div>
+            <h3>AI-Assisted QE</h3>
+            <p>Framework-owned intelligence for analysis and test design.</p>
+            <ul>
+              <li>Failure Analysis</li>
+              <li>Test Suite Generation</li>
+              <li>Structured Outputs</li>
+              <li>Runtime Validation</li>
+              <li>Human Review</li>
+            </ul>
+          </article>
+
+          <article class="pillar">
+            <div class="pillar-top">
+              <span class="num">03</span>
+              <span class="icon-chip">
+                <svg viewBox="0 0 24 24"><path d="M9 6L4 12l5 6M15 6l5 6-5 6M13 4l-2 16"/></svg>
+              </span>
+            </div>
+            <h3>AI-Assisted Engineering</h3>
+            <p>Repository-aware implementation inside existing architecture.</p>
+            <ul>
+              <li>GitHub Copilot</li>
+              <li>Agent Workflows</li>
+              <li>OpenAPI MCP</li>
+              <li>Playwright MCP</li>
+              <li>Deterministic Validation</li>
+            </ul>
+          </article>
+
+          <div class="pillar-foundation">
+            <span>Deterministic Validation</span>
+            <i>+</i>
+            <span>Human Engineering Review</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="section section-soft">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">AI flows</p>
+          <h2>From real engineering context to useful output.</h2>
+          <p>Three different AI responsibilities, each with an explicit review boundary.</p>
+        </div>
+
+        <div class="flow-grid">
+          <article class="flow-card reveal">
+            <div class="flow-title">
+              <span class="flow-icon red">
+                <svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg>
+              </span>
+              <div><h3>Failure Analysis</h3><p>Failure → evidence → diagnosis</p></div>
+            </div>
+
+            <div class="flow-drawing">
+              <div class="draw-node">
+                <span class="draw-graphic window"><i></i><b>×</b></span>
+                <strong>Test Failure</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic docs"><i></i><i></i><i></i></span>
+                <strong>Evidence</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic ai-chip">AI</span>
+                <strong>Analysis</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic report">✓</span>
+                <strong>Diagnosis</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic person">○</span>
+                <strong>Human Review</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow-card reveal delay-1">
+            <div class="flow-title">
+              <span class="flow-icon amber">
+                <svg viewBox="0 0 24 24"><path d="M12 3l1.6 5.3L19 10l-5.4 1.7L12 17l-1.6-5.3L5 10l5.4-1.7L12 3z"/></svg>
+              </span>
+              <div><h3>Test Suite Generation</h3><p>Feature context → structured coverage</p></div>
+            </div>
+
+            <div class="flow-drawing">
+              <div class="draw-node">
+                <span class="draw-graphic spec">≡</span>
+                <strong>Feature Spec</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic ai-chip">AI</span>
+                <strong>Generator</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node fan-node">
+                <span class="draw-graphic fan"><i></i><i></i><i></i></span>
+                <strong>Test Suite</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic report">✓</span>
+                <strong>Review</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow-card reveal delay-2">
+            <div class="flow-title">
+              <span class="flow-icon green">
+                <svg viewBox="0 0 24 24"><path d="M8 6L3 12l5 6M16 6l5 6-5 6M14 4l-4 16"/></svg>
+              </span>
+              <div><h3>AI Engineering</h3><p>Repository + evidence → validated change</p></div>
+            </div>
+
+            <div class="flow-drawing">
+              <div class="draw-node">
+                <span class="draw-graphic repo">⌘</span>
+                <strong>Repository</strong>
+              </div>
+              <span class="arrow">+</span>
+              <div class="draw-node">
+                <span class="draw-graphic mcp">MCP</span>
+                <strong>Evidence</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic ai-chip">AI</span>
+                <strong>Proposal</strong>
+              </div>
+              <span class="arrow">→</span>
+              <div class="draw-node">
+                <span class="draw-graphic shield-mini">✓</span>
+                <strong>Validation</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap two-up">
+        <div class="layer-panel reveal">
+          <p class="eyebrow">Quality layers</p>
+          <h2>End-to-end validation across multiple layers.</h2>
+          <p class="panel-copy">Different quality questions belong to different execution layers.</p>
+
+          <div class="layers-visual">
+            <div class="layer layer-ui"><span>UI</span><small>Functional · Visual</small></div>
+            <div class="layer layer-api"><span>API</span><small>Contracts · Integration</small></div>
+            <div class="layer layer-db"><span>Database</span><small>Persistence · Data integrity</small></div>
+            <div class="layer layer-perf"><span>Performance</span><small>Load · Browser metrics</small></div>
+            <div class="layer layer-access"><span>Accessibility</span><small>Automated quality gates</small></div>
+          </div>
+        </div>
+
+        <div id="pipeline" class="pipeline-panel reveal delay-1">
+          <p class="eyebrow">CI/CD pipeline</p>
+          <h2>Automated quality in every commit.</h2>
+          <p class="panel-copy">Build once, execute responsibilities, preserve evidence.</p>
+
+          <div class="pipeline-flow">
+            <div class="pipeline-node"><span>◇</span><strong>Code</strong><small>Push</small></div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-node"><span>▣</span><strong>Build</strong><small>Container</small></div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-node"><span>⌘</span><strong>Parallel</strong><small>Execution</small></div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-node"><span>▤</span><strong>Evidence</strong><small>Artifacts</small></div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-node"><span>✓</span><strong>Gate</strong><small>Result</small></div>
+          </div>
+
+          <div class="pipeline-branches">
+            <span>API</span><span>DB</span><span>UI</span><span>A11y</span><span>Visual</span><span>Performance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="wrap results-grid">
+        <div class="results-copy reveal">
+          <p class="eyebrow">Evidence</p>
+          <h2>Measurable execution, not portfolio claims.</h2>
+          <a class="text-link" href="../#evidence">Inspect detailed evidence <span>↗</span></a>
+        </div>
+
+        <div class="metric-grid reveal delay-1">
+          <article><span class="metric-status">✓</span><strong>28/28</strong><p>API tests passed</p></article>
+          <article><span class="metric-status">✓</span><strong>18/18</strong><p>Cross-browser UI tests passed</p></article>
+          <article><span class="metric-status blue">3</span><strong>Browsers</strong><p>Chromium · Firefox · WebKit</p></article>
+          <article><span class="metric-status amber">2</span><strong>A11y defects</strong><p>Real findings preserved as evidence</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Engineering journey</p>
+          <h2>Two decades of automation evolution.</h2>
+          <p>Tools changed. Architecture, quality ownership and engineering judgement remained the constant.</p>
+        </div>
+
+        <div class="timeline reveal delay-1">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <strong>C#</strong>
+            <small>Frameworks & drivers</small>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <strong>Java</strong>
+            <small>Enterprise automation</small>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <strong>Selenium</strong>
+            <small>Web automation</small>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <strong>Appium</strong>
+            <small>Mobile automation</small>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <strong>Cypress</strong>
+            <small>Modern web testing</small>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <strong>Playwright</strong>
+            <small>Quality engineering</small>
+          </div>
+          <div class="timeline-item timeline-current">
+            <span class="timeline-dot"></span>
+            <strong>AI Engineering</strong>
+            <small>QE + MCP + agents</small>
+          </div>
+        </div>
+
+        <div class="stack-strip reveal">
+          <span>Playwright</span>
+          <span>TypeScript</span>
+          <span>PostgreSQL</span>
+          <span>Docker</span>
+          <span>GitHub Actions</span>
+          <span>k6</span>
+          <span>Lighthouse</span>
+          <span>OpenAI</span>
+          <span>MCP</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap closing-inner reveal">
+        <div>
+          <p class="eyebrow">Technical portfolio</p>
+          <h2>The landing page is the map.<br><span>The evidence is deeper.</span></h2>
+        </div>
+
+        <div class="closing-actions">
+          <a class="button primary" href="../">Explore full portfolio <span>→</span></a>
+          <a href="https://github.com/szabihudak" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/szabolcs-v-hudak/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Szabolcs Hudak · Senior SDET</span>
+      <span>Quality Engineering · Test Automation Architecture</span>
+    </div>
+  </footer>
+
+  <script src="./showcase.js"></script>
+</body>
 </html>
