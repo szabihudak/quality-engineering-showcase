@@ -12,12 +12,14 @@ They focus on:
 - abstraction ownership;
 - deterministic setup;
 - external contract validation;
+- database validation;
 - isolation and lifecycle;
 - browser execution;
 - accessibility;
 - visual regression;
 - performance;
 - diagnostics;
+- AI-assisted engineering;
 - public evidence.
 
 The complete operational guidance of the canonical framework remains private. This document presents the selected standards most relevant to evaluating the engineering approach.
@@ -44,6 +46,7 @@ This applies to:
 
 - fixtures;
 - API clients;
+- database capabilities;
 - authentication;
 - factories;
 - Page Objects;
@@ -70,6 +73,9 @@ API behavior
 
 Provider contract
 → Runtime contract validation
+
+Persisted application state
+→ Database validation
 
 Browser behavior
 → UI test
@@ -98,7 +104,7 @@ Likewise, do not replace integration coverage with mocks when the provider bound
 
 ## 2. Reuse Existing Capabilities Before Creating New Ones
 
-Before adding a fixture, helper, client, factory, Page Object, Component Object, or setup path, inspect the existing framework.
+Before adding a fixture, helper, client, database capability, factory, Page Object, Component Object, or setup path, inspect the existing framework.
 
 Prefer:
 
@@ -148,6 +154,7 @@ Avoid tests dominated by:
 
 - selectors;
 - repeated request construction;
+- raw database connection mechanics;
 - authentication mechanics;
 - manual data assembly;
 - lifecycle orchestration.
@@ -182,7 +189,29 @@ Contract failures should surface at the provider boundary rather than later as m
 
 ---
 
-## 5. Prefer Deterministic Setup
+## 5. Keep Database Access Behind the Persistence Boundary
+
+When a scenario requires persistence-level validation, use the framework's typed database capability rather than introducing direct database infrastructure inside the test.
+
+```text
+Scenario
+   ↓
+Database Capability
+   ↓
+PostgreSQL
+   ↓
+Persisted State
+   ↓
+Scenario Assertion
+```
+
+Database validation should complement API and browser coverage rather than duplicate it without a specific reason.
+
+Tests should retain ownership of scenario-specific expectations while reusable infrastructure owns database access and lifecycle concerns.
+
+---
+
+## 6. Prefer Deterministic Setup
 
 When a scenario requires application state, use the most deterministic existing setup capability appropriate to the responsibility.
 
@@ -204,7 +233,7 @@ Change the consumer or measurement layer instead.
 
 ---
 
-## 6. Keep Test Data and Lifecycle Controlled
+## 7. Keep Test Data and Lifecycle Controlled
 
 Test data should be reproducible and lifecycle ownership should be understandable.
 
@@ -233,7 +262,7 @@ Tests should remain suitable for isolated, targeted, and parallel execution wher
 
 ---
 
-## 7. Keep Authentication Setup Separate from Authentication Coverage
+## 8. Keep Authentication Setup Separate from Authentication Coverage
 
 When authentication is only a prerequisite, use the framework's programmatic authentication capability.
 
@@ -251,7 +280,7 @@ This keeps failures aligned with the behavior the scenario actually owns.
 
 ---
 
-## 8. Apply Cross-Browser Execution Only to Browser Responsibility
+## 9. Apply Cross-Browser Execution Only to Browser Responsibility
 
 Browser-independent tests should not inherit the browser matrix.
 
@@ -259,6 +288,9 @@ The execution ownership model is:
 
 ```text
 API
+→ once
+
+Database
 → once
 
 UI
@@ -273,7 +305,7 @@ Cross-browser coverage exists to detect browser-facing differences, not to multi
 
 ---
 
-## 9. Treat Accessibility as an Explicit Quality Responsibility
+## 10. Treat Accessibility as an Explicit Quality Responsibility
 
 Accessibility automation should run against deterministic application states and produce identifiable accessibility findings.
 
@@ -295,7 +327,7 @@ If an exception is accepted, its ownership and status should remain understandab
 
 ---
 
-## 10. Treat Visual Baselines as Reviewed Contracts
+## 11. Treat Visual Baselines as Reviewed Contracts
 
 Approved screenshots represent expected rendering behavior.
 
@@ -317,7 +349,7 @@ Visual comparison should use the canonical rendering environment so that environ
 
 ---
 
-## 11. Match Performance Tooling to the Measurement
+## 12. Match Performance Tooling to the Measurement
 
 API workload and browser-observed performance are different responsibilities.
 
@@ -337,7 +369,7 @@ Performance execution against shared infrastructure must also be interpreted in 
 
 ---
 
-## 12. Keep Measurement Repetition Separate from Test Retries
+## 13. Keep Measurement Repetition Separate from Test Retries
 
 Repeated performance measurements and failure retries solve different problems.
 
@@ -361,7 +393,7 @@ Timeouts and retries should remain responsibility-specific and intentional.
 
 ---
 
-## 13. Keep Execution Ownership Explicit
+## 14. Keep Execution Ownership Explicit
 
 The execution environment and the responsibility being tested are separate concepts.
 
@@ -381,20 +413,24 @@ Container images and execution evidence also have separate lifecycle ownership:
 Container Registry
 → reusable execution environment
 
+GitHub Summary
+→ concise execution evidence
+
 Workflow Artifacts
-→ reports and diagnostics
+→ detailed reports and diagnostics
 ```
 
 Do not add execution complexity without a responsibility that requires it.
 
 ---
 
-## 14. Design Failures for Diagnosis
+## 15. Design Failures for Diagnosis
 
 A test failure should produce enough information to support root-cause analysis.
 
 Depending on responsibility, useful evidence may include:
 
+- GitHub-native execution summaries;
 - Playwright reports;
 - traces;
 - screenshots;
@@ -424,23 +460,107 @@ Retries should not be used to make deterministic failures disappear.
 
 ---
 
-## 15. Keep Public Claims and Evidence Verifiable
+## 16. Keep AI-Assisted Engineering Repository-Aware
+
+AI-assisted engineering must operate within the existing framework architecture.
+
+Before accepting an AI-generated test or implementation proposal, the workflow should establish the relevant repository context.
+
+```text
+Repository Context
+        ↓
+Existing Architecture
+        ↓
+Golden Reference
+        ↓
+AI Proposal
+        ↓
+Human Review
+        ↓
+Deterministic Validation
+```
+
+AI tools should not introduce parallel abstractions simply because they can generate a plausible implementation.
+
+Generated work should follow the same ownership boundaries, reuse rules, deterministic setup patterns, and validation standards as human-authored work.
+
+The governing principle is:
+
+> **Architecture drives generated code, not the other way around.**
+
+---
+
+## 17. Keep Evidence Provenance Explicit in AI-Assisted Work
+
+Repository evidence and external system evidence have different responsibilities.
+
+Do not silently treat one as proof of the other.
+
+```text
+Repository Evidence
+        +
+Authoritative External Evidence
+        ↓
+AI-Assisted Proposal
+        ↓
+Human Review
+        ↓
+Deterministic Validation
+```
+
+Repository context defines framework architecture and established implementation patterns.
+
+OpenAPI MCP can provide authoritative contract discovery evidence.
+
+Playwright MCP can provide browser exploration evidence.
+
+AI-assisted proposals should remain traceable to the evidence used to produce them.
+
+---
+
+## 18. Treat AI Output as Advisory
+
+AI-generated analysis, test scenarios, and implementation proposals are engineering inputs rather than authoritative results.
+
+Framework-owned AI capabilities follow the same principle.
+
+```text
+Evidence / Context
+        ↓
+AI Analysis or Proposal
+        ↓
+Human Review
+        ↓
+Engineering Decision
+```
+
+AI Failure Analysis can support diagnosis.
+
+AI Test Scenario Generation can support test design.
+
+Neither replaces deterministic execution, scenario assertions, or human approval.
+
+Semantic correctness remains a human review responsibility even when generated output satisfies a structural schema.
+
+---
+
+## 19. Keep Public Claims and Evidence Verifiable
 
 Portfolio publication has a stricter boundary than internal execution.
 
 A capability may be presented as **Implemented** only when it exists in the canonical framework and has been validated.
 
-Future work remains explicitly **Planned** until that transition occurs.
+Future work remains explicitly **Planned** or **Next** until that transition occurs.
 
 ```text
-Planned
-   ↓
+Planned / Next
+      ↓
 Implementation
-   ↓
+      ↓
 Validation
-   ↓
+      ↓
 Public-Safety Review
-   ↓
+      ↓
 Implemented
 ```
 
@@ -453,7 +573,8 @@ Do not fabricate:
 - accessibility results;
 - visual comparisons;
 - CI runs;
-- screenshots implying executions that did not occur.
+- screenshots implying executions that did not occur;
+- AI validation claims.
 
 Before publishing real evidence, review it for:
 
@@ -494,6 +615,8 @@ Before adding a new test or framework capability, ask:
 
 □ Are external provider boundaries validated at runtime where required?
 
+□ If persistence validation is required, is database access using the established boundary?
+
 □ Does the scenario keep its important expectations visible?
 
 □ Does this test actually require browser execution?
@@ -507,6 +630,14 @@ Before adding a new test or framework capability, ask:
 □ Will a failure produce useful diagnostic evidence?
 
 □ Does CI execute this responsibility in the appropriate environment?
+
+□ If AI assistance is used, was relevant repository context inspected first?
+
+□ Is AI-generated work consistent with existing architecture and Golden Templates?
+
+□ Is external evidence clearly separated from repository evidence?
+
+□ Has AI-assisted output received human review and deterministic validation?
 
 □ If this becomes portfolio material, is the claim verified and the evidence public-safe?
 ```
@@ -538,10 +669,14 @@ Execute in the appropriate environment
         ↓
 Produce diagnostic evidence
         ↓
+Use AI within architectural boundaries
+        ↓
+Apply human review and deterministic validation
+        ↓
 Interpret results in context
 ```
 
-The objective is not maximum abstraction, maximum test count, or maximum tooling.
+The objective is not maximum abstraction, maximum test count, maximum tooling, or maximum AI autonomy.
 
 The objective is **maintainable, reproducible, and trustworthy Quality Engineering feedback**.
 
