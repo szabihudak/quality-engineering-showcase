@@ -1954,3 +1954,253 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+/* Engineering model */
+
+.engineering-model {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(92, 225, 230, 0.08), transparent 34%),
+    var(--surface);
+  overflow: hidden;
+}
+
+.engineering-model-root {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 0.8rem;
+  background: var(--surface-raised);
+  text-align: center;
+}
+
+.engineering-model-icon {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.engineering-model-connector-down {
+  width: 1px;
+  height: 1.25rem;
+  justify-self: center;
+  background: var(--border-strong);
+}
+
+.engineering-model-pillars {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.engineering-model-pillars::before {
+  content: "";
+  position: absolute;
+  top: -1.25rem;
+  left: 16.666%;
+  right: 16.666%;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+.engineering-model-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-height: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface-raised);
+}
+
+.engineering-model-node::before {
+  content: "";
+  position: absolute;
+  top: -1.25rem;
+  left: 50%;
+  width: 1px;
+  height: 1.25rem;
+  background: var(--border-strong);
+}
+
+.engineering-model-node-ai {
+  border-color: rgba(92, 225, 230, 0.28);
+}
+
+.engineering-model-capabilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.engineering-model-capabilities span {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.engineering-model-merge {
+  width: 1px;
+  height: 1.25rem;
+  justify-self: center;
+  background: var(--border-strong);
+}
+
+.engineering-model-foundation {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.85rem 1.2rem;
+  border: 1px solid rgba(92, 225, 230, 0.3);
+  border-radius: 999px;
+  background: rgba(92, 225, 230, 0.05);
+  color: var(--text);
+  font-weight: 650;
+  text-align: center;
+}
+
+.engineering-model-plus {
+  color: var(--accent);
+}
+
+/* AI workflows */
+
+.ai-workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ai-workflow-card {
+  padding: 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.ai-workflow-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.ai-workflow-header h3 {
+  margin: 0.25rem 0 0;
+}
+
+.ai-workflow-symbol {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(92, 225, 230, 0.35);
+  border-radius: 0.65rem;
+  background: rgba(92, 225, 230, 0.06);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ai-workflow-flow {
+  display: grid;
+  justify-items: stretch;
+}
+
+.ai-workflow-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: var(--surface-raised);
+}
+
+.ai-workflow-step span {
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.ai-workflow-step strong {
+  font-size: 0.84rem;
+  line-height: 1.3;
+}
+
+.ai-workflow-step-accent {
+  border-color: rgba(92, 225, 230, 0.38);
+  background: rgba(92, 225, 230, 0.06);
+}
+
+.ai-workflow-step-human {
+  border-color: rgba(137, 255, 174, 0.28);
+}
+
+.ai-workflow-arrow {
+  padding: 0.25rem 0;
+  color: var(--accent);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.ai-workflow-foundation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+@media (max-width: 900px) {
+  .engineering-model-pillars,
+  .ai-workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .engineering-model-pillars::before,
+  .engineering-model-node::before,
+  .engineering-model-connector-down,
+  .engineering-model-merge {
+    display: none;
+  }
+
+  .engineering-model-foundation {
+    border-radius: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .engineering-model {
+    padding: 1.25rem;
+  }
+
+  .engineering-model-foundation {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
