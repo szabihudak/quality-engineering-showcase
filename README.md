@@ -16,7 +16,7 @@ The focus goes beyond writing automated tests. It demonstrates how different qua
 
 ### Engineering Roadmap
 
-**Data & Cloud → AI-Assisted QA → AI QA Platforms → QE & Leadership → System Design, Security & Observability**
+**AI-Native QA Platform Evaluation → QE Strategy & Leadership → System Design, Security & Observability**
 
 **[Explore the portfolio site →](https://szabihudak.github.io/quality-engineering-showcase/)** · [Architecture](#architecture-at-a-glance) · [Evidence](#execution-evidence) · [Runnable Framework](#runnable-public-framework) · [Roadmap](#framework-roadmap)
 
@@ -45,7 +45,7 @@ Current implementation demonstrates:
 - reports and failure diagnostics;
 - documented engineering standards and architectural decisions.
 
-The engineering roadmap extends the portfolio into data and cloud foundations, AI-assisted Quality Engineering, AI-native testing platforms, QE strategy and leadership, system design, security, and observability.
+The engineering roadmap extends the current framework foundation into AI-native QA platform evaluation, QE strategy and leadership, system design, security, and observability.
 
 ---
 
