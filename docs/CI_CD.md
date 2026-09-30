@@ -15,6 +15,7 @@ Instead, CI separates:
 - code-quality validation;
 - container-image creation;
 - API execution;
+- database execution;
 - cross-browser UI execution;
 - accessibility testing;
 - visual regression;
@@ -41,6 +42,7 @@ publish commit-SHA image
 GHCR
         ↓
         ├── API
+        ├── Database
         ├── Accessibility
         ├── Visual Regression
         └── UI Browser Matrix
@@ -97,6 +99,7 @@ The same trusted image can then execute:
 
 ```text
 API
+Database
 Accessibility
 Visual Regression
 Chromium UI
@@ -193,6 +196,7 @@ The framework models those differences explicitly.
 | Responsibility | Execution Model |
 | --- | --- |
 | API | Browser-independent execution |
+| Database | Browser-independent execution |
 | UI | Chromium, Firefox, WebKit |
 | Accessibility | Dedicated browser quality execution |
 | Visual Regression | Canonical rendering environment |
@@ -217,6 +221,23 @@ API
 Running the same browser-independent API suite separately under Chromium, Firefox, and WebKit would increase CI cost without adding meaningful browser coverage.
 
 Cross-browser responsibility belongs to browser-facing behavior.
+
+---
+
+## Database Execution
+
+Database tests validate persistence behavior and do not depend on browser-engine behavior.
+
+Therefore:
+
+```text
+Database
+→ execute once
+```
+
+Database execution has its own responsibility boundary and validates persisted application state independently from browser compatibility.
+
+Like API execution, it does not need to be multiplied across browser engines.
 
 ---
 
@@ -445,12 +466,51 @@ A shared policy provides one interpretation layer while allowing different setup
 
 ---
 
+## GitHub-Native Execution Summaries
+
+CI provides GitHub-native execution summaries as a presentation and evidence layer.
+
+The summary does not replace the underlying test runner, quality gate, or detailed report.
+
+Its responsibility is to make the most important execution information visible directly from the workflow run.
+
+Conceptually:
+
+```text
+Test Execution
+      ↓
+Runner-Specific Results
+      ↓
+GitHub Summary
+      +
+Detailed Evidence
+```
+
+Playwright, k6, and Lighthouse execution can therefore expose concise results through GitHub Actions while retaining their responsibility-specific evidence.
+
+The reporting model is:
+
+```text
+GitHub Summary
+→ immediate execution signal
+
+Detailed reports / diagnostics
+→ investigation evidence
+```
+
+Reporting remains separate from quality-gate ownership.
+
+A summary presents execution state; it does not redefine whether the underlying quality responsibility passed or failed.
+
+---
+
 ## Diagnostics & Evidence
 
 CI output should support investigation, not merely indicate red or green.
 
 Depending on the execution responsibility, evidence can include:
 
+- GitHub-native execution summaries;
 - Playwright HTML reports;
 - traces;
 - screenshots;
@@ -480,11 +540,14 @@ Root-cause context matters.
 
 ## Artifact Responsibilities
 
-Container distribution and execution evidence are deliberately separated.
+Container distribution, workflow summaries, and detailed execution evidence are deliberately separated.
 
 ```text
 GHCR
 └── reusable container image
+
+GitHub Summary
+└── immediate execution evidence
 
 GitHub Actions Artifacts
 ├── reports
@@ -494,11 +557,13 @@ GitHub Actions Artifacts
 └── performance evidence
 ```
 
-This keeps artifacts aligned with their actual lifecycle.
+This keeps outputs aligned with their actual lifecycle.
 
 A Docker image is a reusable execution environment.
 
-A report is evidence from a particular execution.
+A GitHub Summary is a concise presentation layer.
+
+A report or diagnostic artifact is detailed evidence from a particular execution.
 
 They should not be managed as if they were the same kind of object.
 
@@ -591,7 +656,7 @@ Create one reusable execution environment from the validated source revision.
 
 ### Run by Responsibility
 
-Assign API, UI, accessibility, visual, and performance execution according to the quality concern being evaluated.
+Assign API, database, UI, accessibility, visual, and performance execution according to the quality concern being evaluated.
 
 ### Reuse Immutable Inputs
 
@@ -608,6 +673,8 @@ Playwright projects and CI jobs define what executes.
 Container images belong in a container registry.
 
 Execution reports belong in workflow artifacts.
+
+GitHub-native summaries provide concise workflow-level execution evidence.
 
 ### Respect Trust Boundaries
 
@@ -638,7 +705,7 @@ Reusable commit-specific container
       ↓
 QUALITY RESPONSIBILITIES
       ↓
-API / UI / Accessibility / Visual / Performance
+API / Database / UI / Accessibility / Visual / Performance
       ↓
 DIAGNOSTIC EVIDENCE
 ```
