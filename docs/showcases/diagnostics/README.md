@@ -17,7 +17,7 @@ The showcase reuses the existing sanitized Accessibility execution evidence rath
 | Result | 2 detected quality-gate failures |
 | Detected rule | `color-contrast` |
 | Impact | `serious` |
-| Diagnostic evidence | Playwright report · screenshots · retained video |
+| Diagnostic evidence | GitHub summary · Playwright report · screenshots · retained video |
 | Root-cause classification | Product defect |
 
 The failed execution is intentionally preserved because the framework behaved as designed and surfaced reproducible product-quality issues.
@@ -67,6 +67,8 @@ For failed Playwright scenarios, the available diagnostic model includes:
 ```text
 Failed execution
         ↓
+GitHub-native execution summary
+        +
 HTML report
         +
 JSON result
@@ -83,6 +85,8 @@ Failure investigation
 Not every artifact is necessarily produced for every execution.
 
 Screenshots and retained video are failure-driven, while trace collection is configured for the first retry. The selected accessibility execution ran without retries, so the published evidence does not claim a trace artifact for this execution.
+
+The GitHub-native summary provides a concise CI-visible execution signal, while the detailed reports and failure artifacts support deeper investigation.
 
 The purpose of the diagnostic configuration is to provide enough execution context to investigate a failure without treating every red result as the same type of problem.
 
@@ -136,6 +140,60 @@ The framework successfully executed its accessibility responsibility and produce
 
 The red result therefore represents a product accessibility defect rather than evidence that the automation framework itself is broken.
 
+## AI-Assisted Failure Analysis
+
+The canonical framework also contains a framework-owned AI Failure Analysis capability.
+
+The capability consumes structured failure evidence and produces an advisory diagnostic analysis:
+
+```text
+Failure evidence
+        ↓
+Evidence sanitization
+        ↓
+AI analysis
+        ↓
+Structured output validation
+        ↓
+Human review
+```
+
+The AI layer does not own the quality-gate result and does not automatically change test outcomes.
+
+Its responsibility is to assist investigation by interpreting available evidence and proposing a structured explanation for human review.
+
+The capability has been validated locally end to end against a controlled real Playwright failure.
+
+```text
+Real Playwright failure
+        ↓
+Captured failure evidence
+        ↓
+AI Failure Analysis
+        ↓
+Structured diagnostic output
+        ↓
+Human review
+```
+
+The CI integration for AI Failure Analysis also exists, but complete artifact-download-to-AI-analysis validation in GitHub Actions remains a documented non-blocking evidence gap.
+
+This limitation does not affect the deterministic test result or the locally validated AI capability.
+
+The architectural boundary remains:
+
+```text
+Deterministic execution
+        ↓
+Authoritative failure evidence
+        ↓
+AI-assisted analysis
+        ↓
+Human review
+```
+
+AI output is advisory. Deterministic execution evidence remains authoritative.
+
 ## Quality-Gate Behavior
 
 The accessibility quality gate expects no violations from the configured automated WCAG-oriented scan.
@@ -159,6 +217,8 @@ Product defect classified
 This distinction is important because framework health and product quality are separate engineering concerns.
 
 A correctly functioning test can produce a red result when it successfully detects a real product defect.
+
+AI-assisted diagnosis does not alter this responsibility boundary.
 
 ## Diagnostic Report
 
@@ -185,10 +245,14 @@ It does not introduce artificial failures or reconstruct execution artifacts spe
 The evidence demonstrates:
 
 - failure-driven diagnostic evidence collection;
+- GitHub-native Playwright execution summaries;
 - actionable Playwright and axe-core failure information;
 - investigation across public and authenticated application states;
 - distinction between framework behavior and product behavior;
 - root-cause-aware failure classification;
+- framework-owned AI-assisted failure analysis;
+- deterministic evidence remaining authoritative over AI output;
+- human review of AI-generated diagnostic analysis;
 - preservation of a genuine failing quality signal;
 - and reuse of sanitized execution evidence without unnecessary artifact duplication.
 
