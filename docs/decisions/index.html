@@ -8,7 +8,7 @@
 
     <meta
       name="description"
-      content="Engineering decisions and trade-offs behind the Quality Engineering framework, including runtime contracts, deterministic setup, visual baselines, performance ownership and CI architecture."
+      content="Engineering decisions and trade-offs behind the Quality Engineering framework, including runtime contracts, database validation, deterministic setup, visual baselines, performance ownership, CI architecture and AI-assisted engineering."
     />
 
     <meta name="theme-color" content="#0b0d10" />
@@ -86,8 +86,9 @@
 
             <p class="capability-lead">
               The framework is shaped by explicit choices about responsibility,
-              runtime validation, deterministic state, performance measurement,
-              execution ownership and diagnostic evidence.
+              runtime validation, deterministic state, persistence validation,
+              performance measurement, execution ownership, AI-assisted
+              engineering and diagnostic evidence.
             </p>
 
             <div class="capability-hero-actions">
@@ -113,7 +114,7 @@
             </div>
 
             <div class="evidence-score">
-              <strong>10</strong>
+              <strong>15</strong>
               <span>documented engineering decisions</span>
             </div>
 
@@ -129,8 +130,8 @@
               </div>
 
               <div>
-                <dt>Setup</dt>
-                <dd>API-driven</dd>
+                <dt>Database</dt>
+                <dd>Typed boundary</dd>
               </div>
 
               <div>
@@ -144,8 +145,8 @@
               </div>
 
               <div>
-                <dt>CI</dt>
-                <dd>Build once</dd>
+                <dt>AI</dt>
+                <dd>Human-reviewed</dd>
               </div>
             </dl>
 
@@ -324,6 +325,43 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">Decision 04</p>
+              <h2>Keep database validation behind a typed persistence boundary.</h2>
+            </div>
+
+            <p>
+              Persistence-level validation should use reusable database
+              infrastructure rather than spreading raw connection and query
+              mechanics through test scenarios.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Test / fixture</span>
+              <span aria-hidden="true">→</span>
+              <span>Typed database capability</span>
+              <span aria-hidden="true">→</span>
+              <span>PostgreSQL</span>
+              <span aria-hidden="true">→</span>
+              <span>Persisted state</span>
+              <span aria-hidden="true">→</span>
+              <span>Assertion</span>
+            </div>
+
+            <p>
+              The trade-off is an additional infrastructure boundary with
+              lifecycle and environment ownership, accepted when persistence
+              evidence adds value beyond API or browser assertions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 05</p>
               <h2>Give accessibility dedicated execution ownership.</h2>
             </div>
 
@@ -377,7 +415,7 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Decision 05</p>
+              <p class="eyebrow">Decision 06</p>
               <h2>Treat visual baselines as approved contracts.</h2>
             </div>
 
@@ -423,7 +461,7 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Decisions 06–08</p>
+              <p class="eyebrow">Decisions 07 to 09</p>
               <h2>Use the right performance layer and measure repeatedly.</h2>
             </div>
 
@@ -477,7 +515,7 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Decision 09</p>
+              <p class="eyebrow">Decision 10</p>
               <h2>Build the container once and reuse it.</h2>
             </div>
 
@@ -534,7 +572,41 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Decision 10</p>
+              <p class="eyebrow">Decision 11</p>
+              <h2>Use GitHub summaries as an evidence layer.</h2>
+            </div>
+
+            <p>
+              Concise workflow summaries improve execution visibility without
+              replacing the underlying quality gate or detailed diagnostic
+              evidence.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Execution</span>
+              <span aria-hidden="true">→</span>
+              <span>Quality result</span>
+              <span aria-hidden="true">→</span>
+              <span>GitHub summary</span>
+              <span aria-hidden="true">+</span>
+              <span>Detailed evidence</span>
+            </div>
+
+            <p>
+              Playwright, k6 and Lighthouse retain ownership of their results.
+              The summary presents those results directly in CI.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 12</p>
               <h2>Diagnose failures by root cause, not job color.</h2>
             </div>
 
@@ -576,6 +648,123 @@
         <div class="container">
           <div class="section-heading">
             <div>
+              <p class="eyebrow">Decision 13</p>
+              <h2>Keep AI-assisted engineering inside existing architecture.</h2>
+            </div>
+
+            <p>
+              AI-generated proposals must follow established repository
+              ownership, reuse patterns and deterministic validation standards.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Repository context</span>
+              <span aria-hidden="true">→</span>
+              <span>AI proposal</span>
+              <span aria-hidden="true">→</span>
+              <span>Human review</span>
+              <span aria-hidden="true">→</span>
+              <span>Deterministic validation</span>
+              <span aria-hidden="true">→</span>
+              <span>Approval</span>
+            </div>
+
+            <p>
+              Repository instructions and Golden Templates constrain Copilot and
+              Agent workflows. Architecture drives generated code, not the
+              reverse.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 14</p>
+              <h2>Separate repository evidence from MCP-sourced evidence.</h2>
+            </div>
+
+            <p>
+              Repository architecture and externally discovered system behavior
+              provide different types of evidence and should remain traceable to
+              their source.
+            </p>
+          </div>
+
+          <div class="dual-flow-grid">
+            <article class="flow-card">
+              <span class="flow-card-label">Repository evidence</span>
+
+              <div class="vertical-flow">
+                <div>Architecture</div>
+                <span>↓</span>
+                <div>Existing abstractions</div>
+                <span>↓</span>
+                <div>Golden Templates</div>
+                <span>↓</span>
+                <div class="flow-success">Implementation context</div>
+              </div>
+            </article>
+
+            <article class="flow-card">
+              <span class="flow-card-label">External evidence</span>
+
+              <div class="vertical-flow">
+                <div>OpenAPI MCP</div>
+                <span>↓</span>
+                <div>Playwright MCP</div>
+                <span>↓</span>
+                <div>Contract / browser discovery</div>
+                <span>↓</span>
+                <div class="flow-success">Authoritative input</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Decision 15</p>
+              <h2>Keep framework-owned AI output advisory.</h2>
+            </div>
+
+            <p>
+              AI failure analysis and AI test scenario generation provide
+              engineering input, while deterministic execution and human review
+              remain authoritative.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Engineering evidence</span>
+              <span aria-hidden="true">→</span>
+              <span>AI analysis / proposal</span>
+              <span aria-hidden="true">→</span>
+              <span>Human review</span>
+              <span aria-hidden="true">→</span>
+              <span>Engineering decision</span>
+            </div>
+
+            <p>
+              The goal is reliable AI-assisted Quality Engineering rather than
+              autonomous ownership of quality decisions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
               <p class="eyebrow">Decision system</p>
               <h2>A consistent engineering pattern.</h2>
             </div>
@@ -596,6 +785,8 @@
               <span>Explicit ownership</span>
               <span aria-hidden="true">→</span>
               <span>Diagnostic evidence</span>
+              <span aria-hidden="true">→</span>
+              <span>Human-reviewed AI</span>
             </div>
 
             <p>
@@ -614,7 +805,7 @@
 
             <p>
               The detailed decision document records context, chosen approach,
-              rationale and trade-offs for all ten architectural decisions.
+              rationale and trade-offs for all fifteen architectural decisions.
             </p>
           </div>
 
