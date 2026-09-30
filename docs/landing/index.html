@@ -9,7 +9,7 @@
     content="Senior SDET and Quality Engineering portfolio — Playwright, TypeScript, deterministic validation, AI-Assisted QE and AI-Assisted Engineering."
   />
   <meta name="theme-color" content="#08111f" />
-  <link rel="stylesheet" href="./showcase.css?v=20261001-0104" />
+  <link rel="stylesheet" href="./showcase.css?v=20261001-0120" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -23,7 +23,7 @@
 
       <nav class="nav" aria-label="Primary navigation">
         <a href="../#ai-workflows">AI Workflows</a>
-        <a href="../#capabilities">Capabilities</a>
+        <a href="#capabilities">Capabilities</a>
         <a
           href="https://github.com/szabihudak/playwright-enterprise-framework"
           target="_blank"
@@ -197,6 +197,127 @@
               <small>Reliable execution · validated output · engineering ownership</small>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities" class="capabilities-section">
+      <div class="wrap">
+        <div class="capabilities-head">
+          <p class="eyebrow">Capabilities</p>
+          <h2>Execution-backed quality capabilities.</h2>
+        </div>
+
+        <div class="capabilities-grid">
+          <article class="capability-card">
+            <div class="capability-top">
+              <span class="capability-icon">&lt;/&gt;</span>
+              <h3>API &amp; Contracts</h3>
+            </div>
+            <div class="capability-result">
+              <strong>28 / 28</strong>
+              <span>tests passed</span>
+            </div>
+            <a class="evidence-link" href="../showcases/api/playwright-report/api-execution.report.html">
+              Open execution result <span>↗</span>
+            </a>
+            <div class="resource-block">
+              <span class="resource-label">Resources</span>
+              <div class="resource-links">
+                <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/api" target="_blank" rel="noreferrer">API tests ↗</a>
+                <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src/api" target="_blank" rel="noreferrer">API layer ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="capability-card">
+            <div class="capability-top">
+              <span class="capability-icon">◫</span>
+              <h3>Database Validation</h3>
+            </div>
+            <div class="capability-result muted-result">
+              <strong>Validated</strong>
+              <span>public execution package deferred</span>
+            </div>
+          </article>
+
+          <article class="capability-card">
+            <div class="capability-top">
+              <span class="capability-icon">▱</span>
+              <h3>UI &amp; Cross-Browser</h3>
+            </div>
+            <div class="capability-result">
+              <strong>18 / 18</strong>
+              <span>tests passed · 3 browsers</span>
+            </div>
+            <a class="evidence-link" href="../showcases/ui/playwright-report/ui-cross-browser-execution.report.html">
+              Open execution result <span>↗</span>
+            </a>
+            <div class="resource-block">
+              <span class="resource-label">Resources</span>
+              <div class="resource-links">
+                <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/ui" target="_blank" rel="noreferrer">UI tests ↗</a>
+                <a href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/src/fixtures/test-fixtures.ts" target="_blank" rel="noreferrer">Shared fixtures ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="capability-card">
+            <div class="capability-top">
+              <span class="capability-icon">⌘</span>
+              <h3>Accessibility</h3>
+            </div>
+            <div class="capability-result attention-result">
+              <strong>2</strong>
+              <span>serious defects detected</span>
+            </div>
+            <a class="evidence-link" href="../showcases/accessibility/playwright-report/">
+              Open execution result <span>↗</span>
+            </a>
+            <div class="resource-block">
+              <span class="resource-label">Resources</span>
+              <div class="resource-links">
+                <a href="https://github.com/szabihudak/quality-engineering-showcase/blob/main/src/accessibility/utils/AccessibilityScanner.ts" target="_blank" rel="noreferrer">Scanner ↗</a>
+                <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src/accessibility" target="_blank" rel="noreferrer">Accessibility source ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="capability-card">
+            <div class="capability-top">
+              <span class="capability-icon">◇</span>
+              <h3>Visual Regression</h3>
+            </div>
+            <div class="capability-result">
+              <strong>2 / 2</strong>
+              <span>visual tests passed</span>
+            </div>
+            <a class="evidence-link" href="../showcases/visual-regression/playwright-report/">
+              Open execution result <span>↗</span>
+            </a>
+          </article>
+
+          <article class="capability-card">
+            <div class="capability-top">
+              <span class="capability-icon">⌁</span>
+              <h3>Performance</h3>
+            </div>
+            <div class="capability-result">
+              <strong>PASS</strong>
+              <span>k6 + Lighthouse evidence</span>
+            </div>
+            <div class="evidence-group">
+              <a class="evidence-link compact" href="../showcases/performance/k6/task-read-load.html">
+                k6 result <span>↗</span>
+              </a>
+              <a class="evidence-link compact" href="../showcases/performance/lighthouse-public/public-home.run-1.report.html">
+                Lighthouse <span>↗</span>
+              </a>
+              <a class="evidence-link compact" href="../showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-1.report.html">
+                Authenticated <span>↗</span>
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
