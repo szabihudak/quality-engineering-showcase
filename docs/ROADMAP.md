@@ -24,22 +24,22 @@ IMPLEMENTED
 │
 ├── Enterprise Automation Architecture
 ├── API & Contract Testing
+├── Database Persistence Validation
 ├── UI & Cross-Browser Testing
 ├── CI/CD & Docker
 ├── Accessibility
 ├── Visual Regression
-└── Performance Testing
+├── Performance Testing
+└── AI-Assisted Quality Engineering
         │
         ▼
 NEXT
 │
-└── Data & Cloud Foundations
+└── AI QA Platform Evaluation
         │
         ▼
 PLANNED
 │
-├── AI-Assisted Quality Engineering
-├── AI QA Platform Evaluation
 ├── QE Strategy & Leadership
 └── System Design, Security & Observability
 ```
@@ -142,6 +142,37 @@ API execution remains browser-independent.
 
 ---
 
+## Database Persistence Validation
+
+**Status: Implemented**
+
+The framework validates selected application behavior at the persistence layer through a typed PostgreSQL client boundary.
+
+Implemented areas include:
+
+- typed PostgreSQL database access;
+- database persistence validation;
+- dedicated database project;
+- guarded database reset workflow;
+- deterministic database setup;
+- persistence assertions following API operations.
+
+The database validation boundary follows:
+
+```text
+Application Operation
+        ↓
+API Response
+        ↓
+Database State
+        ↓
+Persistence Validation
+```
+
+Database execution remains a dedicated responsibility and is not multiplied across browser engines.
+
+---
+
 ## UI & Cross-Browser Testing
 
 **Status: Implemented**
@@ -181,9 +212,11 @@ Implemented areas include:
 - GHCR distribution;
 - commit-specific image reuse;
 - API execution;
+- database execution;
 - browser matrix execution;
 - dedicated accessibility execution;
 - dedicated visual-regression execution;
+- GitHub-native execution summaries;
 - workflow artifacts and diagnostics.
 
 The main execution model is:
@@ -279,27 +312,23 @@ Performance execution currently has separate workflow ownership from the normal 
 
 ---
 
-# Next — Data & Cloud Foundations
-
-**Status: Next / Planned**
-
-The next phase expands the Quality Engineering skill set beyond browser and API automation into data validation and cloud infrastructure fundamentals.
+# Data & Cloud Foundations
 
 ## Data & SQL
 
-Planned areas include:
+**Status: Implemented in framework scope**
 
-- SQL fundamentals;
-- filtering and aggregation;
-- `JOIN` operations;
-- `GROUP BY`;
-- window functions;
-- query analysis;
-- data-validation scenarios.
+The framework now includes database persistence validation through a typed PostgreSQL client layer.
 
-The objective is to strengthen the ability to validate system behavior at the data layer rather than relying exclusively on API or UI observations.
+Implemented areas include:
 
-Potential Quality Engineering applications include:
+- typed database access;
+- persistence validation;
+- database-state assertions;
+- controlled database reset;
+- dedicated database execution ownership.
+
+The Quality Engineering application follows:
 
 ```text
 Application Behavior
@@ -311,11 +340,13 @@ Database State
 Data Validation
 ```
 
-Implementation evidence will only be added to the showcase after real exercises or framework integrations exist.
+Broader SQL learning remains separate from the framework capability status.
 
 ---
 
 ## Cloud Foundations
+
+**Status: Planned**
 
 Planned areas include:
 
@@ -338,28 +369,43 @@ AWS is currently a roadmap capability and is not presented as an implemented fra
 
 ---
 
-# Planned — AI-Assisted Quality Engineering
+# Implemented — AI-Assisted Quality Engineering
 
-**Status: Planned**
+**Status: Implemented / Validated**
 
 This phase explores how AI-assisted development can improve Quality Engineering workflows without bypassing architectural ownership.
 
-Planned areas include:
+Implemented framework-owned AI capabilities include:
 
-- GitHub Copilot;
-- Cursor;
-- ChatGPT-assisted engineering workflows;
-- AI-assisted test generation;
-- AI-assisted debugging;
-- prompt engineering;
-- OpenAI API fundamentals.
+- AI Failure Analysis;
+- AI Test Scenario Generation;
+- structured OpenAI API integration;
+- runtime schema validation of AI output;
+- mandatory human review.
 
-The intended engineering model is:
+Validated AI-assisted engineering areas include:
+
+- GitHub Copilot-assisted test generation;
+- repository AI instructions;
+- semantic repository context;
+- Golden Template discovery;
+- Golden Template structural compliance;
+- human feedback and refinement;
+- Copilot Agent engineering workflows;
+- deterministic Agent validation;
+- OpenAPI MCP contract discovery;
+- OpenAPI MCP-assisted test proposals;
+- Playwright MCP browser exploration;
+- Playwright MCP-assisted UI test generation.
+
+The engineering model is:
 
 ```text
 Human Engineering Intent
           ↓
 Existing Architecture
+          ↓
+Repository + Authoritative Evidence
           ↓
 AI Assistance
           ↓
@@ -368,7 +414,7 @@ Review & Validation
 Framework Integration
 ```
 
-AI-generated code should follow the same standards as human-written code.
+AI-generated code follows the same standards as human-written code.
 
 The governing rule remains:
 
@@ -386,22 +432,33 @@ AI assistance changes the development workflow.
 
 It does not replace engineering ownership, architectural review, or validation.
 
+Framework-owned AI output remains advisory and requires human review.
+
+AI Failure Analysis has been validated locally end-to-end against a controlled real Playwright failure. Its CI integration exists, while complete artifact-download-to-AI-analysis CI validation remains a documented non-blocking evidence gap.
+
 ---
 
-# Planned — AI QA Platform Evaluation
+# Next — AI QA Platform Evaluation
 
-**Status: Planned**
+**Status: Next**
 
 This phase evaluates modern AI-native testing platforms and compares their engineering characteristics with code-based automation.
 
-Planned areas include:
+The selected platform for the focused evaluation is **mabl**.
+
+Planned evaluation areas include:
 
 - AI-native regression automation;
-- self-healing approaches;
+- self-healing and adaptive behavior;
 - AI-assisted test creation;
 - maintenance behavior;
-- debugging capabilities;
-- platform evaluation;
+- debugging and diagnosis transparency;
+- false-healing risk;
+- CI/CD integration;
+- reporting;
+- developer control;
+- vendor lock-in;
+- maintenance cost;
 - proof-of-concept implementation.
 
 The objective is not simply to demonstrate tool usage.
@@ -604,13 +661,13 @@ Different roadmap areas may produce different forms of evidence.
 | --- | --- |
 | Automation Architecture | Selected source + architecture |
 | API & Contract | Source + execution evidence |
+| Database Persistence | Architecture + validated implementation |
 | UI | Source + cross-browser evidence |
 | Accessibility | Analysis + reviewed evidence |
 | Visual Regression | Baseline / comparison evidence |
 | Performance | Metrics + reports |
-| Data / SQL | Queries + validation exercises |
 | Cloud | Architecture / controlled integration evidence |
-| AI-Assisted QE | Documented workflow + reviewed examples |
+| AI-Assisted QE | Documented workflow + validated implementation and reviewed examples |
 | AI QA Platforms | Evaluation + proof of concept |
 | QE Strategy | Strategy / metrics case study |
 | System Design | Architecture case study |
@@ -636,14 +693,16 @@ Quality Engineering Portfolio
 │
 ├── Automation Framework
 │   ├── API
+│   ├── Database
 │   ├── UI
 │   ├── Accessibility
 │   ├── Visual
-│   └── Performance
+│   ├── Performance
+│   └── AI-Assisted QE
 │
-├── Data & Cloud
+├── Cloud Foundations
 │
-├── AI-Assisted Engineering
+├── AI QA Platform Evaluation
 │
 ├── QE Strategy & Leadership
 │
@@ -659,21 +718,22 @@ The Playwright framework is therefore the **engineering foundation of the portfo
 ```text
 Enterprise Architecture      ✅
 API & Contract               ✅
+Database Persistence         ✅
 CI/CD                        ✅
 Docker                       ✅
 Accessibility                ✅
 Visual Regression            ✅
 Performance                  ✅
+AI-Assisted QE               ✅
                              │
                              ▼
-Data & Cloud                 ◇ NEXT
+AI QA Platform Evaluation    ◇ NEXT
                              │
                              ▼
-AI-Assisted QE               ◇ PLANNED
-AI QA Platforms              ◇ PLANNED
 QE Strategy & Leadership     ◇ PLANNED
 System Design / Security     ◇ PLANNED
 Observability                ◇ PLANNED
+Cloud Foundations            ◇ PLANNED
 ```
 
 As the roadmap progresses, this document should be updated from verified engineering state rather than from intended completion dates.
