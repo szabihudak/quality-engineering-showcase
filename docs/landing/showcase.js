@@ -1,18 +1,16 @@
 (() => {
-  const items = document.querySelectorAll(".reveal");
+  const modelLink = document.querySelector('a[href="#quality-system"]');
 
-  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    items.forEach(item => item.classList.add("visible"));
-    return;
-  }
+  if (modelLink) {
+    modelLink.addEventListener("click", event => {
+      const target = document.querySelector("#quality-system");
+      if (!target) return;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "center"
+      });
     });
-  }, { threshold: 0.12 });
-
-  items.forEach(item => observer.observe(item));
+  }
 })();
