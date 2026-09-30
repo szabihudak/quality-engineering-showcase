@@ -8,7 +8,7 @@ The focus goes beyond writing automated tests. It demonstrates how different qua
 
 ### Implemented
 
-**API & Contract · UI · Cross-Browser · Accessibility · Visual Regression · Performance · Docker · CI/CD**
+**API & Contract · Database Validation · UI · Cross-Browser · Accessibility · Visual Regression · Performance · Docker · CI/CD · AI-Assisted QE · AI-Assisted Engineering**
 
 ### Technology
 
