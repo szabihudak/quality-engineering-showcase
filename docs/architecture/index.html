@@ -8,7 +8,7 @@
 
     <meta
       name="description"
-      content="Quality Engineering architecture covering API contracts, browser automation, deterministic fixtures, accessibility, visual regression, performance, Docker and responsibility-based execution."
+      content="Quality Engineering architecture covering API contracts, database validation, browser automation, deterministic fixtures, accessibility, visual regression, performance, AI-assisted Quality Engineering, Docker and responsibility-based execution."
     />
 
     <meta name="theme-color" content="#0b0d10" />
@@ -87,7 +87,8 @@
             <p class="capability-lead">
               A layered engineering system built around explicit responsibility
               boundaries, deterministic state, runtime validation, reproducible
-              execution and evidence-producing quality gates.
+              execution, AI-assisted engineering and evidence-producing quality
+              gates.
             </p>
 
             <div class="capability-hero-actions">
@@ -113,7 +114,7 @@
             </div>
 
             <div class="evidence-score">
-              <strong>6</strong>
+              <strong>8</strong>
               <span>primary quality responsibilities</span>
             </div>
 
@@ -121,6 +122,11 @@
               <div>
                 <dt>API</dt>
                 <dd>Contracts</dd>
+              </div>
+
+              <div>
+                <dt>Database</dt>
+                <dd>PostgreSQL</dd>
               </div>
 
               <div>
@@ -141,6 +147,11 @@
               <div>
                 <dt>Performance</dt>
                 <dd>k6 + LH</dd>
+              </div>
+
+              <div>
+                <dt>AI-assisted QE</dt>
+                <dd>Analysis + Design</dd>
               </div>
 
               <div>
@@ -171,8 +182,8 @@
 
             <p>
               Tests express behavior. Shared framework layers own reusable data,
-              authentication, API interaction, browser abstractions, validation,
-              lifecycle and execution responsibilities.
+              authentication, API interaction, database access, browser
+              abstractions, validation, lifecycle and execution responsibilities.
             </p>
           </div>
 
@@ -250,7 +261,7 @@
             <div class="pipeline-step">
               <span>04</span>
               <strong>Runtime</strong>
-              <p>Browser, HTTP and validation.</p>
+              <p>Browser, HTTP, database and validation.</p>
             </div>
 
             <div class="pipeline-arrow" aria-hidden="true">→</div>
@@ -295,6 +306,42 @@
             <p>
               Runtime validation creates an explicit trust boundary between the
               framework and the external provider.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Database architecture</p>
+              <h2>Validate persisted application state explicitly.</h2>
+            </div>
+
+            <p>
+              Typed PostgreSQL access provides persistence-level evidence when
+              API or browser behavior alone is not sufficient to validate the
+              state stored by the application.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Scenario</span>
+              <span aria-hidden="true">→</span>
+              <span>Database capability</span>
+              <span aria-hidden="true">→</span>
+              <span>PostgreSQL</span>
+              <span aria-hidden="true">→</span>
+              <span>Persisted state</span>
+              <span aria-hidden="true">→</span>
+              <span>Assertion</span>
+            </div>
+
+            <p>
+              Database access remains behind a reusable persistence boundary
+              rather than being scattered directly through test scenarios.
             </p>
           </div>
         </div>
@@ -434,6 +481,12 @@
             </article>
 
             <article class="coverage-card">
+              <span class="coverage-label">Database</span>
+              <h3>Persistence validation</h3>
+              <p>Database behavior executes independently of browser engines.</p>
+            </article>
+
+            <article class="coverage-card">
               <span class="coverage-label">UI</span>
               <h3>Cross-browser</h3>
               <p>Chromium, Firefox and WebKit own browser behavior.</p>
@@ -462,6 +515,44 @@
               <h3>Lighthouse</h3>
               <p>Browser-observed performance uses Lighthouse measurements.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-border">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">AI-assisted Quality Engineering</p>
+              <h2>AI operates inside engineering boundaries.</h2>
+            </div>
+
+            <p>
+              AI-assisted workflows combine repository context and authoritative
+              evidence with human review and deterministic validation.
+            </p>
+          </div>
+
+          <div class="engineering-callout">
+            <div class="engineering-callout-flow">
+              <span>Repository context</span>
+              <span aria-hidden="true">→</span>
+              <span>Authoritative evidence</span>
+              <span aria-hidden="true">→</span>
+              <span>AI proposal</span>
+              <span aria-hidden="true">→</span>
+              <span>Human review</span>
+              <span aria-hidden="true">→</span>
+              <span>Deterministic validation</span>
+            </div>
+
+            <p>
+              The framework includes AI failure analysis and AI test scenario
+              generation. Repository-aware Copilot and Agent workflows use
+              Golden Templates, while OpenAPI MCP and Playwright MCP provide
+              contract and browser discovery evidence. AI output remains
+              advisory and requires human approval.
+            </p>
           </div>
         </div>
       </section>
