@@ -30,6 +30,7 @@ Current implementation demonstrates:
 
 - API and browser automation with Playwright;
 - schema-first API contracts with TypeBox and AJV runtime validation;
+- database persistence validation with typed PostgreSQL access;
 - Page Object and Component Object architecture;
 - reusable fixtures and deterministic test-data factories;
 - programmatic API and browser authentication;
@@ -43,6 +44,8 @@ Current implementation demonstrates:
 - responsibility-based GitHub Actions CI/CD;
 - GHCR image reuse across CI jobs;
 - reports and failure diagnostics;
+- AI Failure Analysis and AI Test Suite Generation with structured output validation and human review;
+- repository-aware AI-Assisted Engineering with GitHub Copilot, Copilot Agent, OpenAPI MCP, and Playwright MCP;
 - documented engineering standards and architectural decisions.
 
 The engineering roadmap extends the current framework foundation into AI-native QA platform evaluation, QE strategy and leadership, system design, security, and observability.
@@ -67,10 +70,12 @@ The engineering roadmap extends the current framework foundation into AI-native 
 | Docker execution | ✅ Implemented | Architecture · dedicated public execution evidence deferred |
 | GitHub Actions CI/CD | ✅ Implemented | CI/CD architecture · dedicated public execution evidence deferred |
 | GHCR image reuse | ✅ Implemented | CI/CD architecture · dedicated public execution evidence deferred |
-| SQL & data foundations | ◇ Planned | Roadmap |
+| Database Validation | ✅ Implemented | Architecture · validated implementation · dedicated public execution evidence deferred |
 | AWS & cloud foundations | ◇ Planned | Roadmap |
-| AI-assisted QA workflow | ◇ Planned | Roadmap |
-| AI QA platform evaluation | ◇ Planned | Roadmap |
+| AI Failure Analysis | ✅ Implemented | AI-Assisted QE · validated implementation |
+| AI Test Suite Generation | ✅ Implemented | AI-Assisted QE · validated implementation |
+| AI-Assisted Engineering | ✅ Implemented | GitHub Copilot · Copilot Agent · OpenAPI MCP · Playwright MCP · deterministic validation |
+| AI-Native QA Platform Evaluation | ◇ Next | Roadmap · mabl evaluation |
 | QE strategy & leadership | ◇ Planned | Roadmap |
 | System design & security | ◇ Planned | Roadmap |
 | Observability foundations | ◇ Planned | Roadmap |
@@ -487,6 +492,8 @@ Core Framework Architecture
         ↓
 API & Contract Testing
         ↓
+Database Validation
+        ↓
 CI/CD
         ↓
 Docker & Reproducible Execution
@@ -496,46 +503,60 @@ Accessibility
 Visual Regression
         ↓
 Performance Testing
+        ↓
+AI-Assisted QE
+        ↓
+AI-Assisted Engineering
 ```
 
-Current implementation includes API/UI automation, runtime contract validation, deterministic data and fixtures, authentication, mocking, cross-browser execution, accessibility, visual regression, k6, Lighthouse, Docker, GitHub Actions, GHCR, and execution diagnostics.
+Current implementation includes API/UI automation, runtime contract validation, deterministic data and fixtures, authentication, mocking, cross-browser execution, PostgreSQL persistence validation, accessibility, visual regression, k6, Lighthouse, Docker, GitHub Actions, GHCR, execution diagnostics, framework-owned AI capabilities, and validated AI-assisted engineering workflows.
 
-### ◇ Next — Data & Cloud Foundations
+### ◇ Planned — Cloud Foundations
 
 Planned areas include:
 
-- SQL;
-- JOINs;
-- GROUP BY and aggregation;
-- window functions;
-- query analysis;
 - AWS fundamentals;
 - IAM;
 - S3;
 - CloudWatch;
 - secrets management.
 
-### ◇ Planned — AI-Assisted Quality Engineering
+### ✅ Implemented — AI-Assisted Quality Engineering
 
-Planned areas include:
+Implemented capabilities include:
 
-- GitHub Copilot;
-- Cursor;
-- ChatGPT-assisted QA workflows;
-- AI-assisted test generation;
-- AI-assisted debugging;
-- prompt engineering;
-- OpenAI API fundamentals.
+- AI Failure Analysis;
+- AI Test Suite Generation;
+- OpenAI integration;
+- structured output validation;
+- evidence and context boundaries;
+- uncertainty guardrails;
+- deterministic engineering validation;
+- mandatory human review.
 
-### ◇ Planned — Modern AI QA Platforms
+### ✅ Implemented — AI-Assisted Engineering
 
-Planned areas include:
+Validated engineering workflows include:
 
-- AI-native testing platforms;
-- self-healing approaches;
-- AI-assisted regression testing;
-- platform evaluation;
-- proof-of-concept implementation.
+- repository-aware GitHub Copilot assistance;
+- Copilot Agent workflows;
+- Golden Templates;
+- OpenAPI MCP contract discovery;
+- Playwright MCP browser exploration;
+- deterministic validation;
+- human engineering review.
+
+### ◇ Next — AI-Native QA Platform Evaluation
+
+The current evaluation focus is **mabl**, including:
+
+- AI-native test creation;
+- adaptive and self-healing behavior;
+- maintainability;
+- diagnosis transparency;
+- CI/CD integration;
+- developer control;
+- build-versus-buy trade-offs.
 
 ### ◇ Planned — Quality Engineering & Leadership
 
@@ -591,11 +612,11 @@ These documents are **curated public representations**, not copies of the comple
 
 ### Implemented
 
-**Playwright · TypeScript · Node.js · TypeBox · AJV · axe-core · Docker · GitHub Actions · GHCR · k6 · Lighthouse**
+**Playwright · TypeScript · Node.js · PostgreSQL · TypeBox · AJV · axe-core · Docker · GitHub Actions · GHCR · k6 · Lighthouse · OpenAI · GitHub Copilot · OpenAPI MCP · Playwright MCP**
 
 ### Roadmap
 
-**SQL · AWS · AI-assisted QA tooling · AI QA platforms · security and observability tooling**
+**AWS · AI-native QA platforms · security and observability tooling**
 
 Roadmap technologies represent planned areas of engineering development and are not presented as completed framework integrations.
 
