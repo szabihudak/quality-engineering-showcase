@@ -8,7 +8,7 @@ Performance validation is intentionally split across complementary layers:
 - public browser-performance auditing with Lighthouse CI;
 - and authenticated browser-performance auditing through Playwright-managed application state and Lighthouse.
 
-The showcase publishes execution evidence only. The source-of-truth implementation, thresholds, fixtures, and execution orchestration remain in the canonical private framework.
+The showcase publishes execution evidence only. The source-of-truth implementation, thresholds, fixtures, reporting, and execution orchestration remain in the canonical private framework.
 
 ## Execution Summary
 
@@ -192,6 +192,44 @@ The report sources are retained under:
 
 [`lighthouse-authenticated/`](./lighthouse-authenticated/)
 
+## GitHub-Native Performance Reporting
+
+The canonical performance workflow also publishes concise execution summaries directly to the GitHub Actions job summary.
+
+The reporting layer covers the performance responsibilities implemented by the framework:
+
+```text
+k6 execution
+      ↓
+threshold evaluation
+      ↓
+k6 GitHub summary
+
+Authenticated Lighthouse execution
+      ↓
+shared performance policy
+      ↓
+Lighthouse GitHub summary
+```
+
+The summaries provide an immediately visible CI signal while the detailed reports remain available for deeper investigation.
+
+The reporting layer does not replace or redefine the quality gates.
+
+```text
+Performance tool
+      ↓
+quality policy
+      ↓
+PASS / FAIL
+      ↓
+GitHub summary
+      +
+detailed evidence
+```
+
+k6 thresholds and Lighthouse policy remain authoritative for the execution result. The GitHub summary is a presentation and evidence layer built on top of those results.
+
 ## Performance Quality-Gate Model
 
 The framework treats performance validation as an executable quality policy rather than passive reporting.
@@ -217,6 +255,9 @@ LHCI assertions            median metric aggregation
                    │
                    ↓
           performance evidence
+                   │
+                   ↓
+          GitHub-native summary
 ```
 
 This provides independent signals for service-level behavior, public browser rendering, and authenticated application rendering while preserving the different execution semantics of Lighthouse CI and the authenticated Lighthouse runner.
@@ -225,7 +266,7 @@ This provides independent signals for service-level behavior, public browser ren
 
 This showcase publishes only public-safe evidence derived from real canonical executions.
 
-It does not maintain a separate performance implementation or showcase-specific thresholds.
+It does not maintain a separate performance implementation, reporting implementation, or showcase-specific thresholds.
 
 The evidence demonstrates:
 
@@ -237,6 +278,8 @@ The evidence demonstrates:
 - median metric aggregation for authenticated Lighthouse auditing;
 - shared Lighthouse policy enforcement;
 - public and authenticated browser-performance coverage;
+- GitHub-native k6 and Lighthouse execution summaries;
+- separation between quality-gate ownership and presentation;
 - and real interactive execution reports.
 
 Local filesystem metadata, authentication material, generated user information, and other execution details that are not necessary to demonstrate the engineering capability are excluded from the public showcase.
