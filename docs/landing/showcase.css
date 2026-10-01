@@ -1811,3 +1811,25 @@ h1 span {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Core vs full framework capability matrix */
+.framework-scope-table th:nth-child(2),
+.framework-scope-table th:nth-child(3),
+.framework-scope-table td:nth-child(2),
+.framework-scope-table td:nth-child(3) {
+  text-align: center;
+}
+
+.scope-status {
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.scope-included {
+  color: #82ddb9 !important;
+}
+
+.scope-not-included {
+  color: #60728a !important;
+}
