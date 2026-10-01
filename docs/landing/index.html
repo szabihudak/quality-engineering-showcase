@@ -9,7 +9,7 @@
     content="Senior SDET and Quality Engineering portfolio — Playwright, TypeScript, deterministic validation, AI-Assisted QE and AI-Assisted Engineering."
   />
   <meta name="theme-color" content="#08111f" />
-  <link rel="stylesheet" href="./showcase.css?v=20261001-0203" />
+  <link rel="stylesheet" href="./showcase.css?v=20261001-0700" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -22,27 +22,18 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#ai-workflows">AI Workflows</a>
+        <a href="#quality-system">3 Pillars</a>
+        <a href="#ai-workflows">3 AI Flows</a>
         <a href="#capabilities">Capabilities</a>
         <a
           href="https://github.com/szabihudak/playwright-enterprise-framework"
           target="_blank"
           rel="noreferrer"
-        >Try Core Framework</a>
-        <a href="https://github.com/szabihudak/quality-engineering-showcase" target="_blank" rel="noreferrer">Open Portfolio</a>
-        <span class="nav-divider" aria-hidden="true"></span>
+        >Framework Try</a>
+        <a href="https://szabihudak.github.io/quality-engineering-showcase/" target="_blank" rel="noreferrer">Open Portfolio</a>
         <a
           class="social-link"
-          href="https://www.linkedin.com/in/szabolcs-v-hudak/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <span class="social-icon" aria-hidden="true">in</span>
-          LinkedIn
-        </a>
-        <a
-          class="social-link"
-          href="https://github.com/szabihudak"
+          href="https://github.com/szabihudak/quality-engineering-showcase"
           target="_blank"
           rel="noreferrer"
         >
@@ -68,8 +59,12 @@
           </h1>
 
           <p class="lead">
-            Playwright and TypeScript quality engineering across API, UI, data,
-            accessibility, visual and performance testing.
+            A production-style Quality Engineering portfolio combining API, database,
+            browser, accessibility, visual and performance engineering with framework-owned
+            AI-assisted Quality Engineering and repository-aware AI-assisted Engineering.
+            It includes AI Failure Analysis, AI Test Suite Generation, Copilot and Agent
+            workflows, and MCP-assisted contract and browser discovery, all governed by
+            deterministic validation and human engineering review.
           </p>
 
           <div class="hero-actions">
@@ -89,6 +84,24 @@
             >
               Try Core Framework <span aria-hidden="true">↗</span>
             </a>
+          </div>
+
+          <div class="technology-line" aria-label="Core technologies">
+            <span>Playwright</span>
+            <span>TypeScript</span>
+            <span>PostgreSQL</span>
+            <span>TypeBox</span>
+            <span>AJV</span>
+            <span>axe-core</span>
+            <span>Docker</span>
+            <span>GitHub Actions</span>
+            <span>GHCR</span>
+            <span>k6</span>
+            <span>Lighthouse</span>
+            <span>OpenAI</span>
+            <span>GitHub Copilot</span>
+            <span>OpenAPI MCP</span>
+            <span>Playwright MCP</span>
           </div>
         </div>
 
@@ -314,7 +327,7 @@
         <div class="section-heading-dark">
           <p class="eyebrow">Capabilities</p>
           <h2>Quality engineering beyond test scripts.</h2>
-          <p>Implemented capabilities, public execution evidence and selected shared source examples.</p>
+          <p>Implemented capabilities, public execution evidence and selected public test source.</p>
         </div>
 
         <div class="capabilities-grid">
@@ -354,8 +367,11 @@
             </ul>
           </article>
 
-          <article class="capability-card has-execution has-resource">
-            <div class="card-topline"><span class="capability-index">04</span><span class="status status-success">Implemented</span></div>
+          <article class="capability-card has-execution has-test-source">
+            <div class="card-topline">
+              <span class="capability-index">04</span>
+              <span class="capability-badges"><span class="artifact-badge source-badge">Test Source</span><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
+            </div>
             <h3>API &amp; Contract Testing</h3>
             <p>Browser-independent API automation with TypeBox schemas and AJV runtime contract validation.</p>
             <ul class="feature-list">
@@ -365,8 +381,8 @@
               <li>Deterministic test data</li>
             </ul>
             <div class="card-actions">
-              <a class="card-link-evidence" href="../showcases/api/playwright-report/api-execution.report.html">Inspect evidence ↗</a>
-              <a class="card-link-resource" href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/api" target="_blank" rel="noreferrer">Browse tests ↗</a>
+              <a class="card-link-evidence" href="../showcases/api/playwright-report/api-execution.report.html">Open execution evidence ↗</a>
+              <a class="card-link-resource" href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/api" target="_blank" rel="noreferrer">Browse API tests ↗</a>
             </div>
           </article>
 
@@ -382,8 +398,11 @@
             </ul>
           </article>
 
-          <article class="capability-card has-execution has-resource">
-            <div class="card-topline"><span class="capability-index">06</span><span class="status status-success">Implemented</span></div>
+          <article class="capability-card has-execution has-test-source">
+            <div class="card-topline">
+              <span class="capability-index">06</span>
+              <span class="capability-badges"><span class="artifact-badge source-badge">Test Source</span><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
+            </div>
             <h3>UI &amp; Cross-Browser</h3>
             <p>Shared browser scenarios executed across Chromium, Firefox and WebKit without browser-specific duplication.</p>
             <ul class="feature-list">
@@ -393,13 +412,16 @@
               <li>API-driven setup and mocking</li>
             </ul>
             <div class="card-actions">
-              <a class="card-link-evidence" href="../showcases/ui/playwright-report/ui-cross-browser-execution.report.html">Inspect evidence ↗</a>
+              <a class="card-link-evidence" href="../showcases/ui/playwright-report/ui-cross-browser-execution.report.html">Open execution evidence ↗</a>
               <a class="card-link-resource" href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/ui" target="_blank" rel="noreferrer">Browse UI tests ↗</a>
             </div>
           </article>
 
-          <article class="capability-card has-execution has-resource">
-            <div class="card-topline"><span class="capability-index">07</span><span class="status status-attention">Defects detected</span></div>
+          <article class="capability-card has-execution">
+            <div class="card-topline">
+              <span class="capability-index">07</span>
+              <span class="capability-badges"><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
+            </div>
             <h3>Accessibility Testing</h3>
             <p>axe-core quality gates that preserve real failures instead of hiding product accessibility problems.</p>
             <ul class="feature-list">
@@ -409,13 +431,15 @@
               <li>Failure screenshots and diagnostics</li>
             </ul>
             <div class="card-actions">
-              <a class="card-link-evidence" href="../showcases/accessibility/playwright-report/">Inspect diagnostics ↗</a>
-              <a class="card-link-resource" href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src/accessibility" target="_blank" rel="noreferrer">Browse accessibility source ↗</a>
+              <a class="card-link-evidence" href="../showcases/accessibility/playwright-report/">Open execution evidence ↗</a>
             </div>
           </article>
 
           <article class="capability-card has-execution">
-            <div class="card-topline"><span class="capability-index">08</span><span class="status status-success">Implemented</span></div>
+            <div class="card-topline">
+              <span class="capability-index">08</span>
+              <span class="capability-badges"><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
+            </div>
             <h3>Visual Regression</h3>
             <p>Deterministic screenshot comparison with version-controlled, review-owned Linux baselines.</p>
             <ul class="feature-list">
@@ -425,12 +449,15 @@
               <li>Noise reduction controls</li>
             </ul>
             <div class="card-actions">
-              <a class="card-link-evidence" href="../showcases/visual-regression/playwright-report/">Inspect evidence ↗</a>
+              <a class="card-link-evidence" href="../showcases/visual-regression/playwright-report/">Open execution evidence ↗</a>
             </div>
           </article>
 
           <article class="capability-card has-execution">
-            <div class="card-topline"><span class="capability-index">09</span><span class="status status-success">Implemented</span></div>
+            <div class="card-topline">
+              <span class="capability-index">09</span>
+              <span class="capability-badges"><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
+            </div>
             <h3>Performance Engineering</h3>
             <p>Separate service and browser performance responsibilities with explicit threshold-based quality gates.</p>
             <ul class="feature-list">
@@ -440,14 +467,27 @@
               <li>Shared browser performance policy</li>
             </ul>
             <div class="card-actions">
-              <a class="card-link-evidence" href="../showcases/performance/k6/task-read-load.html">Inspect evidence ↗</a>
+              <a class="card-link-evidence" href="../showcases/performance/k6/task-read-load.html">Open execution evidence ↗</a>
             </div>
           </article>
         </div>
+
+        <aside class="source-explorer" aria-label="Public repository source explorer">
+          <div>
+            <span class="source-explorer-kicker">Public implementation</span>
+            <h3>Explore the framework source and test suites.</h3>
+            <p>The full public repository exposes reusable framework code in <code>src/</code> and executable scenarios in <code>tests/</code>, making the architecture inspectable beyond selected capability examples.</p>
+          </div>
+          <div class="source-explorer-actions">
+            <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src" target="_blank" rel="noreferrer">Browse src/ ↗</a>
+            <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests" target="_blank" rel="noreferrer">Browse tests/ ↗</a>
+            <a href="https://github.com/szabihudak/quality-engineering-showcase" target="_blank" rel="noreferrer">Open repository ↗</a>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
 
-  <script src="./showcase.js?v=20261001-0104"></script>
+  <script src="./showcase.js?v=20261001-0700"></script>
 </body>
 </html>
