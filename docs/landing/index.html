@@ -9,7 +9,7 @@
     content="Production-style Quality Engineering portfolio covering deterministic testing, AI-Assisted QE, AI-Assisted Engineering, public execution evidence and runnable framework code."
   />
   <meta name="theme-color" content="#08111f" />
-  <link rel="stylesheet" href="./showcase.css?v=20261001-0830" />
+  <link rel="stylesheet" href="./showcase.css?v=20261001-0930" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,10 +26,10 @@
         <a href="#ai-workflows">AI Workflows</a>
         <a href="#capabilities">Capabilities</a>
         <a href="#framework">Framework Try</a>
-        <a href="https://szabihudak.github.io/quality-engineering-showcase/" target="_blank" rel="noreferrer">Open Portfolio</a>
+        <a href="https://github.com/szabihudak/quality-engineering-showcase" target="_blank" rel="noreferrer">Open Portfolio</a>
         <a
           class="social-link"
-          href="https://github.com/szabihudak/quality-engineering-showcase"
+          href="https://github.com/szabihudak"
           target="_blank"
           rel="noreferrer"
         >
@@ -62,12 +62,12 @@
           </p>
 
           <div class="hero-actions">
-            <a class="button primary" href="#capabilities">
-              Explore Capabilities <span aria-hidden="true">↓</span>
+            <a class="button primary" href="#framework">
+              Try Framework <span aria-hidden="true">↓</span>
             </a>
             <a
               class="button secondary"
-              href="https://szabihudak.github.io/quality-engineering-showcase/"
+              href="https://github.com/szabihudak/quality-engineering-showcase"
               target="_blank"
               rel="noreferrer"
             >
@@ -220,6 +220,7 @@
         </div>
 
         <div class="workflow-compact-system">
+          <div class="workflow-system-label">Three AI workflows. One engineering boundary.</div>
           <div class="workflow-compact-grid">
             <article class="workflow-visual-card">
               <div class="workflow-visual-head">
@@ -520,24 +521,35 @@
         </div>
 
         <div class="framework-table-wrap">
-          <table class="framework-table">
+          <table class="framework-table framework-scope-table">
             <thead>
               <tr>
                 <th>Technical capability</th>
-                <th>Implemented in the runnable core</th>
+                <th>Runnable Core</th>
+                <th>Full Framework</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>API Testing</td><td>Browser-independent Playwright API tests with domain-specific clients</td></tr>
-              <tr><td>Runtime Contract Validation</td><td>TypeBox schemas with AJV runtime validation</td></tr>
-              <tr><td>UI Automation</td><td>Page Objects, Component Objects, fixtures and network mocking</td></tr>
-              <tr><td>Authentication</td><td>Programmatic API and browser authentication</td></tr>
-              <tr><td>Test Data</td><td>Deterministic factories with scenario-specific overrides</td></tr>
-              <tr><td>Cross-Browser</td><td>Chromium, Firefox and WebKit execution</td></tr>
-              <tr><td>Containerization</td><td>Reproducible Playwright execution with Docker</td></tr>
-              <tr><td>CI/CD</td><td>GitHub Actions quality gates and browser matrix execution</td></tr>
-              <tr><td>Diagnostics</td><td>HTML reports, traces, screenshots, video and CI artifacts</td></tr>
-              <tr><td>Engineering Standards</td><td>Architecture documentation, testing standards and ADRs</td></tr>
+              <tr><td>API Testing</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Runtime Contract Validation</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>UI Automation</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Cross-Browser Execution</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Programmatic Authentication</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Deterministic Test Data</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Network Mocking</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Docker Execution</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>GitHub Actions CI/CD</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Failure Diagnostics</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Engineering Standards &amp; ADRs</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Database Validation</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Accessibility Testing</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Visual Regression</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>API Performance · k6</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>Browser Performance · Lighthouse</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>GHCR Image Reuse</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>AI Failure Analysis</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>AI Test Suite Generation</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
+              <tr><td>AI-Assisted Engineering · Copilot / Agent / MCP</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
             </tbody>
           </table>
         </div>
@@ -545,6 +557,6 @@
     </section>
   </main>
 
-  <script src="./showcase.js?v=20261001-0830"></script>
+  <script src="./showcase.js?v=20261001-0930"></script>
 </body>
 </html>
