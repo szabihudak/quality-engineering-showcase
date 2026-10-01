@@ -90,31 +90,46 @@ The engineering roadmap extends the current framework foundation into AI-native 
 flowchart TD
     QE[Quality Engineering System]
 
-    QE --> API[API & Contract]
+    QE --> API[API & Contract Testing]
+    QE --> DB[Database Validation]
     QE --> UI[Browser Automation]
     QE --> AX[Accessibility]
     QE --> VR[Visual Regression]
     QE --> PERF[Performance]
-    QE --> CICD[CI/CD]
+    QE --> AIQE[AI-Assisted QE]
+    QE --> AIENG[AI-Assisted Engineering]
+    QE --> CICD[CI/CD & Execution]
 
     API --> CLIENT[Domain API Clients]
-    CLIENT --> SCHEMA[TypeBox Schemas]
-    SCHEMA --> AJV[AJV Runtime Validation]
+    CLIENT --> CONTRACT[TypeBox Contracts]
+    CONTRACT --> AJV[AJV Runtime Validation]
 
-    UI --> PO[Page / Component Objects]
-    PO --> FIX[Fixtures]
+    DB --> PG[PostgreSQL]
+    PG --> PERSIST[Persistence Validation]
+
+    UI --> OBJECTS[Page / Component Objects]
+    OBJECTS --> FIX[Fixtures]
+    FIX --> DATA[Deterministic Test Data]
     FIX --> AUTH[Programmatic Authentication]
 
-    AX --> AXE[axe-core / WCAG Policy]
+    AX --> AXE[axe-core]
 
-    VR --> SNAP[Deterministic Screenshot Contracts]
+    VR --> SNAP[Visual Contracts]
+    SNAP --> BASE[Approved Baselines]
 
-    PERF --> K6[k6 API Performance]
-    PERF --> LH[Lighthouse Browser Performance]
+    PERF --> K6[k6]
+    PERF --> LH[Lighthouse]
+
+    AIQE --> AIFA[AI Failure Analysis]
+    AIQE --> AITS[AI Test Suite Generation]
+
+    AIENG --> COPILOT[GitHub Copilot & Agent]
+    AIENG --> MCP[MCP-Assisted Discovery]
+    AIENG --> HUMAN[Human Review & Deterministic Validation]
 
     CICD --> DOCKER[Docker]
     DOCKER --> GHCR[GHCR]
-    GHCR --> EXEC[Responsibility-Based Execution]
+    GHCR --> JOBS[Responsibility-Based Execution]
 ```
 
 The architecture separates **test behavior from reusable infrastructure** and assigns execution according to testing responsibility.
