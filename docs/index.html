@@ -4,585 +4,555 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Szabolcs Hudak · Quality Engineering</title>
-  <meta
-    name="description"
-    content="Production-style Quality Engineering portfolio covering deterministic testing, AI-Assisted QE, AI-Assisted Engineering, public execution evidence and runnable framework code."
-  />
-  <meta name="theme-color" content="#08111f" />
-  <link rel="stylesheet" href="./assets/css/showcase.css?v=20261001-1408" />
+  <meta name="description" content="An open Playwright + TypeScript quality engineering template you configure for your own application: modules, browsers, environments, roles and CI, with golden templates, an architecture lint and optional AI agents that cannot make a test green." />
+  <meta name="theme-color" content="#060b16" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060b16;
+      --bg-2: #0a1222;
+      --panel: rgba(17, 27, 48, .62);
+      --panel-strong: rgba(19, 31, 55, .92);
+      --line: rgba(120, 160, 255, .16);
+      --line-strong: rgba(120, 170, 255, .38);
+      --text: #f4f7ff;
+      --text-2: #b9c4da;
+      --muted: #7c8aa6;
+      --blue: #4f8cff;
+      --cyan: #3ee0d0;
+      --violet: #9b7bff;
+      --pink: #ff7ac6;
+      --green: #4ade80;
+      --amber: #fbbf24;
+      --grad: linear-gradient(100deg, #6ea8ff 0%, #9b7bff 45%, #3ee0d0 100%);
+      --wrap: 1200px;
+      --radius: 18px;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    .wrap { width: min(calc(100% - 40px), var(--wrap)); margin: 0 auto; }
+
+    /* ambient background */
+    .aurora { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .aurora::before, .aurora::after {
+      content: ""; position: absolute; width: 900px; height: 900px; border-radius: 50%;
+      filter: blur(120px); opacity: .32;
+    }
+    .aurora::before { background: radial-gradient(circle, #3b5bff 0%, transparent 65%); top: -380px; left: -240px; }
+    .aurora::after { background: radial-gradient(circle, #7c3aed 0%, transparent 65%); top: 120px; right: -420px; opacity: .22; }
+    .grid-bg {
+      position: absolute; inset: 0 0 auto 0; height: 980px; z-index: -1; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(130, 160, 255, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(130, 160, 255, .06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+    }
+
+    /* top bar */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px) saturate(140%);
+      background: rgba(6, 11, 22, .62);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+    .identity { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .mark {
+      width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center;
+      font-weight: 800; font-size: 14px; letter-spacing: .5px;
+      background: var(--grad); color: #0a0f1d;
+      box-shadow: 0 0 24px rgba(110, 140, 255, .45);
+    }
+    .identity b { display: block; font-size: 15px; line-height: 1.2; }
+    .identity small { color: var(--muted); font-size: 12px; }
+    .nav { display: flex; align-items: center; gap: 26px; font-size: 14px; color: var(--text-2); }
+    .nav a { text-decoration: none; transition: color .2s; }
+    .nav a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px;
+      border: 1px solid var(--line-strong); transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--grad); color: #0a0f1d; border: 0; box-shadow: 0 10px 34px rgba(110, 140, 255, .35); }
+    .btn-ghost { background: rgba(255, 255, 255, .03); }
+    .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 10px; }
+
+    /* hero */
+    .hero { position: relative; padding: 92px 0 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px 6px 8px; border-radius: 999px;
+      border: 1px solid var(--line-strong); background: rgba(79, 140, 255, .08);
+      color: var(--text-2); font-size: 13px; font-weight: 500;
+    }
+    .eyebrow .dot { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: rgba(62, 224, 208, .16); }
+    .eyebrow .dot::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    h1 {
+      font-size: clamp(40px, 4.6vw, 58px); line-height: 1.04; letter-spacing: -.035em;
+      margin: 22px 0 22px; font-weight: 800;
+    }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { font-size: 19px; color: var(--text-2); max-width: 560px; margin: 0 0 32px; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+    .pill {
+      font-size: 12.5px; color: var(--text-2); padding: 5px 11px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(255, 255, 255, .025);
+    }
+
+    /* terminal */
+    .terminal {
+      position: relative; border-radius: 16px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(14, 22, 40, .96), rgba(9, 14, 27, .96));
+      border: 1px solid var(--line-strong);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .02) inset, 0 0 80px rgba(79, 140, 255, .18);
+      font-family: var(--mono); font-size: 13.5px; line-height: 1.75;
+    }
+    .terminal::before {
+      content: ""; position: absolute; inset: -1px; border-radius: 16px; padding: 1px; pointer-events: none;
+      background: linear-gradient(140deg, rgba(110, 168, 255, .7), transparent 35%, transparent 65%, rgba(62, 224, 208, .5));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+    .term-bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+    .term-bar i:nth-child(1) { background: #ff5f57; } .term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
+    .term-bar span { margin-left: 10px; color: var(--muted); font-size: 12px; }
+    .term-body { padding: 18px 20px 46px; color: #cfd8ea; }
+    .t-prompt { color: var(--cyan); } .t-dim { color: var(--muted); } .t-ok { color: var(--green); }
+    .t-q { color: #fff; font-weight: 600; } .t-sel { color: var(--violet); } .t-acc { color: #8fb4ff; }
+    .cursor { display: inline-block; width: 8px; height: 16px; background: var(--cyan); vertical-align: -3px; animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .float-card {
+      position: absolute; right: -18px; bottom: -26px; padding: 12px 16px; border-radius: 14px;
+      background: var(--panel-strong); border: 1px solid var(--line-strong); backdrop-filter: blur(10px);
+      font-size: 13px; box-shadow: 0 20px 50px rgba(0, 0, 0, .5); display: flex; gap: 12px; align-items: center;
+    }
+    .float-card .badge { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(74, 222, 128, .14); color: var(--green); font-weight: 800; }
+    .float-card small { display: block; color: var(--muted); font-size: 12px; }
+
+    /* stats */
+    .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; margin-top: 84px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--line); }
+    .stat { background: rgba(10, 17, 32, .9); padding: 22px 18px; text-align: center; }
+    .stat b { display: block; font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+    .stat span { font-size: 12.5px; color: var(--muted); }
+
+    /* sections */
+    section { padding: 110px 0 0; }
+    .kicker { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); }
+    h2 { font-size: clamp(32px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -.03em; margin: 12px 0 16px; font-weight: 800; }
+    .section-lead { color: var(--text-2); font-size: 18px; max-width: 720px; margin: 0 0 48px; }
+    .card {
+      position: relative; border-radius: var(--radius); padding: 26px;
+      background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(8px);
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .card:hover { border-color: var(--line-strong); transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+    .card h3 { margin: 14px 0 8px; font-size: 19px; letter-spacing: -.01em; }
+    .card p { margin: 0; color: var(--text-2); font-size: 15px; }
+    .icon {
+      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 20px;
+      background: linear-gradient(140deg, rgba(110, 168, 255, .22), rgba(155, 123, 255, .14));
+      border: 1px solid var(--line-strong);
+    }
+
+    /* customize */
+    .custom-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 26px; align-items: start; }
+    .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .toggles { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .toggle {
+      display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; padding: 5px 10px 5px 6px;
+      border-radius: 999px; border: 1px solid var(--line); color: var(--text-2); background: rgba(255, 255, 255, .02);
+    }
+    .toggle::before { content: ""; width: 22px; height: 13px; border-radius: 999px; background: #1e293b; box-shadow: inset 0 0 0 1px var(--line-strong); }
+    .toggle.on { color: var(--text); border-color: rgba(62, 224, 208, .35); }
+    .toggle.on::before { background: linear-gradient(90deg, var(--cyan), var(--blue)); box-shadow: none; }
+    .env-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px dashed var(--line); font-size: 13.5px; }
+    .env-row:first-of-type { margin-top: 10px; }
+    .env-row code { font-family: var(--mono); color: var(--text); }
+    .flags { display: flex; gap: 5px; }
+    .flag { font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius: 6px; border: 1px solid var(--line); color: var(--muted); }
+    .flag.yes { color: var(--green); border-color: rgba(74, 222, 128, .35); background: rgba(74, 222, 128, .07); }
+    .code {
+      border-radius: var(--radius); background: rgba(8, 13, 25, .95); border: 1px solid var(--line-strong);
+      font-family: var(--mono); font-size: 13px; line-height: 1.75; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+      position: sticky; top: 92px;
+    }
+    .code-head { display: flex; justify-content: space-between; padding: 12px 18px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .code pre { margin: 0; padding: 18px 20px; color: #cfd8ea; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .k { color: #c792ea; } .s { color: #a5e3a1; } .n { color: #f78c6c; } .c { color: #5f6f8c; font-style: italic; } .p { color: #82aaff; }
+
+    /* steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; position: relative; }
+    .steps::before { content: ""; position: absolute; top: 47px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong), transparent); }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 800;
+      background: var(--bg-2); border: 1px solid var(--line-strong); color: var(--cyan); position: relative; z-index: 1;
+    }
+    .step ul { margin: 12px 0 0; padding-left: 18px; color: var(--text-2); font-size: 14.5px; }
+    .step li { margin: 4px 0; }
+    .cmd { font-family: var(--mono); font-size: 12.5px; color: #8fb4ff; }
+
+    /* agents */
+    .agents { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
+    .agent-list { position: sticky; top: 100px; }
+    .flow-img { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0, 0, 0, .5); display: block; }
+    .agent-list { display: grid; gap: 12px; }
+    .agent { display: grid; grid-template-columns: 46px 1fr; gap: 14px; align-items: start; padding: 16px 18px; }
+    .agent h3 { margin: 0 0 4px; font-family: var(--mono); font-size: 15px; }
+    .agent p { font-size: 14px; }
+    .tag { display: inline-block; font-size: 11px; font-family: var(--mono); color: var(--amber); margin-left: 8px; }
+
+    /* guardrails */
+    .guard { display: grid; grid-template-columns: .9fr 1.1fr; gap: 26px; }
+    .guard-hero {
+      border-radius: var(--radius); padding: 34px; position: relative; overflow: hidden;
+      background: radial-gradient(120% 120% at 0% 0%, rgba(79, 140, 255, .22), transparent 55%), var(--panel);
+      border: 1px solid var(--line-strong);
+    }
+    .guard-hero h3 { font-size: 28px; line-height: 1.15; margin: 0 0 14px; letter-spacing: -.02em; }
+    .guard-hero p { color: var(--text-2); }
+    .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .rule { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255, 255, 255, .02); }
+    .rule .x { flex: none; width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: #ff8a9a; background: rgba(255, 99, 125, .12); border: 1px solid rgba(255, 99, 125, .3); }
+    .rule b { display: block; font-size: 14px; }
+    .rule span { font-size: 12.5px; color: var(--muted); font-family: var(--mono); }
+
+    /* capabilities */
+    .caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .cap-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; font-size: 13px; }
+    .cap-meta a { color: #8fb4ff; text-decoration: none; }
+    .cap-meta a:hover { text-decoration: underline; }
+    .metric { font-family: var(--mono); font-size: 12px; color: var(--green); background: rgba(74, 222, 128, .08); border: 1px solid rgba(74, 222, 128, .25); padding: 2px 8px; border-radius: 6px; }
+
+    /* decisions */
+    .adrs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .adr { font-size: 13.5px; padding: 9px 14px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, .02); color: var(--text-2); }
+    .adr b { font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-right: 8px; font-weight: 600; }
+
+    /* cta */
+    .final {
+      margin: 120px 0 0; padding: 64px; border-radius: 28px; text-align: center; position: relative; overflow: hidden;
+      background: radial-gradient(80% 140% at 50% 0%, rgba(110, 140, 255, .28), transparent 60%), var(--panel-strong);
+      border: 1px solid var(--line-strong);
+    }
+    .final h2 { margin-top: 0; }
+    .final .code { position: static; max-width: 780px; margin: 30px auto 34px; text-align: left; }
+    footer { padding: 56px 0 48px; color: var(--muted); font-size: 13.5px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer a { text-decoration: none; color: var(--text-2); margin-left: 20px; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .custom-grid, .agents, .guard { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .caps { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .code { position: static; }
+      .nav a:not(.btn) { display: none; }
+      .float-card { right: 12px; }
+    }
+    @media (max-width: 620px) {
+      .opts, .rules, .caps { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .final { padding: 40px 22px; }
+      .hero { padding-top: 56px; }
+      .identity small { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } .card, .btn { transition: none; } html { scroll-behavior: auto; } }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"></div>
 
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a class="identity" href="#main" aria-label="Szabolcs Hudak landing page home">
-        <span class="identity-mark">SH</span>
-        <span class="identity-copy">
-          <span class="identity-name">Szabolcs Hudak</span>
-          <small>Senior SDET · Quality Engineering · AI-Assisted Engineering</small>
-        </span>
+      <a class="identity" href="#top">
+        <span class="mark">SH</span>
+        <span><b>Szabolcs Hudak</b><small>Senior SDET · Quality Engineering</small></span>
       </a>
-
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="primary-nav"
-        aria-label="Open navigation"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </button>
-
-      <nav id="primary-nav" class="nav" aria-label="Primary navigation">
-        <a href="#main">Home</a>
-        <a href="#ai-workflows">AI Workflows</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#framework">Try Framework</a>
-        <a href="https://github.com/szabihudak/quality-engineering-showcase" target="_blank" rel="noreferrer">Open Portfolio</a>
-        <a
-          class="social-link"
-          href="https://www.linkedin.com/in/szabolcs-v-hudak/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5.2 8.1H1.5V20h3.7V8.1ZM3.35 2A2.15 2.15 0 1 0 3.35 6.3 2.15 2.15 0 0 0 3.35 2ZM20.5 13.2c0-3.6-1.9-5.3-4.5-5.3-2.1 0-3 1.1-3.5 1.9V8.1H8.8V20h3.7v-5.9c0-1.6.3-3.1 2.3-3.1 2 0 2 1.8 2 3.2V20h3.7v-6.8Z"/>
-          </svg>
-          LinkedIn
-        </a>
-        <a
-          class="social-link"
-          href="https://github.com/szabihudak"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.4a9.8 9.8 0 0 0-3.1 19.1c.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.1-4.7-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.2 9.2 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.4 4.6-4.7 4.9.4.3.7 1 .7 2V21c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.4Z"/>
-          </svg>
-          GitHub
-        </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#customize">Customize</a>
+        <a href="#setup">Setup</a>
+        <a href="#agents">Agents</a>
+        <a href="#guardrails">Guardrails</a>
+        <a href="#evidence">Evidence</a>
+        <a class="btn btn-ghost btn-sm" href="https://github.com/szabihudak/szabihudak-template-SDET-framework">GitHub ↗</a>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero">
+  <main id="top">
+    <div class="hero">
+      <div class="grid-bg" aria-hidden="true"></div>
       <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <h1>
-            Engineering quality<br />
-            systems that<br />
-            <span>produce evidence.</span>
-          </h1>
-
-          <p class="lead">
-            A production-style Quality Engineering portfolio combining API, database,
-            browser, accessibility, visual and performance engineering with framework-owned
-            AI-assisted Quality Engineering and repository-aware AI-assisted Engineering.
-            It includes AI Failure Analysis, AI Test Suite Generation, Copilot and Agent
-            workflows, and MCP-assisted contract and browser discovery, all governed by
-            deterministic validation and human engineering review.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button primary" href="#framework">
-              Try Framework <span aria-hidden="true">↓</span>
-            </a>
-            <a
-              class="button secondary"
-              href="https://github.com/szabihudak/quality-engineering-showcase"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open Full Portfolio <span aria-hidden="true">↗</span>
-            </a>
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Public Playwright + TypeScript template</span>
+          <h1>One quality system.<br /><span class="grad-text">Configured for your application.</span></h1>
+          <p class="lead">API, UI, database, accessibility, visual and performance testing in one architecture. Answer a few questions, pick your modules, browsers and environments, and start from golden templates that an architecture lint enforces, whoever writes the code.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#setup">Get started →</a>
+            <a class="btn btn-ghost" href="#customize">See what you can configure</a>
           </div>
-
-          <div class="technology-line" aria-label="Core technologies">
-            <span>Playwright</span>
-            <span>TypeScript</span>
-            <span>PostgreSQL</span>
-            <span>TypeBox</span>
-            <span>AJV</span>
-            <span>axe-core</span>
-            <span>Docker</span>
-            <span>GitHub Actions</span>
-            <span>GHCR</span>
-            <span>k6</span>
-            <span>Lighthouse</span>
-            <span>OpenAI</span>
-            <span>GitHub Copilot</span>
-            <span>OpenAPI MCP</span>
-            <span>Playwright MCP</span>
+          <div class="pill-row">
+            <span class="pill">Playwright</span><span class="pill">TypeScript</span><span class="pill">TypeBox</span><span class="pill">PostgreSQL</span><span class="pill">axe-core</span><span class="pill">k6</span><span class="pill">Lighthouse</span><span class="pill">Docker</span><span class="pill">GitHub Actions</span><span class="pill">ESLint</span><span class="pill">GitHub Copilot</span><span class="pill">Playwright MCP</span><span class="pill">OpenAPI MCP</span>
           </div>
         </div>
 
-        <div id="quality-system" class="system-visual" aria-label="Three pillars of the Quality Engineering system">
-          <div class="system-label">Three pillars. One quality system.</div>
+        <div style="position: relative">
+          <div class="terminal" role="img" aria-label="The install script asking which test types to enable">
+            <div class="term-bar"><i></i><i></i><i></i><span>~/template — install.sh</span></div>
+            <div class="term-body">
+              <div><span class="t-prompt">❯</span> ./install.sh</div>
+              <div class="t-dim">Stage 1 · framework setup</div>
+              <div><span class="t-q">? Project name (also the folder name)</span> <span class="t-acc">orders-qa</span></div>
+              <div><span class="t-q">? Which test types do you need?</span></div>
+              <div>&nbsp;&nbsp;<span class="t-sel">◉</span> API &amp; contract&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-sel">◉</span> UI</div>
+              <div>&nbsp;&nbsp;<span class="t-sel">◉</span> Accessibility&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-sel">◉</span> Visual</div>
+              <div>&nbsp;&nbsp;<span class="t-dim">◯ Database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◯ Performance</span></div>
+              <div><span class="t-q">? Browsers</span> <span class="t-acc">chromium, webkit</span></div>
+              <div><span class="t-q">? Which environments will the tests run against?</span></div>
+              <div>&nbsp;&nbsp;<span class="t-acc">staging, local</span> <span class="t-dim">· URLs · permissions</span></div>
+              <div><span class="t-ok">✔</span> ../orders-qa created · npm ci · browsers · .env</div>
+              <div><span class="t-ok">✔</span> npm run doctor</div>
+              <div class="t-dim">Stage 2 · first tests (optional)</div>
+              <div><span class="t-q">? Set up the test account now?</span> <span class="t-acc">Yes</span> <span class="cursor"></span></div>
+            </div>
+          </div>
+          <div class="float-card"><span class="badge">✓</span><span><b>Ready in your IDE</b><small>doctor · onboard · first tests</small></span></div>
+        </div>
+      </div>
 
-          <div class="pillar-grid">
-            <article class="pillar">
-              <div class="pillar-heading">
-                <span class="pillar-icon cube" aria-hidden="true"></span>
-                <div>
-                  <h2>Quality Engineering</h2>
-                  <p>Deterministic testing layers</p>
-                </div>
-              </div>
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat"><b class="grad-text">7</b><span>test modules</span></div>
+          <div class="stat"><b class="grad-text">3</b><span>browsers</span></div>
+          <div class="stat"><b class="grad-text">19</b><span>golden templates</span></div>
+          <div class="stat"><b class="grad-text">22</b><span>architecture rules</span></div>
+          <div class="stat"><b class="grad-text">5</b><span>optional AI agents</span></div>
+          <div class="stat"><b class="grad-text">14</b><span>recorded decisions</span></div>
+        </div>
+      </div>
+    </div>
 
-              <div class="qe-layers">
-                <div class="layer-row">
-                  <span class="line-icon api-icon" aria-hidden="true">&lt;/&gt;</span>
-                  <div><strong>API &amp; Contracts</strong><small>Runtime contract validation</small></div>
-                </div>
-                <div class="layer-row">
-                  <span class="line-icon" aria-hidden="true">◫</span>
-                  <div><strong>Database Validation</strong><small>Persistence verification</small></div>
-                </div>
-                <div class="layer-row">
-                  <span class="line-icon" aria-hidden="true">▱</span>
-                  <div><strong>UI &amp; Cross-Browser</strong><small>Chromium · Firefox · WebKit</small></div>
-                </div>
-                <div class="layer-row">
-                  <span class="line-icon" aria-hidden="true">⌘</span>
-                  <div><strong>Accessibility</strong><small>axe-core quality gates</small></div>
-                </div>
-                <div class="layer-row">
-                  <span class="line-icon" aria-hidden="true">◇</span>
-                  <div><strong>Visual Regression</strong><small>Deterministic baselines</small></div>
-                </div>
-                <div class="layer-row">
-                  <span class="line-icon" aria-hidden="true">⌁</span>
-                  <div><strong>Performance</strong><small>k6 · Lighthouse</small></div>
-                </div>
-              </div>
-            </article>
+    <section id="customize">
+      <div class="wrap">
+        <div class="kicker">01 · Make it yours</div>
+        <h2>Everything that differs between projects<br />is configuration, <span class="grad-text">not framework code.</span></h2>
+        <p class="section-lead">The framework core stays template-owned. Your application, its environments, logins and conventions live in project-owned files that setup creates and the schemas validate at load time.</p>
 
-            <article class="pillar">
-              <div class="pillar-heading">
-                <span class="spark-icon" aria-hidden="true">✦</span>
-                <div>
-                  <h2>AI-Assisted QE</h2>
-                  <p>Framework-owned AI</p>
-                </div>
-              </div>
-
-              <div class="ai-flow-compact">
-                <div class="ai-node">
-                  <span class="node-symbol" aria-hidden="true">⌕</span>
-                  <div>
-                    <strong>Failure Analysis</strong>
-                    <small>Evidence → structured diagnosis</small>
-                  </div>
-                </div>
-
-                <div class="ai-node">
-                  <span class="node-symbol" aria-hidden="true">⚙</span>
-                  <div>
-                    <strong>Test Suite Generation</strong>
-                    <small>Context → structured coverage</small>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="pillar">
-              <div class="pillar-heading">
-                <span class="code-icon" aria-hidden="true">&lt;/&gt;</span>
-                <div>
-                  <h2>AI-Assisted Engineering</h2>
-                  <p>Repository-aware workflows</p>
-                </div>
-              </div>
-
-              <div class="engineering-nodes">
-                <div class="eng-node">
-                  <span class="node-symbol robot" aria-hidden="true">◇</span>
-                  <div>
-                    <strong>GitHub Copilot &amp; Agent</strong>
-                    <small>Repository-aware implementation</small>
-                  </div>
-                </div>
-
-                <div class="eng-node">
-                  <span class="node-symbol" aria-hidden="true">▤</span>
-                  <div>
-                    <strong>OpenAPI MCP</strong>
-                    <small>Authoritative contract discovery</small>
-                  </div>
-                </div>
-
-                <div class="eng-node">
-                  <span class="node-symbol" aria-hidden="true">◉</span>
-                  <div>
-                    <strong>Playwright MCP</strong>
-                    <small>Real browser exploration</small>
-                  </div>
-                </div>
-              </div>
-            </article>
+        <div class="custom-grid">
+          <div class="opts">
+            <div class="card">
+              <div class="icon">⧉</div>
+              <h3>Modules</h3>
+              <p>Enable only the test types you need. Disabled modules get no CI jobs; without performance, the Lighthouse packages stay out too.</p>
+              <div class="toggles"><span class="toggle on">api</span><span class="toggle on">ui</span><span class="toggle on">smoke</span><span class="toggle on">accessibility</span><span class="toggle on">visual</span><span class="toggle">database</span><span class="toggle">performance</span></div>
+            </div>
+            <div class="card">
+              <div class="icon">◎</div>
+              <h3>Browsers</h3>
+              <p>Shared UI specs run in every browser you choose, without browser-specific copies.</p>
+              <div class="toggles"><span class="toggle on">chromium</span><span class="toggle">firefox</span><span class="toggle on">webkit</span></div>
+            </div>
+            <div class="card">
+              <div class="icon">⛨</div>
+              <h3>Environments &amp; permissions</h3>
+              <p>Each environment says what it allows, so destructive or load tests never reach the wrong target.</p>
+              <div class="env-row"><code>staging</code><span class="flags"><span class="flag">db</span><span class="flag">destructive</span><span class="flag yes">perf</span></span></div>
+              <div class="env-row"><code>local</code><span class="flags"><span class="flag yes">db</span><span class="flag yes">destructive</span><span class="flag">perf</span></span></div>
+            </div>
+            <div class="card">
+              <div class="icon">⚿</div>
+              <h3>Login &amp; roles</h3>
+              <p>The login method (NextAuth session, bearer token, or none) is configuration. Role accounts come from <code class="cmd">.env</code> and CI secrets; <code class="cmd">doctor</code> checks that each role logs in.</p>
+            </div>
+            <div class="card">
+              <div class="icon">✦</div>
+              <h3>Your own golden examples</h3>
+              <p>Register reviewed tests as approved examples. From then on they come first, ahead of the generic templates, for people and agents alike.</p>
+            </div>
+            <div class="card">
+              <div class="icon">⟳</div>
+              <h3>CI from the config</h3>
+              <p>The workflow plans one job per enabled project. A manual run narrows it to an environment, projects or case IDs.</p>
+            </div>
           </div>
 
-          <div class="foundation">
-            <span class="foundation-icon" aria-hidden="true">◇</span>
-            <div>
-              <strong>Deterministic Validation + Human Engineering Review</strong>
-              <small>Reliable execution · validated output · engineering ownership</small>
-            </div>
+          <div class="code" aria-label="Example framework configuration">
+            <div class="code-head"><span>config/framework.config.ts</span><span>validated at load</span></div>
+<pre><span class="k">export default</span> <span class="p">defineFrameworkConfig</span>({
+  modules: {
+    api: <span class="n">true</span>,  ui: <span class="n">true</span>,  smoke: <span class="n">true</span>,
+    accessibility: <span class="n">true</span>,  visual: <span class="n">true</span>,
+    database: <span class="n">false</span>,  performance: <span class="n">false</span>,
+  },
+  browsers: [<span class="s">"chromium"</span>, <span class="s">"webkit"</span>],
+
+  auth: {
+    browser: { strategy: <span class="s">"nextAuth"</span>, <span class="c">/* … */</span> },
+    api: { strategy: <span class="s">"bearer"</span>, <span class="c">/* … */</span> },
+  },
+
+  <span class="c">// names of .env and CI secrets, never values</span>
+  roles: {
+    user: {
+      usernameEnv: <span class="s">"USER_USERNAME"</span>,
+      passwordEnv: <span class="s">"USER_PASSWORD"</span>,
+    },
+  },
+});</pre>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="ai-workflows" class="workflow-section">
+    <section id="setup">
       <div class="wrap">
-        <div class="section-heading-dark workflow-heading">
-          <p class="eyebrow">AI Workflows</p>
-          <h2>Governed AI across quality and engineering.</h2>
-          <p>Three implemented AI-assisted workflows grounded in structured evidence, deterministic validation and human engineering review.</p>
-        </div>
-
-        <div class="workflow-compact-system">
-          <div class="workflow-system-label">Three AI workflows. One engineering boundary.</div>
-          <div class="workflow-compact-grid">
-            <article class="workflow-visual-card">
-              <div class="workflow-visual-head">
-                <span class="workflow-head-icon">⌕</span>
-                <div>
-                  <span>AI-Assisted QE</span>
-                  <h2>Failure Analysis</h2>
-                </div>
-              </div>
-
-              <div class="workflow-blocks">
-                <div class="workflow-block">
-                  <span class="workflow-block-icon">!</span>
-                  <div><strong>Failure + Evidence</strong><small>Playwright failure · execution artifacts</small></div>
-                </div>
-                <div class="workflow-link">↓</div>
-                <div class="workflow-block accent">
-                  <span class="workflow-block-icon">✦</span>
-                  <div><strong>OpenAI Analysis</strong><small>Sanitized evidence · structured output</small></div>
-                </div>
-                <div class="workflow-link">↓</div>
-                <div class="workflow-block human">
-                  <span class="workflow-block-icon">✓</span>
-                  <div><strong>Diagnosis + Review</strong><small>Structured diagnosis · human review</small></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="workflow-visual-card">
-              <div class="workflow-visual-head">
-                <span class="workflow-head-icon">⚙</span>
-                <div>
-                  <span>AI-Assisted QE</span>
-                  <h2>Test Suite Generation</h2>
-                </div>
-              </div>
-
-              <div class="workflow-blocks">
-                <div class="workflow-block">
-                  <span class="workflow-block-icon">◇</span>
-                  <div><strong>Context + Risk</strong><small>Feature context · behavior inputs</small></div>
-                </div>
-                <div class="workflow-link">↓</div>
-                <div class="workflow-block accent">
-                  <span class="workflow-block-icon">✦</span>
-                  <div><strong>OpenAI Generation</strong><small>Risk-driven structured coverage</small></div>
-                </div>
-                <div class="workflow-link">↓</div>
-                <div class="workflow-block human">
-                  <span class="workflow-block-icon">✓</span>
-                  <div><strong>Suite + Approval</strong><small>Structured test suite · human approval</small></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="workflow-visual-card">
-              <div class="workflow-visual-head">
-                <span class="workflow-head-icon">&lt;/&gt;</span>
-                <div>
-                  <span>AI-Assisted Engineering</span>
-                  <h2>Engineering &amp; MCP</h2>
-                </div>
-              </div>
-
-              <div class="workflow-blocks">
-                <div class="workflow-block">
-                  <span class="workflow-block-icon">▤</span>
-                  <div><strong>Repository + MCP</strong><small>OpenAPI MCP · Playwright MCP</small></div>
-                </div>
-                <div class="workflow-link">↓</div>
-                <div class="workflow-block accent">
-                  <span class="workflow-block-icon">◇</span>
-                  <div><strong>Copilot / Agent</strong><small>Repository-aware implementation proposal</small></div>
-                </div>
-                <div class="workflow-link">↓</div>
-                <div class="workflow-block human">
-                  <span class="workflow-block-icon">✓</span>
-                  <div><strong>Validate + Review</strong><small>Deterministic validation · human ownership</small></div>
-                </div>
-              </div>
-            </article>
+        <div class="kicker">02 · From clone to first test</div>
+        <h2>Two stages. Then your IDE takes over.</h2>
+        <p class="section-lead">The template folder never changes, so the next project starts from the same clone. Setup asks only about your application, never about framework internals.</p>
+        <div class="steps">
+          <div class="card step">
+            <div class="step-num">1</div>
+            <h3>Framework setup</h3>
+            <p>Menus for every choice; a new project with its own git next to the template.</p>
+            <ul><li>modules, browsers, environments</li><li>optional OpenAPI URL for contract discovery</li><li><span class="cmd">npm ci</span> · browsers · <span class="cmd">.env</span> · <span class="cmd">doctor</span></li></ul>
           </div>
-
-          <div class="workflow-foundation">
-            <span>Structured Evidence</span>
-            <i>+</i>
-            <span>Deterministic Validation</span>
-            <i>+</i>
-            <span>Human Engineering Ownership</span>
+          <div class="card step">
+            <div class="step-num">2</div>
+            <h3>First tests <span class="tag">optional</span></h3>
+            <p>A dedicated test account, masked, written only to the git-ignored <span class="cmd">.env</span>.</p>
+            <ul><li>becomes the <span class="cmd">user</span> role</li><li><span class="cmd">doctor</span> checks it logs in</li><li>skip it now, run <span class="cmd">npm run onboard</span> later</li></ul>
+          </div>
+          <div class="card step">
+            <div class="step-num">3</div>
+            <h3>Your IDE</h3>
+            <p><span class="cmd">AGENTS.md</span>, Copilot instructions and MCP servers are already in place.</p>
+            <ul><li>configure login and roles</li><li><span class="cmd">qa:sync-ci-secrets</span> prepares CI</li><li>write tests from golden templates</li></ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="capabilities" class="capabilities-section">
+    <section id="agents">
       <div class="wrap">
-        <div class="section-heading-dark">
-          <p class="eyebrow">Capabilities</p>
-          <h2>Quality engineering beyond test scripts.</h2>
-          <p>Implemented capabilities, public execution evidence and selected public test source.</p>
-        </div>
-
-        <div class="capabilities-grid">
-          <article class="capability-card special-card ai-card">
-            <div class="card-topline"><span class="capability-index">01</span><span class="status status-success">Implemented</span></div>
-            <h3>AI-Assisted Quality Engineering</h3>
-            <p>Framework-owned AI capabilities for structured failure analysis and risk-driven test suite generation.</p>
-            <ul class="feature-list">
-              <li>AI Failure Analysis</li>
-              <li>AI Test Suite Generation</li>
-              <li>Structured OpenAI outputs</li>
-              <li>Human review</li>
-            </ul>
-          </article>
-
-          <article class="capability-card special-card ai-card">
-            <div class="card-topline"><span class="capability-index">02</span><span class="status status-success">Validated</span></div>
-            <h3>AI-Assisted Engineering &amp; MCP</h3>
-            <p>Repository-aware Copilot and Agent workflows grounded in authoritative contract and browser evidence.</p>
-            <ul class="feature-list">
-              <li>GitHub Copilot and Copilot Agent</li>
-              <li>Golden Template engineering</li>
-              <li>OpenAPI MCP</li>
-              <li>Playwright MCP</li>
-            </ul>
-          </article>
-
-          <article class="capability-card has-execution has-test-source">
-            <div class="card-topline">
-              <span class="capability-index">03</span>
-              <span class="capability-badges"><span class="artifact-badge source-badge">Test Source</span><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
-            </div>
-            <h3>API &amp; Contract Testing</h3>
-            <p>Browser-independent API automation with TypeBox schemas and AJV runtime contract validation.</p>
-            <ul class="feature-list">
-              <li>28 / 28 execution pass</li>
-              <li>Authentication boundaries</li>
-              <li>Positive and negative scenarios</li>
-              <li>Deterministic test data</li>
-            </ul>
-            <div class="card-actions">
-              <a class="card-link-evidence" href="./showcases/api/playwright-report/api-execution.report.html">Open execution evidence ↗</a>
-              <a class="card-link-resource" href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/api" target="_blank" rel="noreferrer">Browse API tests ↗</a>
-            </div>
-          </article>
-
-          <article class="capability-card has-execution has-test-source">
-            <div class="card-topline">
-              <span class="capability-index">04</span>
-              <span class="capability-badges"><span class="artifact-badge source-badge">Test Source</span><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
-            </div>
-            <h3>UI &amp; Cross-Browser</h3>
-            <p>Shared browser scenarios executed across Chromium, Firefox and WebKit without browser-specific duplication.</p>
-            <ul class="feature-list">
-              <li>18 / 18 execution pass</li>
-              <li>Real UI login coverage</li>
-              <li>Programmatic authentication</li>
-              <li>API-driven setup and mocking</li>
-            </ul>
-            <div class="card-actions">
-              <a class="card-link-evidence" href="./showcases/ui/playwright-report/ui-cross-browser-execution.report.html">Open execution evidence ↗</a>
-              <a class="card-link-resource" href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests/ui" target="_blank" rel="noreferrer">Browse UI tests ↗</a>
-            </div>
-          </article>
-
-          <article class="capability-card has-execution">
-            <div class="card-topline">
-              <span class="capability-index">05</span>
-              <span class="capability-badges"><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
-            </div>
-            <h3>Accessibility Testing</h3>
-            <p>axe-core quality gates that preserve real failures instead of hiding product accessibility problems.</p>
-            <ul class="feature-list">
-              <li>Public and authenticated coverage</li>
-              <li>WCAG-oriented automated checks</li>
-              <li>Serious color-contrast defects</li>
-              <li>Failure screenshots and diagnostics</li>
-            </ul>
-            <div class="card-actions">
-              <a class="card-link-evidence" href="./showcases/accessibility/playwright-report/">Open execution evidence ↗</a>
-            </div>
-          </article>
-
-          <article class="capability-card has-execution">
-            <div class="card-topline">
-              <span class="capability-index">06</span>
-              <span class="capability-badges"><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
-            </div>
-            <h3>Visual Regression</h3>
-            <p>Deterministic screenshot comparison with version-controlled, review-owned Linux baselines.</p>
-            <ul class="feature-list">
-              <li>Full-page coverage</li>
-              <li>Component-level comparison</li>
-              <li>Deterministic API state setup</li>
-              <li>Noise reduction controls</li>
-            </ul>
-            <div class="card-actions">
-              <a class="card-link-evidence" href="./showcases/visual-regression/playwright-report/">Open execution evidence ↗</a>
-            </div>
-          </article>
-
-          <article class="capability-card has-execution">
-            <div class="card-topline">
-              <span class="capability-index">07</span>
-              <span class="capability-badges"><span class="artifact-badge evidence-badge">Execution Evidence</span></span>
-            </div>
-            <h3>Performance Engineering</h3>
-            <p>Separate service and browser performance responsibilities with explicit threshold-based quality gates.</p>
-            <ul class="feature-list">
-              <li>k6 authenticated API workload</li>
-              <li>Public Lighthouse CI</li>
-              <li>Authenticated Lighthouse</li>
-              <li>Shared browser performance policy</li>
-            </ul>
-            <div class="card-actions performance-actions">
-              <details class="evidence-menu">
-                <summary>Choose execution evidence <span aria-hidden="true">⌄</span></summary>
-                <div class="evidence-menu-panel">
-                  <a href="./showcases/performance/k6/task-read-load.html">API performance · k6 ↗</a>
-                  <a href="./showcases/performance/lighthouse-public/public-home.run-1.report.html">Public browser · Lighthouse ↗</a>
-                  <a href="./showcases/performance/lighthouse-authenticated/authenticated-dashboard.run-1.report.html">Authenticated browser · Lighthouse ↗</a>
-                </div>
-              </details>
-            </div>
-          </article>
-
-          <article class="capability-card special-card diagnostics-card">
-            <div class="card-topline"><span class="capability-index">08</span><span class="status status-success">Implemented</span></div>
-            <h3>Failure Diagnostics</h3>
-            <p>Failure evidence separates product defects from framework, environment and infrastructure failures.</p>
-            <ul class="feature-list">
-              <li>Evidence-driven root cause analysis</li>
-              <li>Failure artifact ownership</li>
-              <li>Product vs framework classification</li>
-              <li>Reusable diagnostic evidence</li>
-            </ul>
-          </article>
-
-          <article class="capability-card">
-            <div class="card-topline"><span class="capability-index">09</span><span class="status status-success">Implemented</span></div>
-            <h3>Database Validation</h3>
-            <p>Typed PostgreSQL persistence validation with explicit separation between application behavior and direct database verification.</p>
-            <ul class="feature-list">
-              <li>Typed PostgreSQL clients</li>
-              <li>Persistence verification</li>
-              <li>Dedicated database project</li>
-              <li>Guarded explicit reset lifecycle</li>
-            </ul>
-          </article>
-        </div>
-
-        <aside class="source-explorer" aria-label="Public repository source explorer">
-          <div>
-            <span class="source-explorer-kicker">Public implementation</span>
-            <h3>Explore the framework source and test suites.</h3>
-            <p>The public showcase repository exposes reusable framework code in <code>src/</code> and executable scenarios in <code>tests/</code>, making the implementation inspectable beyond selected capability examples.</p>
+        <div class="kicker">03 · AI-assisted engineering</div>
+        <h2>Five optional agents.<br /><span class="grad-text">You approve every step.</span></h2>
+        <p class="section-lead">GitHub Copilot agents you copy into a project and change freely. They plan, build, review, run and analyze, and every hand-over is a button you press. None of them is allowed to make a failing test green, and the lint and the reviewer check it.</p>
+        <div class="agents">
+          <img class="flow-img" src="./assets/agent-workflow.svg" alt="Agent workflow: test-planner, test-builder and test-reviewer with checkpoints, the test-runner locally or in CI, then the ci-failure-analyst" />
+          <div class="agent-list">
+            <div class="card agent"><div class="icon">⌖</div><div><h3>test-planner <span class="tag">CP1</span></h3><p>Risks, techniques and cases with a source for every expected result.</p></div></div>
+            <div class="card agent"><div class="icon">⚒</div><div><h3>test-builder <span class="tag">CP2</span></h3><p>Implements the approved plan from the golden templates and runs the gates.</p></div></div>
+            <div class="card agent"><div class="icon">⌕</div><div><h3>test-reviewer <span class="tag">CP3</span></h3><p>Cases against the plan, green-washing, structure, layer boundaries and scope.</p></div></div>
+            <div class="card agent"><div class="icon">▷</div><div><h3>test-runner <span class="tag">confirm</span></h3><p>Selects what a change needs, with a reason for each test; local or CI.</p></div></div>
+            <div class="card agent"><div class="icon">⚕</div><div><h3>ci-failure-analyst</h3><p>Root cause per failure: env, app, test, pipeline or unknown, with its owner.</p></div></div>
           </div>
-          <div class="source-explorer-actions">
-            <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/src" target="_blank" rel="noreferrer">Browse src/ ↗</a>
-            <a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/tests" target="_blank" rel="noreferrer">Browse tests/ ↗</a>
-            <a href="https://github.com/szabihudak/quality-engineering-showcase" target="_blank" rel="noreferrer">Open repository ↗</a>
-          </div>
-        </aside>
+        </div>
       </div>
     </section>
 
-    <section id="framework" class="framework-section">
+    <section id="guardrails">
       <div class="wrap">
-        <div class="section-heading-dark">
-          <p class="eyebrow">Framework Try</p>
-          <h2>Clone the core framework. Run it locally.</h2>
-          <p>A standalone public Playwright + TypeScript framework focused on the core API, UI, contract-validation, cross-browser, Docker and CI engineering patterns behind the broader portfolio.</p>
-        </div>
-
-        <div class="framework-intro">
-          <div class="framework-intro-copy">
-            <span class="source-explorer-kicker">Runnable public core</span>
-            <h3>Playwright Enterprise Framework</h3>
-            <p>
-              This repository is intentionally smaller than the complete Quality Engineering portfolio.
-              It packages the core automation architecture into a cloneable, inspectable project that can
-              be installed and executed locally or through Docker.
-            </p>
-            <div class="framework-actions">
-              <a class="button primary" href="https://github.com/szabihudak/playwright-enterprise-framework" target="_blank" rel="noreferrer">Open Repository ↗</a>
-              <a class="button secondary" href="https://github.com/szabihudak/playwright-enterprise-framework#running-locally" target="_blank" rel="noreferrer">Run Locally ↗</a>
-            </div>
+        <div class="kicker">04 · Guardrails</div>
+        <h2>A test is green only when the application is right.</h2>
+        <p class="section-lead">The architecture is not a wiki page. <span class="cmd">npm run lint:architecture</span> enforces it on every change, in the editor and in CI, with a test for every rule.</p>
+        <div class="guard">
+          <div class="guard-hero">
+            <div class="icon">⛨</div>
+            <h3>22 project rules,<br />each citing the standard it enforces.</h3>
+            <p>Layer boundaries, the shapes of the golden templates, the test plan format and plan-to-spec traceability. A self-test generates projects from several setup answers and runs the gates against them.</p>
+            <div class="pill-row"><span class="pill">ESLint + typescript-eslint</span><span class="pill">RuleTester per rule</span><span class="pill">template self-test</span></div>
           </div>
-
-          <div class="framework-callout">
-            <strong>Core scope</strong>
-            <span>API + UI automation</span>
-            <span>Runtime contract validation</span>
-            <span>Cross-browser execution</span>
-            <span>Docker + GitHub Actions</span>
-            <span>Reports + diagnostics</span>
+          <div class="rules">
+            <div class="rule"><span class="x">✕</span><div><b>Trivial assertions</b><span>expect(true).toBe(true)</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Swallowed errors</b><span>.catch(() =&gt; {})</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Conditional assertions</b><span>if (ok) expect(…)</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Locators in specs</b><span>page.click("#save")</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Comparisons in Page Objects</b><span>return text === "Saved"</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Partial success checks</b><span>toMatchObject(body)</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Unvalidated responses</b><span>response.json() as Task</span></div></div>
+            <div class="rule"><span class="x">✕</span><div><b>Skipped tests</b><span>test.skip("…")</span></div></div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="framework-table-wrap">
-          <table class="framework-table framework-scope-table">
-            <thead>
-              <tr>
-                <th>Technical capability</th>
-                <th>Runnable Core</th>
-                <th>Full Framework</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>API Testing</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Runtime Contract Validation</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>UI Automation</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Cross-Browser Execution</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Programmatic Authentication</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Deterministic Test Data</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Network Mocking</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Docker Execution</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>GitHub Actions CI/CD</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Failure Diagnostics</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Engineering Standards &amp; ADRs</td><td class="scope-status scope-included">✓ Included</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Database Validation</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Accessibility Testing</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Visual Regression</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>API Performance · k6</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>Browser Performance · Lighthouse</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>GHCR Image Reuse</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>AI Failure Analysis</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>AI Test Suite Generation</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-              <tr><td>AI-Assisted Engineering · Copilot / Agent / MCP</td><td class="scope-status scope-not-included">—</td><td class="scope-status scope-included">✓ Implemented</td></tr>
-            </tbody>
-          </table>
+    <section id="evidence">
+      <div class="wrap">
+        <div class="kicker">05 · Quality layers &amp; evidence</div>
+        <h2>Every layer, with reports from real runs.</h2>
+        <p class="section-lead">Execution evidence from the UPEX DOJO reference implementation that the golden templates are derived from.</p>
+        <div class="caps">
+          <div class="card"><div class="icon">⟨⟩</div><h3>API &amp; contract</h3><p>TypeBox schemas with runtime validation, positive and negative scenarios, deterministic data.</p><div class="cap-meta"><span class="metric">28 / 28 passed</span><a href="./showcases/api/playwright-report/api-execution.report.html">Report ↗</a></div></div>
+          <div class="card"><div class="icon">◫</div><h3>UI &amp; cross-browser</h3><p>Shared scenarios on Chromium, Firefox and WebKit, programmatic login and API setup.</p><div class="cap-meta"><span class="metric">18 / 18 passed</span><a href="./showcases/ui/playwright-report/ui-cross-browser-execution.report.html">Report ↗</a></div></div>
+          <div class="card"><div class="icon">Aa</div><h3>Accessibility</h3><p>axe-core through one central WCAG policy; real violations are reported, never suppressed.</p><div class="cap-meta"><span class="metric">WCAG gates</span><a href="./showcases/accessibility/playwright-report/">Report ↗</a></div></div>
+          <div class="card"><div class="icon">▣</div><h3>Visual regression</h3><p>Linux baselines generated in Docker and approved by a person, never updated to pass.</p><div class="cap-meta"><span class="metric">reviewed baselines</span><a href="./showcases/visual-regression/playwright-report/">Report ↗</a></div></div>
+          <div class="card"><div class="icon">⚡</div><h3>Performance</h3><p>k6 for the API, Lighthouse for public and authenticated pages, with explicit thresholds.</p><div class="cap-meta"><span class="metric">k6 · Lighthouse</span><a href="./showcases/performance/k6/task-read-load.html">Report ↗</a></div></div>
+          <div class="card"><div class="icon">⛁</div><h3>Database</h3><p>Typed PostgreSQL clients, parameterized SQL and a guarded reset, only where allowed.</p><div class="cap-meta"><span class="metric">guarded</span><a href="https://github.com/szabihudak/quality-engineering-showcase/tree/main/docs/capabilities/database">Details ↗</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <div class="wrap">
+        <div class="kicker">06 · Engineering decisions</div>
+        <h2>Fourteen decisions, written down.</h2>
+        <p class="section-lead">Architecture decision records explain why the template is the way it is, including the ones that were reversed.</p>
+        <div class="adrs">
+          <span class="adr"><b>ADR-003</b>Framework architecture</span>
+          <span class="adr"><b>ADR-005</b>Database validation &amp; data lifecycle</span>
+          <span class="adr"><b>ADR-006</b>Local Docker &amp; CI execution</span>
+          <span class="adr"><b>ADR-007</b>Reusable template architecture</span>
+          <span class="adr"><b>ADR-008</b>AI-assisted engineering</span>
+          <span class="adr"><b>ADR-010</b>Agents outside the template</span>
+          <span class="adr"><b>ADR-011</b>ESLint architecture lint</span>
+          <span class="adr"><b>ADR-012</b>Test reviewer agent</span>
+          <span class="adr"><b>ADR-013</b>CI failure analyst</span>
+          <span class="adr"><b>ADR-014</b>Test runner &amp; manual CI inputs</span>
+        </div>
+
+        <div class="final">
+          <div class="kicker">Try it</div>
+          <h2>Clone it. Answer the questions.<br /><span class="grad-text">Write your first test.</span></h2>
+          <div class="code">
+            <div class="code-head"><span>terminal</span><span>macOS · Linux</span></div>
+<pre><span class="t-prompt">❯</span> git clone https://github.com/szabihudak/szabihudak-template-SDET-framework.git
+<span class="t-prompt">❯</span> cd szabihudak-template-SDET-framework
+<span class="t-prompt">❯</span> ./install.sh</pre>
+          </div>
+          <div class="cta-row" style="justify-content: center">
+            <a class="btn btn-primary" href="https://github.com/szabihudak/szabihudak-template-SDET-framework">Open the template on GitHub ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/szabihudak/quality-engineering-showcase">Showcase repository ↗</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="./assets/js/showcase.js?v=20261001-1408"></script>
+  <div class="wrap">
+    <footer>
+      <span>© 2026 Szabolcs Hudak · Senior SDET · Quality Engineering</span>
+      <span><a href="https://www.linkedin.com/in/szabolcs-v-hudak/">LinkedIn</a><a href="https://github.com/szabihudak">GitHub</a></span>
+    </footer>
+  </div>
 </body>
 </html>
