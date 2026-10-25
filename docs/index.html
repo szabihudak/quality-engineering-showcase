@@ -297,7 +297,7 @@
         <a href="#guardrails">Guardrails</a>
         <a href="#evidence">Evidence</a>
         <a class="btn btn-ghost btn-sm" href="https://www.linkedin.com/in/szabolcs-v-hudak/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5.2 8.1H1.5V20h3.7V8.1ZM3.35 2A2.15 2.15 0 1 0 3.35 6.3 2.15 2.15 0 0 0 3.35 2ZM20.5 13.2c0-3.6-1.9-5.3-4.5-5.3-2.1 0-3 1.1-3.5 1.9V8.1H8.8V20h3.7v-5.9c0-1.6.3-3.1 2.3-3.1 2 0 2 1.8 2 3.2V20h3.7v-6.8Z"/></svg><span class="li-text">LinkedIn</span></a>
-        <a class="btn btn-ghost btn-sm" href="https://github.com/szabihudak/szabihudak-template-SDET-framework">GitHub ↗</a>
+        <a class="btn btn-ghost btn-sm" href="https://github.com/szabihudak" target="_blank" rel="noreferrer">GitHub ↗</a>
       </nav>
     </div>
   </header>
@@ -307,11 +307,11 @@
       <div class="grid-bg" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow"><span class="dot"></span>Public Playwright + TypeScript template</span>
+          <span class="eyebrow"><span class="dot"></span>Playwright + TypeScript quality template</span>
           <h1>One quality system.<br /><span class="grad-text">Configured for your application.</span></h1>
           <p class="lead">API, UI, database, accessibility, visual and performance testing in one architecture. Answer a few questions, pick your modules, browsers and environments, and start from golden templates that an architecture lint enforces, whoever writes the code.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#setup">Get started →</a>
+            <a class="btn btn-primary" href="./configure.html">Configure your project →</a>
             <a class="btn btn-ghost" href="#customize">See what you can configure</a>
           </div>
           <div class="pill-row">
@@ -320,21 +320,18 @@
         </div>
 
         <div style="position: relative">
-          <div class="terminal" role="img" aria-label="The install script asking which test types to enable">
-            <div class="term-bar"><i></i><i></i><i></i><span>~/template — install.sh</span></div>
+          <div class="terminal" role="img" aria-label="Installing a project downloaded from the configurator">
+            <div class="term-bar"><i></i><i></i><i></i><span>~/Downloads — orders-qa</span></div>
             <div class="term-body">
+              <div class="t-dim"># configured in the browser, downloaded as a zip</div>
+              <div><span class="t-prompt">❯</span> unzip orders-qa.zip &amp;&amp; cd orders-qa</div>
               <div><span class="t-prompt">❯</span> ./install.sh</div>
               <div class="t-dim">Stage 1 · framework setup</div>
-              <div><span class="t-q">? Project name (also the folder name)</span> <span class="t-acc">orders-qa</span></div>
-              <div><span class="t-q">? Which test types do you need?</span></div>
-              <div>&nbsp;&nbsp;<span class="t-sel">◉</span> API &amp; contract&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-sel">◉</span> UI</div>
-              <div>&nbsp;&nbsp;<span class="t-sel">◉</span> Accessibility&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-sel">◉</span> Visual</div>
-              <div>&nbsp;&nbsp;<span class="t-dim">◯ Database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◯ Performance</span></div>
-              <div><span class="t-q">? Browsers</span> <span class="t-acc">chromium, webkit</span></div>
-              <div><span class="t-q">? Which environments will the tests run against?</span></div>
-              <div>&nbsp;&nbsp;<span class="t-acc">staging, local</span> <span class="t-dim">· URLs · permissions</span></div>
-              <div><span class="t-ok">✔</span> ../orders-qa created · npm ci · browsers · .env</div>
-              <div><span class="t-ok">✔</span> npm run doctor</div>
+              <div><span class="t-ok">✔</span> npm ci <span class="t-dim">· 642 packages</span></div>
+              <div><span class="t-ok">✔</span> .env from .env.example</div>
+              <div><span class="t-ok">✔</span> git repository with an initial commit</div>
+              <div><span class="t-ok">✔</span> browsers <span class="t-acc">chromium, webkit</span></div>
+              <div><span class="t-ok">✔</span> npm run doctor <span class="t-dim">· configuration valid, app reachable</span></div>
               <div class="t-dim">Stage 2 · first tests (optional)</div>
               <div><span class="t-q">? Set up the test account now?</span> <span class="t-acc">Yes</span> <span class="cursor"></span></div>
             </div>
@@ -360,7 +357,7 @@
         <div class="kicker">01 · Make it yours</div>
         <h2>Everything that differs between projects<br />is configuration, <span class="grad-text">not framework code.</span></h2>
         <p class="section-lead">The framework core stays template-owned. Your application, its environments, logins and conventions live in project-owned files that setup creates and the schemas validate at load time.</p>
-        <div class="cta-row" style="margin:-22px 0 44px"><a class="btn btn-primary" href="./configure.html">Configure your own →</a><span style="color:var(--muted);font-size:14px;align-self:center">Build an answers file in the browser · no secrets</span></div>
+        <div class="cta-row" style="margin:-22px 0 44px"><a class="btn btn-primary" href="./configure.html">Configure your own →</a><span style="color:var(--muted);font-size:14px;align-self:center">Download a ready project · no secrets</span></div>
 
         <div class="custom-grid">
           <div class="opts">
@@ -430,26 +427,26 @@
 
     <section id="setup">
       <div class="wrap">
-        <div class="kicker">02 · From clone to first test</div>
-        <h2>Two stages. Then your IDE takes over.</h2>
-        <p class="section-lead">The template folder never changes, so the next project starts from the same clone. Setup asks only about your application, never about framework internals.</p>
+        <div class="kicker">02 · From the browser to the first test</div>
+        <h2>Configure. Download. Your IDE takes over.</h2>
+        <p class="section-lead">The configurator asks only about your application, never about framework internals, and never for a secret. The project it downloads is the one the template's own installer creates.</p>
         <div class="steps">
           <div class="card step">
             <div class="step-num">1</div>
-            <h3>Framework setup</h3>
-            <p>Menus for every choice; a new project with its own git next to the template.</p>
-            <ul><li>modules, browsers, environments</li><li>optional OpenAPI URL for contract discovery</li><li><span class="cmd">npm ci</span> · browsers · <span class="cmd">.env</span> · <span class="cmd">doctor</span></li></ul>
+            <h3>Configure</h3>
+            <p>In the browser, with the installer's rules; nothing leaves the page.</p>
+            <ul><li>modules, browsers, environments</li><li>permissions, roles, optional Copilot agents</li><li><a class="cmd" href="./configure.html" style="text-decoration:none">Download project (.zip)</a></li></ul>
           </div>
           <div class="card step">
             <div class="step-num">2</div>
-            <h3>First tests <span class="tag">optional</span></h3>
-            <p>A dedicated test account, masked, written only to the git-ignored <span class="cmd">.env</span>.</p>
-            <ul><li>becomes the <span class="cmd">user</span> role</li><li><span class="cmd">doctor</span> checks it logs in</li><li>skip it now, run <span class="cmd">npm run onboard</span> later</li></ul>
+            <h3>Install</h3>
+            <p><span class="cmd">./install.sh</span> asks no setup question again: it installs what a browser cannot.</p>
+            <ul><li><span class="cmd">npm ci</span> · <span class="cmd">.env</span> · git · browsers</li><li><span class="cmd">doctor</span> checks the configuration</li><li>optional test account, masked, into <span class="cmd">.env</span></li></ul>
           </div>
           <div class="card step">
             <div class="step-num">3</div>
             <h3>Your IDE</h3>
-            <p><span class="cmd">AGENTS.md</span>, Copilot instructions and MCP servers are already in place.</p>
+            <p><span class="cmd">AGENTS.md</span>, Copilot instructions, MCP servers and the chosen agents are already in place.</p>
             <ul><li>configure login and roles</li><li><span class="cmd">qa:sync-ci-secrets</span> prepares CI</li><li>write tests from golden templates</li></ul>
           </div>
         </div>
@@ -460,7 +457,7 @@
       <div class="wrap">
         <div class="kicker">03 · AI-assisted engineering</div>
         <h2>Five optional agents.<br /><span class="grad-text">You approve every step.</span></h2>
-        <p class="section-lead">GitHub Copilot agents you copy into a project and change freely. They plan, build, review, run and analyze, and every hand-over is a button you press. None of them is allowed to make a failing test green, and the lint and the reviewer check it.</p>
+        <p class="section-lead">GitHub Copilot agents you choose in the configurator and change freely in your project. They plan, build, review, run and analyze, and every hand-over is a button you press. None of them is allowed to make a failing test green, and the lint and the reviewer check it.</p>
         <div class="agents">
           <img class="flow-img" src="./assets/agent-workflow.svg" alt="Agent workflow: test-planner, test-builder and test-reviewer with checkpoints, the test-runner locally or in CI, then the ci-failure-analyst" />
           <div class="agent-list">
@@ -536,15 +533,15 @@
 
         <div class="final">
           <div class="kicker">Try it</div>
-          <h2>Clone it. Answer the questions.<br /><span class="grad-text">Write your first test.</span></h2>
+          <h2>Configure it. Download it.<br /><span class="grad-text">Write your first test.</span></h2>
           <div class="code">
-            <div class="code-head"><span>terminal</span><span>macOS · Linux</span></div>
-<pre><span class="t-prompt">❯</span> git clone https://github.com/szabihudak/szabihudak-template-SDET-framework.git
-<span class="t-prompt">❯</span> cd szabihudak-template-SDET-framework
-<span class="t-prompt">❯</span> ./install.sh</pre>
+            <div class="code-head"><span>after the download</span><span>macOS · Linux</span></div>
+<pre><span class="t-prompt">❯</span> unzip orders-qa.zip &amp;&amp; cd orders-qa
+<span class="t-prompt">❯</span> ./install.sh
+<span class="t-prompt">❯</span> code .</pre>
           </div>
           <div class="cta-row" style="justify-content: center">
-            <a class="btn btn-primary" href="https://github.com/szabihudak/szabihudak-template-SDET-framework">Open the template on GitHub ↗</a>
+            <a class="btn btn-primary" href="./configure.html">Configure your project →</a>
           </div>
         </div>
       </div>

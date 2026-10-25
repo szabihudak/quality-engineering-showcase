@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Configure the Template · Szabolcs Hudak</title>
-  <meta name="description" content="Configure the Playwright + TypeScript quality engineering template in the browser and download an answers file for an unattended install. No secrets, nothing leaves your browser." />
+  <meta name="description" content="Configure the Playwright + TypeScript quality engineering template in the browser and download a ready project, with the Copilot agents you choose. No secrets, nothing leaves your browser." />
   <meta name="theme-color" content="#060b16" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -164,7 +164,7 @@
     <header class="intro">
       <div class="kicker">Configurator</div>
       <h1>Configure your own <span class="grad-text">quality framework.</span></h1>
-      <p class="lead">Choose what your project needs and download it, ready to open in VS Code. The preview shows the configuration setup writes; the same choices also work as an answers file for the installer.</p>
+      <p class="lead">Choose what your project needs and download it, ready to open in VS Code. The preview shows the configuration the project will contain.</p>
       <div class="assurance">
         <span class="assure">No passwords, tokens or database URLs</span>
         <span class="assure">Nothing leaves your browser</span>
@@ -227,15 +227,14 @@
       <aside class="output" aria-label="Generated files">
         <div class="code-card">
           <div class="tabs" role="tablist">
-            <button class="tab" role="tab" aria-selected="true" data-tab="answers">answers.json</button>
+            <button class="tab" role="tab" aria-selected="true" data-tab="answers">your choices</button>
             <button class="tab" role="tab" aria-selected="false" data-tab="config">framework.config.ts</button>
             <button class="tab" role="tab" aria-selected="false" data-tab="envs">environments.json</button>
           </div>
           <div class="code-actions">
-            <span id="file-note">The input for <code class="inline">./install.sh --answers</code></span>
+            <span id="file-note">Your choices, as the project generator reads them</span>
             <span class="btns">
               <button class="btn" type="button" id="copy">Copy</button>
-              <button class="btn" type="button" id="download">answers.json</button>
             </span>
           </div>
           <pre id="code" tabindex="0" aria-label="File preview"></pre>
@@ -249,14 +248,14 @@
         <div class="steps">
           <h3>Then, in a terminal</h3>
           <ol>
-            <li>Unpack the project and install it: dependencies, browsers, <code class="inline">.env</code>, a git repository and <code class="inline">npm run doctor</code>.
+            <li>Unpack the project and install it. <code class="inline">./install.sh</code> asks no setup question again: it installs the dependencies and browsers, creates <code class="inline">.env</code> and a git repository, and runs <code class="inline">npm run doctor</code>.
               <span class="cmd"><span class="pr">❯ </span>unzip <span class="folder">orders-qa</span>.zip &amp;&amp; cd <span class="folder">orders-qa</span>
 <span class="pr">❯ </span>./install.sh</span></li>
             <li id="db-step">Put the dedicated test database URL into the git-ignored <code class="inline">.env</code> as <code class="inline">DATABASE_URL</code>.</li>
             <li id="onboard-step">The installer offers to add the role accounts, masked, to <code class="inline">.env</code>; later: <code class="inline">npm run onboard</code>.</li>
             <li>Open the project in VS Code: <code class="inline">code .</code></li>
           </ol>
-          <p class="note">On Windows: <code class="inline">npm ci</code>, <code class="inline">npx playwright install --with-deps</code>, then <code class="inline">npm run doctor</code>. With the template instead: <code class="inline">./install.sh --answers answers.json</code> in a clone of <a href="https://github.com/szabihudak/szabihudak-template-SDET-framework" style="color:#8fb4ff">the template</a>. <span id="template-version"></span></p>
+          <p class="note">On Windows: <code class="inline">npm ci</code>, <code class="inline">npx playwright install --with-deps</code>, copy <code class="inline">.env.example</code> to <code class="inline">.env</code>, <code class="inline">git init</code>, then <code class="inline">npm run doctor</code>. <span id="template-version"></span></p>
         </div>
       </aside>
     </div>
@@ -497,7 +496,7 @@
       current = build();
       const { answers, config, environments, errors, usesDatabase, appName } = current;
       const files = {
-        answers: { text: JSON.stringify(answers, null, 2) + "\n", html: () => highlightJson(JSON.stringify(answers, null, 2)), note: 'The input for <code class="inline">./install.sh --answers</code>' },
+        answers: { text: JSON.stringify(answers, null, 2) + "\n", html: () => highlightJson(JSON.stringify(answers, null, 2)), note: 'Your choices, as the project generator reads them' },
         config: { text: null, html: () => configSource(config), note: 'Written to <code class="inline">config/framework.config.ts</code>' },
         envs: { text: JSON.stringify(environments, null, 2) + "\n", html: () => highlightJson(JSON.stringify(environments, null, 2)), note: 'Written to <code class="inline">config/environments/environments.json</code>' },
       };
@@ -506,11 +505,10 @@
       $("file-note").innerHTML = f.note;
 
       const ok = errors.length === 0;
-      $("download").disabled = !ok;
       $("download-zip").disabled = !ok;
       $("status").className = `status ${ok ? "ok" : "bad"}`;
       $("status").innerHTML = ok
-        ? `<b>Valid.</b> The installer accepts this file as it is.`
+        ? `<b>Valid.</b> Ready to download.`
         : `<b>${errors.length} to fix:</b> ${esc(errors.join(", "))}.`;
 
       document.querySelectorAll(".folder").forEach((el) => (el.textContent = appName || "project"));
@@ -535,15 +533,6 @@
       try { await navigator.clipboard.writeText(text); $("copy").textContent = "Copied"; } catch { $("copy").textContent = "Copy failed"; }
       setTimeout(() => ($("copy").textContent = "Copy"), 1500);
     });
-    $("download").addEventListener("click", () => {
-      if (current.errors.length) return;
-      const blob = new Blob([JSON.stringify(current.answers, null, 2) + "\n"], { type: "application/json" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob); a.download = "answers.json";
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    });
-
     // The project download: the template's own generator (generator.js) and
     // template files (template.json), loaded on the first click. It creates
     // the project setup would create from these answers.

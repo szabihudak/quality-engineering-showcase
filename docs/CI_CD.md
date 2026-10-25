@@ -714,6 +714,25 @@ This structure keeps the pipeline reproducible, responsibilities explicit, and f
 
 ---
 
+## Configurator Updates
+
+The portfolio's [configurator](configure.html) downloads a project generated in the browser by the template's own project generator. Its files, `docs/configurator/generator.js` and `docs/configurator/template.json`, come from the template repository through `.github/workflows/update-configurator.yml`:
+
+```text
+every hour, or by hand (Actions → Update configurator)
+→ the template's main commit, or the branch, tag or commit given
+→ skip when docs/configurator already has that commit
+→ continue only when its quality and template-selftest jobs passed
+→ npm run qa:configurator in the template
+→ commit docs/configurator and request a Pages build
+```
+
+The template-selftest job checks that the browser generator creates the same project as the template's setup, so a commit that passed it is safe to publish.
+
+A private template repository needs one secret here, `TEMPLATE_READ_TOKEN`: a fine-grained personal access token for the template repository only, with **Contents: read** and **Actions: read** (Settings → Developer settings → Fine-grained tokens), added under **Settings → Secrets and variables → Actions**. Renew it before it expires. A public template works without it.
+
+---
+
 ## Related Documentation
 
 - [Architecture](ARCHITECTURE.md)

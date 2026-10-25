@@ -1,0 +1,123 @@
+name: Update configurator
+
+# Rebuilds docs/configurator (generator.js, template.json) from the template
+# repository, so the configurator downloads the template's current project.
+# It uses only a template commit whose quality and template-selftest jobs
+# passed: the self-test checks that the configurator creates the same project
+# as the template's setup.
+#
+# A private template needs the TEMPLATE_READ_TOKEN secret: a fine-grained
+# token for the template repository only, with Contents: read and
+# Actions: read. A public template works without it.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Template branch, tag or commit (empty: main)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: update-configurator
+  cancel-in-progress: false
+
+env:
+  TEMPLATE_REPOSITORY: szabihudak/szabihudak-template-SDET-framework
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout showcase
+        uses: actions/checkout@v4
+
+      - name: Choose the template commit
+        id: template
+        env:
+          GH_TOKEN: ${{ secrets.TEMPLATE_READ_TOKEN || github.token }}
+          REF: ${{ inputs.ref || 'main' }}
+        run: |
+          sha="$(gh api "repos/$TEMPLATE_REPOSITORY/commits/$REF" --jq .sha)"
+          short="${sha:0:7}"
+          current="$(jq -r .templateVersion docs/configurator/template.json 2>/dev/null || true)"
+          echo "Template $REF is $short; the configurator has ${current:-nothing}."
+
+          # git describe ends with the short commit, after a tag when there is one.
+          case "$current" in
+            "$short" | *"-g$short")
+              echo "Already up to date."
+              exit 0
+              ;;
+          esac
+
+          jobs="$(gh api "repos/$TEMPLATE_REPOSITORY/actions/runs?head_sha=$sha&per_page=20" \
+            --jq '[.workflow_runs[] | select(.name == "Playwright CI")][0].jobs_url // empty')"
+          if [ -z "$jobs" ]; then
+            echo "No Playwright CI run for $short yet; trying again later."
+            exit 0
+          fi
+
+          states="$(gh api "$jobs?per_page=100" \
+            --jq '[.jobs[] | select(.name == "quality" or .name == "template-selftest") | "\(.name)=\(.conclusion)"] | sort | join(" ")')"
+          echo "Gates: ${states:-none}"
+          if [ "$states" != "quality=success template-selftest=success" ]; then
+            echo "The quality and template-selftest jobs of $short have not both passed; not updating."
+            exit 0
+          fi
+
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout template
+        if: steps.template.outputs.sha
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.TEMPLATE_REPOSITORY }}
+          ref: ${{ steps.template.outputs.sha }}
+          token: ${{ secrets.TEMPLATE_READ_TOKEN || github.token }}
+          path: template
+          # git describe names the template version in template.json.
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        if: steps.template.outputs.sha
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build the configurator
+        if: steps.template.outputs.sha
+        working-directory: template
+        run: |
+          npm install --global npm@11.19.1
+          npm ci
+          npm run qa:configurator -- "$GITHUB_WORKSPACE/docs/configurator"
+
+      - name: Commit and publish
+        if: steps.template.outputs.sha
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- docs/configurator; then
+            echo "The configurator files did not change."
+            exit 0
+          fi
+
+          version="$(jq -r .templateVersion docs/configurator/template.json)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/configurator
+          git commit -m "Update the configurator to template $version"
+          git push
+
+          # A push with the workflow token may not start a Pages build itself.
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null \
+            || echo "Could not request a Pages build; it starts with the next push."
