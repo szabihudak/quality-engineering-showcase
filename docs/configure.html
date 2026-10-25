@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configure the Template · Szabolcs Hudak</title>
+  <meta name="description" content="Configure the Playwright + TypeScript quality engineering template in the browser and download an answers file for an unattended install. No secrets, nothing leaves your browser." />
+  <meta name="theme-color" content="#060b16" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060b16; --bg-2: #0a1222;
+      --panel: rgba(17, 27, 48, .62); --panel-strong: rgba(19, 31, 55, .92);
+      --line: rgba(120, 160, 255, .16); --line-strong: rgba(120, 170, 255, .38);
+      --text: #f4f7ff; --text-2: #b9c4da; --muted: #7c8aa6;
+      --blue: #4f8cff; --cyan: #3ee0d0; --violet: #9b7bff; --green: #4ade80; --red: #ff6b81; --amber: #fbbf24;
+      --grad: linear-gradient(100deg, #6ea8ff 0%, #9b7bff 45%, #3ee0d0 100%);
+      --wrap: 1280px; --radius: 18px;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    a { color: inherit; }
+    .wrap { width: min(calc(100% - 40px), var(--wrap)); margin: 0 auto; }
+    .aurora { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .aurora::before, .aurora::after { content: ""; position: absolute; width: 900px; height: 900px; border-radius: 50%; filter: blur(120px); }
+    .aurora::before { background: radial-gradient(circle, #3b5bff 0%, transparent 65%); top: -420px; left: -260px; opacity: .3; }
+    .aurora::after { background: radial-gradient(circle, #7c3aed 0%, transparent 65%); top: 200px; right: -460px; opacity: .2; }
+
+    .topbar { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px) saturate(140%); background: rgba(6, 11, 22, .62); border-bottom: 1px solid var(--line); }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+    .identity { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .mark { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-weight: 800; font-size: 14px; background: var(--grad); color: #0a0f1d; box-shadow: 0 0 24px rgba(110, 140, 255, .45); }
+    .identity b { display: block; font-size: 15px; line-height: 1.2; }
+    .identity small { color: var(--muted); font-size: 12px; }
+    .nav { display: flex; gap: 22px; align-items: center; font-size: 14px; color: var(--text-2); }
+    .nav a { text-decoration: none; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; padding: 10px 16px; border-radius: 11px; font: 600 14px Inter, system-ui, sans-serif; border: 1px solid var(--line-strong); background: rgba(255, 255, 255, .03); color: var(--text); transition: transform .2s, opacity .2s; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--grad); color: #0a0f1d; border: 0; box-shadow: 0 10px 30px rgba(110, 140, 255, .32); }
+    .btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
+
+    header.intro { padding: 56px 0 30px; }
+    .kicker { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); }
+    h1 { font-size: clamp(34px, 4vw, 50px); line-height: 1.08; letter-spacing: -.03em; margin: 12px 0 14px; font-weight: 800; }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { color: var(--text-2); font-size: 17px; max-width: 760px; margin: 0; }
+    .assurance { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .assure { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(74, 222, 128, .28); background: rgba(74, 222, 128, .06); }
+    .assure::before { content: "✓"; color: var(--green); font-weight: 800; }
+
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: start; padding-bottom: 60px; }
+    .layout > * { min-width: 0; }
+    .tabs { overflow-x: auto; }
+    .panel { border-radius: var(--radius); background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(8px); padding: 24px; margin-bottom: 18px; }
+    .panel h2 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: center; gap: 10px; }
+    .num { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font: 700 12px var(--mono); color: var(--cyan); border: 1px solid var(--line-strong); background: var(--bg-2); }
+    .hint { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+    label.field { display: block; margin: 12px 0 0; }
+    label.field > span { display: block; font-size: 13px; color: var(--text-2); margin-bottom: 6px; }
+    label.field > span em { color: var(--muted); font-style: normal; }
+    input[type="text"], input[type="url"] {
+      width: 100%; padding: 10px 12px; border-radius: 10px; font: 14px var(--mono);
+      background: rgba(5, 9, 18, .8); color: var(--text); border: 1px solid var(--line-strong); outline: none;
+    }
+    input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(62, 224, 208, .14); }
+    input.invalid { border-color: var(--red); box-shadow: 0 0 0 3px rgba(255, 107, 129, .12); }
+    .err { color: var(--red); font-size: 12.5px; margin-top: 5px; min-height: 0; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; opacity: 0; pointer-events: none; }
+    .chip label {
+      display: inline-flex; align-items: center; gap: 9px; cursor: pointer; user-select: none;
+      padding: 8px 13px 8px 9px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, .02);
+      color: var(--text-2); font-size: 13.5px; transition: border-color .2s, color .2s, background .2s;
+    }
+    .chip label::before { content: ""; width: 28px; height: 16px; border-radius: 999px; background: #1e293b; box-shadow: inset 0 0 0 1px var(--line-strong); transition: background .2s; }
+    .chip input:checked + label { color: var(--text); border-color: rgba(62, 224, 208, .4); background: rgba(62, 224, 208, .06); }
+    .chip input:checked + label::before { background: linear-gradient(90deg, var(--cyan), var(--blue)); box-shadow: none; }
+    .chip input:disabled + label { opacity: .38; cursor: not-allowed; }
+    .chip input:focus-visible + label { outline: 2px solid var(--cyan); outline-offset: 2px; }
+    .chip small { color: var(--muted); font-size: 11.5px; }
+
+    .env { border-top: 1px dashed var(--line); margin-top: 18px; padding-top: 16px; }
+    .env h3 { margin: 0; font: 600 14px var(--mono); color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .env h3 .badge { font: 500 11px var(--mono); color: var(--muted); border: 1px solid var(--line); padding: 1px 7px; border-radius: 6px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+    .perm-title { font-size: 13px; color: var(--text-2); margin: 16px 0 8px; }
+
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+    .role { display: inline-flex; align-items: center; gap: 6px; font: 13px var(--mono); padding: 6px 8px 6px 12px; border-radius: 999px; background: rgba(155, 123, 255, .12); border: 1px solid rgba(155, 123, 255, .35); }
+    .role button { all: unset; cursor: pointer; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; color: var(--muted); }
+    .role button:hover { color: var(--text); background: rgba(255, 255, 255, .08); }
+    .role-add { display: flex; gap: 8px; margin-top: 10px; }
+    .role-add input { flex: 1; }
+
+    .output { position: sticky; top: 88px; }
+    .code-card { border-radius: var(--radius); background: rgba(8, 13, 25, .96); border: 1px solid var(--line-strong); overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .45), 0 0 60px rgba(79, 140, 255, .1); }
+    .tabs { display: flex; gap: 4px; padding: 8px 8px 0; border-bottom: 1px solid var(--line); }
+    .tab { all: unset; cursor: pointer; padding: 9px 13px; border-radius: 9px 9px 0 0; font: 12.5px var(--mono); color: var(--muted); border: 1px solid transparent; border-bottom: 0; }
+    .tab[aria-selected="true"] { color: var(--text); background: rgba(79, 140, 255, .1); border-color: var(--line); }
+    .tab:focus-visible { outline: 2px solid var(--cyan); }
+    .code-actions { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); gap: 10px; }
+    .code-actions .btns { display: flex; gap: 8px; }
+    .code-actions .btn { padding: 6px 11px; font-size: 12.5px; border-radius: 9px; }
+    pre { margin: 0; padding: 18px 20px; font: 12.8px/1.7 var(--mono); color: #cfd8ea; max-height: 470px; overflow: auto; white-space: pre; }
+    .k { color: #c792ea; } .s { color: #a5e3a1; } .n { color: #f78c6c; } .p { color: #82aaff; } .c { color: #5f6f8c; font-style: italic; }
+
+    .status { display: flex; align-items: center; gap: 10px; margin: 16px 0; padding: 12px 16px; border-radius: 14px; font-size: 13.5px; }
+    .status.ok { background: rgba(74, 222, 128, .07); border: 1px solid rgba(74, 222, 128, .3); color: #bff5cf; }
+    .status.bad { background: rgba(255, 107, 129, .07); border: 1px solid rgba(255, 107, 129, .32); color: #ffc7d0; }
+    .status b { font-weight: 700; }
+
+    .steps { border-radius: var(--radius); background: var(--panel-strong); border: 1px solid var(--line-strong); padding: 20px 22px; }
+    .steps h3 { margin: 0 0 12px; font-size: 15px; }
+    .steps ol { margin: 0; padding-left: 20px; color: var(--text-2); font-size: 13.5px; }
+    .steps li { margin: 8px 0; }
+    .cmd { display: block; margin-top: 6px; padding: 9px 12px; border-radius: 9px; background: rgba(5, 9, 18, .9); border: 1px solid var(--line); font: 12.5px var(--mono); color: #cfd8ea; white-space: pre-wrap; word-break: break-all; }
+    .cmd .pr { color: var(--cyan); user-select: none; }
+    .note { font-size: 12.5px; color: var(--muted); margin-top: 12px; }
+    code.inline { font: 12.5px var(--mono); color: #8fb4ff; }
+
+    footer { padding: 30px 0 46px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .short { display: none; }
+    @media (max-width: 560px) { .long { display: none; } .short { display: inline; } }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+    @media (max-width: 1000px) { .layout { grid-template-columns: 1fr; } .output { position: static; } .nav a:not(.btn) { display: none; } }
+    @media (max-width: 560px) { .grid-2 { grid-template-columns: 1fr; } .identity small { display: none; } .panel { padding: 18px; } header.intro { padding-top: 36px; } }
+    @media (prefers-reduced-motion: reduce) { .btn, .chip label { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="identity" href="./index.html">
+        <span class="mark">SH</span>
+        <span><b>Szabolcs Hudak</b><small>Senior SDET · Quality Engineering</small></span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="./index.html#customize">Customize</a>
+        <a href="./index.html#agents">Agents</a>
+        <a href="./index.html#guardrails">Guardrails</a>
+        <a class="btn" href="./index.html">← <span class="long">Back to the overview</span><span class="short">Overview</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <header class="intro">
+      <div class="kicker">Configurator</div>
+      <h1>Configure your own <span class="grad-text">quality framework.</span></h1>
+      <p class="lead">Choose what your project needs. The preview shows the configuration setup will write, and the answers file runs the installer without a single question.</p>
+      <div class="assurance">
+        <span class="assure">No passwords, tokens or database URLs</span>
+        <span class="assure">Nothing leaves your browser</span>
+        <span class="assure">Same rules as the installer</span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <form id="form" novalidate aria-label="Template configuration">
+        <section class="panel">
+          <h2><span class="num">1</span>Project</h2>
+          <p class="hint">The project name is also the name of the folder setup creates.</p>
+          <label class="field"><span>Project name</span><input id="appName" type="text" value="orders-qa" autocomplete="off" spellcheck="false" aria-describedby="appName-err" /></label>
+          <div class="err" id="appName-err" role="alert"></div>
+        </section>
+
+        <section class="panel">
+          <h2><span class="num">2</span>Test types</h2>
+          <p class="hint">Disabled modules get no CI jobs; without performance, the Lighthouse packages stay out too.</p>
+          <div class="chips" id="modules"></div>
+          <div class="err" id="modules-err" role="alert"></div>
+        </section>
+
+        <section class="panel" id="browsers-panel">
+          <h2><span class="num">3</span>Browsers</h2>
+          <p class="hint" id="browsers-hint">Shared UI specs run in every browser you choose.</p>
+          <div class="chips" id="browsers"></div>
+          <div class="err" id="browsers-err" role="alert"></div>
+        </section>
+
+        <section class="panel">
+          <h2><span class="num">4</span>Environments</h2>
+          <p class="hint">URLs are not secrets, but an internal host name is information: the fields show made-up examples.</p>
+          <div class="chips" id="env-pick"></div>
+          <div class="err" id="env-err" role="alert"></div>
+          <div id="envs"></div>
+        </section>
+
+        <section class="panel">
+          <h2><span class="num">5</span>Sources &amp; roles <span class="badge" style="font:500 11px var(--mono);color:var(--muted)">optional</span></h2>
+          <p class="hint">Documents the test planner reads, and the roles tests log in as. Role accounts are added later with <code class="inline">npm run onboard</code>.</p>
+          <label class="field"><span>Requirements document <em>· URL or repository path</em></span><input id="requirementsDoc" type="text" placeholder="docs/requirements/login.md" autocomplete="off" spellcheck="false" /></label>
+          <label class="field"><span>UI / E2E scenarios <em>· URL or repository path</em></span><input id="uiScenariosDoc" type="text" placeholder="docs/e2e/checkout-journeys.md" autocomplete="off" spellcheck="false" /></label>
+          <label class="field"><span>Roles</span></label>
+          <div class="roles" id="roles" aria-live="polite"></div>
+          <div class="role-add">
+            <input id="role-input" type="text" placeholder="admin" aria-label="New role name" autocomplete="off" spellcheck="false" />
+            <button class="btn" type="button" id="role-add">Add role</button>
+          </div>
+          <div class="err" id="roles-err" role="alert"></div>
+        </section>
+      </form>
+
+      <aside class="output" aria-label="Generated files">
+        <div class="code-card">
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" aria-selected="true" data-tab="answers">answers.json</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="config">framework.config.ts</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="envs">environments.json</button>
+          </div>
+          <div class="code-actions">
+            <span id="file-note">The input for <code class="inline">./install.sh --answers</code></span>
+            <span class="btns">
+              <button class="btn" type="button" id="copy">Copy</button>
+              <button class="btn btn-primary" type="button" id="download">Download answers.json</button>
+            </span>
+          </div>
+          <pre id="code" tabindex="0" aria-label="File preview"></pre>
+        </div>
+
+        <div class="status" id="status" role="status"></div>
+
+        <div class="steps">
+          <h3>Then, in a terminal</h3>
+          <ol>
+            <li>Get the template:
+              <span class="cmd"><span class="pr">❯ </span>git clone https://github.com/szabihudak/szabihudak-template-SDET-framework.git
+<span class="pr">❯ </span>cd szabihudak-template-SDET-framework</span></li>
+            <li>Run the installer with your answers:
+              <span class="cmd" id="install-cmd"></span></li>
+            <li id="onboard-step">Add the role accounts, masked, to the git-ignored <code class="inline">.env</code>:
+              <span class="cmd"><span class="pr">❯ </span>cd ../<span id="folder">orders-qa</span> &amp;&amp; npm run onboard</span></li>
+            <li>Open the project in VS Code: <code class="inline">code .</code></li>
+          </ol>
+          <p class="note">On Windows: <code class="inline">npm ci</code>, then <code class="inline">npm run setup -- --answers answers.json</code>. Answers format of the template as of October 2026.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="wrap">
+    <footer>
+      <span>© 2026 Szabolcs Hudak · Senior SDET · Quality Engineering</span>
+      <span>This page builds a file in your browser; it sends nothing anywhere.</span>
+    </footer>
+  </div>
+
+  <script>
+    // Mirrors framework/tools/setup.ts: the modules, browsers, environments,
+    // which module needs which URL, and when each permission can be asked.
+    const MODULES = [
+      ["api", "API", ""], ["ui", "UI", ""], ["smoke", "Smoke", ""],
+      ["accessibility", "Accessibility", ""], ["database", "Database", ""],
+      ["visual", "Visual regression", ""], ["performance", "Performance", "k6 · Lighthouse"],
+    ];
+    const BROWSERS = ["chromium", "firefox", "webkit"];
+    const BROWSER_MODULES = ["ui", "smoke", "accessibility", "visual", "performance"];
+    const REQUIRED_URLS = {
+      webBaseUrl: ["ui", "smoke", "accessibility", "visual", "performance"],
+      apiBaseUrl: ["api", "performance"],
+    };
+    const ENVIRONMENTS = [
+      { name: "staging", web: "https://staging.example.com" },
+      { name: "local", web: "http://localhost:3000" },
+    ];
+    const PROJECT_NAME = /^[a-z0-9][a-z0-9-]*$/;
+    const ROLE_NAME = /^[a-z][a-zA-Z0-9]*$/;
+
+    const state = {
+      modules: { api: true, ui: true, smoke: true, accessibility: true, database: false, visual: false, performance: false },
+      browsers: ["chromium"],
+      envs: {
+        staging: { on: true, webBaseUrl: "https://staging.example.com", apiBaseUrl: "https://staging.example.com/api", openApiUrl: "", allow: { database: false, destructive: false, performance: false, interactiveDiscovery: false } },
+        local: { on: false, webBaseUrl: "http://localhost:3000", apiBaseUrl: "http://localhost:3000/api", openApiUrl: "", allow: { database: false, destructive: false, performance: false, interactiveDiscovery: false } },
+      },
+      roles: ["user"],
+      tab: "answers",
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const needs = (url) => REQUIRED_URLS[url].some((m) => state.modules[m]);
+    const usesBrowser = () => BROWSER_MODULES.some((m) => state.modules[m]);
+    const isUrl = (v) => { try { const u = new URL(v); return u.protocol === "http:" || u.protocol === "https:"; } catch { return false; } };
+    const roleEnvPrefix = (role) => role.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
+
+    function chip(container, id, label, checked, onChange, small = "", disabled = false) {
+      const wrap = document.createElement("span");
+      wrap.className = "chip";
+      wrap.innerHTML = `<input type="checkbox" id="${id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}><label for="${id}">${esc(label)}${small ? ` <small>${esc(small)}</small>` : ""}</label>`;
+      wrap.querySelector("input").addEventListener("change", (e) => onChange(e.target.checked));
+      container.appendChild(wrap);
+    }
+
+    function renderModules() {
+      const c = $("modules"); c.innerHTML = "";
+      for (const [key, label, small] of MODULES) {
+        chip(c, `m-${key}`, label, state.modules[key], (v) => {
+          state.modules[key] = v;
+          if (!v && key === "database") for (const e of Object.values(state.envs)) { e.allow.database = false; e.allow.destructive = false; }
+          if (!v && key === "performance") for (const e of Object.values(state.envs)) e.allow.performance = false;
+          renderAll();
+        }, small);
+      }
+    }
+
+    function renderBrowsers() {
+      const c = $("browsers"); c.innerHTML = "";
+      const on = usesBrowser();
+      $("browsers-hint").textContent = on ? "Shared UI specs run in every browser you choose." : "No browser module is enabled, so setup does not ask for browsers and keeps chromium.";
+      for (const b of BROWSERS) {
+        chip(c, `b-${b}`, b, on ? state.browsers.includes(b) : b === "chromium", (v) => {
+          state.browsers = v ? [...new Set([...state.browsers, b])] : state.browsers.filter((x) => x !== b);
+          state.browsers.sort((x, y) => BROWSERS.indexOf(x) - BROWSERS.indexOf(y));
+          update();
+        }, "", !on);
+      }
+    }
+
+    function renderEnvs() {
+      const pick = $("env-pick"); pick.innerHTML = "";
+      for (const { name } of ENVIRONMENTS) chip(pick, `e-${name}`, name, state.envs[name].on, (v) => { state.envs[name].on = v; renderEnvs(); update(); });
+      const box = $("envs"); box.innerHTML = "";
+      for (const { name, web } of ENVIRONMENTS) {
+        const env = state.envs[name];
+        if (!env.on) continue;
+        const el = document.createElement("div");
+        el.className = "env";
+        const field = (key, label, required, placeholder) => `
+          <label class="field"><span>${label} <em>${required ? "· required" : "· optional"}</em></span>
+          <input type="url" data-env="${name}" data-key="${key}" value="${esc(env[key])}" placeholder="${placeholder}" autocomplete="off" spellcheck="false" aria-describedby="${name}-${key}-err"></label>
+          <div class="err" id="${name}-${key}-err" role="alert"></div>`;
+        el.innerHTML = `
+          <h3>${name} <span class="badge">TEST_ENV=${name}</span></h3>
+          <div class="grid-2">
+            <div>${field("webBaseUrl", "Web URL", needs("webBaseUrl"), web)}</div>
+            <div>${field("apiBaseUrl", "API URL", needs("apiBaseUrl"), web + "/api")}</div>
+          </div>
+          ${field("openApiUrl", "Public OpenAPI (Swagger) URL", false, web + "/api/openapi.json")}
+          <div class="perm-title">What this environment allows</div>
+          <div class="chips" data-perms="${name}"></div>`;
+        box.appendChild(el);
+        el.querySelectorAll("input[data-key]").forEach((input) => input.addEventListener("input", () => { env[input.dataset.key] = input.value.trim(); update(); }));
+        const perms = el.querySelector("[data-perms]");
+        const set = (k) => (v) => { env.allow[k] = v; if (k === "database" && !v) env.allow.destructive = false; renderEnvs(); update(); };
+        chip(perms, `${name}-db`, "database access", env.allow.database, set("database"), "test database only", !state.modules.database);
+        chip(perms, `${name}-destructive`, "destructive reset", env.allow.destructive, set("destructive"), "", !env.allow.database);
+        chip(perms, `${name}-perf`, "performance", env.allow.performance, set("performance"), "", !state.modules.performance);
+        chip(perms, `${name}-discovery`, "planner discovery", env.allow.interactiveDiscovery, set("interactiveDiscovery"), "creates test data, no deletes", !(state.modules.api || usesBrowser()));
+      }
+    }
+
+    function renderRoles() {
+      const c = $("roles"); c.innerHTML = "";
+      if (!state.roles.length) c.innerHTML = `<span class="hint" style="margin:0">No roles yet: login is configured after setup.</span>`;
+      for (const role of state.roles) {
+        const r = document.createElement("span");
+        r.className = "role";
+        r.innerHTML = `${esc(role)}<button type="button" aria-label="Remove role ${esc(role)}">✕</button>`;
+        r.querySelector("button").addEventListener("click", () => { state.roles = state.roles.filter((x) => x !== role); renderRoles(); update(); });
+        c.appendChild(r);
+      }
+    }
+
+    function addRole() {
+      const input = $("role-input"); const role = input.value.trim();
+      if (!role) return;
+      if (!ROLE_NAME.test(role)) { $("roles-err").textContent = "A role starts with a lowercase letter and has only letters and digits, such as admin or teamLead."; return; }
+      if (state.roles.includes(role)) { $("roles-err").textContent = `${role} is already a role.`; return; }
+      $("roles-err").textContent = ""; state.roles.push(role); input.value = ""; renderRoles(); update();
+    }
+
+    // The same shapes setup writes: answers.json is what setup reads,
+    // framework.config.ts and environments.json what it creates from it.
+    function build() {
+      const errors = [];
+      const appName = $("appName").value.trim();
+      $("appName").classList.toggle("invalid", !PROJECT_NAME.test(appName));
+      $("appName-err").textContent = PROJECT_NAME.test(appName) ? "" : "Lowercase letters, digits and hyphens, starting with a letter or digit.";
+      if (!PROJECT_NAME.test(appName)) errors.push("project name");
+
+      const modules = Object.fromEntries(MODULES.map(([k]) => [k, !!state.modules[k]]));
+      const anyModule = Object.values(modules).some(Boolean);
+      $("modules-err").textContent = anyModule ? "" : "Choose at least one test type.";
+      if (!anyModule) errors.push("test types");
+
+      const browsers = usesBrowser() ? state.browsers : ["chromium"];
+      $("browsers-err").textContent = browsers.length ? "" : "Choose at least one browser.";
+      if (!browsers.length) errors.push("browsers");
+
+      const environments = {};
+      const chosen = ENVIRONMENTS.filter(({ name }) => state.envs[name].on);
+      $("env-err").textContent = chosen.length ? "" : "Choose at least one environment.";
+      if (!chosen.length) errors.push("environments");
+      for (const { name } of chosen) {
+        const env = state.envs[name]; const out = {};
+        for (const key of ["webBaseUrl", "apiBaseUrl", "openApiUrl"]) {
+          const value = env[key];
+          const required = key !== "openApiUrl" && needs(key);
+          const input = document.querySelector(`input[data-env="${name}"][data-key="${key}"]`);
+          const errEl = $(`${name}-${key}-err`);
+          let msg = "";
+          if (!value && required) msg = "Required by the test types you chose.";
+          else if (value && !isUrl(value)) msg = "Enter an http or https URL.";
+          if (input) input.classList.toggle("invalid", !!msg);
+          if (errEl) errEl.textContent = msg;
+          if (msg) errors.push(`${name} ${{ webBaseUrl: "web URL", apiBaseUrl: "API URL", openApiUrl: "OpenAPI URL" }[key]}`);
+          if (value && !msg) out[key] = value;
+        }
+        out.allow = {
+          database: modules.database && env.allow.database,
+          destructive: modules.database && env.allow.database && env.allow.destructive,
+          performance: modules.performance && env.allow.performance,
+          interactiveDiscovery: (modules.api || usesBrowser()) && env.allow.interactiveDiscovery,
+        };
+        environments[name] = out;
+      }
+
+      const answers = { appName };
+      const req = $("requirementsDoc").value.trim(); const ui = $("uiScenariosDoc").value.trim();
+      if (req) answers.requirementsDoc = req;
+      if (ui) answers.uiScenariosDoc = ui;
+      Object.assign(answers, { environments, modules, browsers });
+      if (state.roles.length) answers.roles = [...state.roles];
+
+      const config = {
+        ...(req ? { requirementsDoc: req } : {}),
+        ...(ui ? { uiScenariosDoc: ui } : {}),
+        modules, browsers,
+        execution: { ciRetries: 2, ciWorkers: "50%" },
+        auth: { api: { strategy: "none" }, browser: { strategy: "none" } },
+        roles: Object.fromEntries(state.roles.map((r) => [r, { usernameEnv: `${roleEnvPrefix(r)}_USERNAME`, passwordEnv: `${roleEnvPrefix(r)}_PASSWORD` }])),
+      };
+      const usesDatabase = Object.values(environments).some((e) => e.allow.database);
+      return { appName, answers, config, environments, errors, usesDatabase };
+    }
+
+    function highlightJson(text) {
+      return esc(text)
+        .replace(/("(?:[^"\\]|\\.)*")(\s*:)/g, '<span class="p">$1</span>$2')
+        .replace(/: ("(?:[^"\\]|\\.)*")/g, ': <span class="s">$1</span>')
+        .replace(/(\[|, |^\s+)("(?:[^"\\]|\\.)*")(?=[,\]\n])/gm, '$1<span class="s">$2</span>')
+        .replace(/\b(true|false|\d+)\b(?![^<]*>)/g, '<span class="n">$1</span>');
+    }
+
+    // framework.config.ts as prettier formats setup's JSON: unquoted keys.
+    function configSource(config) {
+      const body = JSON.stringify(config, null, 2).replace(/^(\s*)"([A-Za-z_$][\w$]*)":/gm, "$1$2:");
+      return `<span class="k">import</span> { <span class="p">defineFrameworkConfig</span> } <span class="k">from</span> <span class="s">"../framework/core/config/frameworkConfigSchema"</span>;\n\n<span class="c">// login is configured after setup (project README)</span>\n<span class="k">export default</span> <span class="p">defineFrameworkConfig</span>(${highlightJson(body).replace(/<span class="p">"?([A-Za-z_$][\w$]*)"?<\/span>:/g, "$1:")});`;
+    }
+
+    let current;
+    function update() {
+      current = build();
+      const { answers, config, environments, errors, usesDatabase, appName } = current;
+      const files = {
+        answers: { text: JSON.stringify(answers, null, 2) + "\n", html: () => highlightJson(JSON.stringify(answers, null, 2)), note: 'The input for <code class="inline">./install.sh --answers</code>' },
+        config: { text: null, html: () => configSource(config), note: 'Written to <code class="inline">config/framework.config.ts</code>' },
+        envs: { text: JSON.stringify(environments, null, 2) + "\n", html: () => highlightJson(JSON.stringify(environments, null, 2)), note: 'Written to <code class="inline">config/environments/environments.json</code>' },
+      };
+      const f = files[state.tab];
+      $("code").innerHTML = f.html();
+      $("file-note").innerHTML = f.note;
+
+      const ok = errors.length === 0;
+      $("download").disabled = !ok;
+      $("status").className = `status ${ok ? "ok" : "bad"}`;
+      $("status").innerHTML = ok
+        ? `<b>Valid.</b> The installer accepts this file as it is.`
+        : `<b>${errors.length} to fix:</b> ${esc(errors.join(", "))}.`;
+
+      const dbPrefix = usesDatabase ? `DATABASE_URL="postgresql://…" ` : "";
+      $("install-cmd").innerHTML = `<span class="pr">❯ </span>${esc(dbPrefix)}./install.sh --answers ~/Downloads/answers.json` +
+        (usesDatabase ? `\n<span class="c" style="color:#5f6f8c">  # the database URL comes from the environment, never from the file</span>` : "");
+      $("folder").textContent = appName || "<project>";
+      $("onboard-step").style.display = state.roles.length ? "" : "none";
+    }
+
+    function renderAll() { renderModules(); renderBrowsers(); renderEnvs(); renderRoles(); update(); }
+
+    document.querySelectorAll(".tab").forEach((tab) => tab.addEventListener("click", () => {
+      state.tab = tab.dataset.tab;
+      document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", t === tab ? "true" : "false"));
+      update();
+    }));
+    $("appName").addEventListener("input", update);
+    $("requirementsDoc").addEventListener("input", update);
+    $("uiScenariosDoc").addEventListener("input", update);
+    $("role-add").addEventListener("click", addRole);
+    $("role-input").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); addRole(); } });
+    $("copy").addEventListener("click", async () => {
+      const text = state.tab === "config" ? $("code").innerText : (state.tab === "answers" ? JSON.stringify(current.answers, null, 2) : JSON.stringify(current.environments, null, 2)) + "\n";
+      try { await navigator.clipboard.writeText(text); $("copy").textContent = "Copied"; } catch { $("copy").textContent = "Copy failed"; }
+      setTimeout(() => ($("copy").textContent = "Copy"), 1500);
+    });
+    $("download").addEventListener("click", () => {
+      if (current.errors.length) return;
+      const blob = new Blob([JSON.stringify(current.answers, null, 2) + "\n"], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = "answers.json";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
