@@ -118,6 +118,9 @@
     .status.bad { background: rgba(255, 107, 129, .07); border: 1px solid rgba(255, 107, 129, .32); color: #ffc7d0; }
     .status b { font-weight: 700; }
 
+    .btn-big { width: 100%; justify-content: center; padding: 15px 20px; font-size: 16px; border-radius: 14px; margin: 0 0 10px; }
+    .zip-status { font-size: 13px; color: var(--text-2); min-height: 20px; margin: 0 0 14px; }
+    .zip-status.bad { color: #ffc7d0; }
     .steps { border-radius: var(--radius); background: var(--panel-strong); border: 1px solid var(--line-strong); padding: 20px 22px; }
     .steps h3 { margin: 0 0 12px; font-size: 15px; }
     .steps ol { margin: 0; padding-left: 20px; color: var(--text-2); font-size: 13.5px; }
@@ -161,11 +164,11 @@
     <header class="intro">
       <div class="kicker">Configurator</div>
       <h1>Configure your own <span class="grad-text">quality framework.</span></h1>
-      <p class="lead">Choose what your project needs. The preview shows the configuration setup will write, and the answers file runs the installer without a single question.</p>
+      <p class="lead">Choose what your project needs and download it, ready to open in VS Code. The preview shows the configuration setup writes; the same choices also work as an answers file for the installer.</p>
       <div class="assurance">
         <span class="assure">No passwords, tokens or database URLs</span>
         <span class="assure">Nothing leaves your browser</span>
-        <span class="assure">Same rules as the installer</span>
+        <span class="assure">The same project the installer creates</span>
       </div>
     </header>
 
@@ -213,6 +216,12 @@
           </div>
           <div class="err" id="roles-err" role="alert"></div>
         </section>
+
+        <section class="panel">
+          <h2><span class="num">6</span>Copilot agents <span class="badge" style="font:500 11px var(--mono);color:var(--muted)">optional</span></h2>
+          <p class="hint">GitHub Copilot agents copied to <code class="inline">.github/agents/</code>. The planner, builder and reviewer hand work to each other, so they come together.</p>
+          <div class="chips" id="agents"></div>
+        </section>
       </form>
 
       <aside class="output" aria-label="Generated files">
@@ -226,7 +235,7 @@
             <span id="file-note">The input for <code class="inline">./install.sh --answers</code></span>
             <span class="btns">
               <button class="btn" type="button" id="copy">Copy</button>
-              <button class="btn btn-primary" type="button" id="download">Download answers.json</button>
+              <button class="btn" type="button" id="download">answers.json</button>
             </span>
           </div>
           <pre id="code" tabindex="0" aria-label="File preview"></pre>
@@ -234,19 +243,20 @@
 
         <div class="status" id="status" role="status"></div>
 
+        <button class="btn btn-primary btn-big" type="button" id="download-zip">Download project (.zip)</button>
+        <div class="zip-status" id="zip-status" role="status" aria-live="polite"></div>
+
         <div class="steps">
           <h3>Then, in a terminal</h3>
           <ol>
-            <li>Get the template:
-              <span class="cmd"><span class="pr">❯ </span>git clone https://github.com/szabihudak/szabihudak-template-SDET-framework.git
-<span class="pr">❯ </span>cd szabihudak-template-SDET-framework</span></li>
-            <li>Run the installer with your answers:
-              <span class="cmd" id="install-cmd"></span></li>
-            <li id="onboard-step">Add the role accounts, masked, to the git-ignored <code class="inline">.env</code>:
-              <span class="cmd"><span class="pr">❯ </span>cd ../<span id="folder">orders-qa</span> &amp;&amp; npm run onboard</span></li>
+            <li>Unpack the project and install it: dependencies, browsers, <code class="inline">.env</code>, a git repository and <code class="inline">npm run doctor</code>.
+              <span class="cmd"><span class="pr">❯ </span>unzip <span class="folder">orders-qa</span>.zip &amp;&amp; cd <span class="folder">orders-qa</span>
+<span class="pr">❯ </span>./install.sh</span></li>
+            <li id="db-step">Put the dedicated test database URL into the git-ignored <code class="inline">.env</code> as <code class="inline">DATABASE_URL</code>.</li>
+            <li id="onboard-step">The installer offers to add the role accounts, masked, to <code class="inline">.env</code>; later: <code class="inline">npm run onboard</code>.</li>
             <li>Open the project in VS Code: <code class="inline">code .</code></li>
           </ol>
-          <p class="note">On Windows: <code class="inline">npm ci</code>, then <code class="inline">npm run setup -- --answers answers.json</code>. Answers format of the template as of October 2026.</p>
+          <p class="note">On Windows: <code class="inline">npm ci</code>, <code class="inline">npx playwright install --with-deps</code>, then <code class="inline">npm run doctor</code>. With the template instead: <code class="inline">./install.sh --answers answers.json</code> in a clone of <a href="https://github.com/szabihudak/szabihudak-template-SDET-framework" style="color:#8fb4ff">the template</a>. <span id="template-version"></span></p>
         </div>
       </aside>
     </div>
@@ -288,6 +298,7 @@
         local: { on: false, webBaseUrl: "http://localhost:3000", apiBaseUrl: "http://localhost:3000/api", openApiUrl: "", allow: { database: false, destructive: false, performance: false, interactiveDiscovery: false } },
       },
       roles: ["user"],
+      agents: { pipeline: false, "test-runner": false, "ci-failure-analyst": false },
       tab: "answers",
     };
 
@@ -364,6 +375,23 @@
       }
     }
 
+    const AGENT_CHOICES = [
+      ["pipeline", "Build pipeline", "planner · builder · reviewer"],
+      ["test-runner", "test-runner", "selects and runs tests"],
+      ["ci-failure-analyst", "ci-failure-analyst", "root cause of CI failures"],
+    ];
+    const PIPELINE = ["test-planner", "test-builder", "test-reviewer"];
+    function renderAgents() {
+      const c = $("agents"); c.innerHTML = "";
+      for (const [key, label, small] of AGENT_CHOICES) {
+        chip(c, `a-${key}`, label, state.agents[key], (v) => { state.agents[key] = v; update(); }, small);
+      }
+    }
+    const chosenAgents = () => [
+      ...(state.agents.pipeline ? PIPELINE : []),
+      ...["test-runner", "ci-failure-analyst"].filter((a) => state.agents[a]),
+    ];
+
     function renderRoles() {
       const c = $("roles"); c.innerHTML = "";
       if (!state.roles.length) c.innerHTML = `<span class="hint" style="margin:0">No roles yet: login is configured after setup.</span>`;
@@ -436,6 +464,7 @@
       if (ui) answers.uiScenariosDoc = ui;
       Object.assign(answers, { environments, modules, browsers });
       if (state.roles.length) answers.roles = [...state.roles];
+      if (chosenAgents().length) answers.agents = chosenAgents();
 
       const config = {
         ...(req ? { requirementsDoc: req } : {}),
@@ -478,19 +507,18 @@
 
       const ok = errors.length === 0;
       $("download").disabled = !ok;
+      $("download-zip").disabled = !ok;
       $("status").className = `status ${ok ? "ok" : "bad"}`;
       $("status").innerHTML = ok
         ? `<b>Valid.</b> The installer accepts this file as it is.`
         : `<b>${errors.length} to fix:</b> ${esc(errors.join(", "))}.`;
 
-      const dbPrefix = usesDatabase ? `DATABASE_URL="postgresql://…" ` : "";
-      $("install-cmd").innerHTML = `<span class="pr">❯ </span>${esc(dbPrefix)}./install.sh --answers ~/Downloads/answers.json` +
-        (usesDatabase ? `\n<span class="c" style="color:#5f6f8c">  # the database URL comes from the environment, never from the file</span>` : "");
-      $("folder").textContent = appName || "<project>";
+      document.querySelectorAll(".folder").forEach((el) => (el.textContent = appName || "project"));
+      $("db-step").style.display = usesDatabase ? "" : "none";
       $("onboard-step").style.display = state.roles.length ? "" : "none";
     }
 
-    function renderAll() { renderModules(); renderBrowsers(); renderEnvs(); renderRoles(); update(); }
+    function renderAll() { renderModules(); renderBrowsers(); renderEnvs(); renderRoles(); renderAgents(); update(); }
 
     document.querySelectorAll(".tab").forEach((tab) => tab.addEventListener("click", () => {
       state.tab = tab.dataset.tab;
@@ -514,6 +542,51 @@
       a.href = URL.createObjectURL(blob); a.download = "answers.json";
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+
+    // The project download: the template's own generator (generator.js) and
+    // template files (template.json), loaded on the first click. It creates
+    // the project setup would create from these answers.
+    let generator;
+    function loadGenerator() {
+      generator ??= (async () => {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = "./configurator/generator.js";
+          script.onload = resolve;
+          script.onerror = () => reject(new Error("The generator could not be loaded."));
+          document.head.appendChild(script);
+        });
+        const response = await fetch("./configurator/template.json");
+        if (!response.ok) throw new Error("The template files could not be loaded.");
+        return { api: window.SdetGenerator, bundle: await response.json() };
+      })();
+      generator.catch(() => (generator = undefined));
+      return generator;
+    }
+
+    $("download-zip").addEventListener("click", async () => {
+      if (current.errors.length) return;
+      const button = $("download-zip"), status = $("zip-status");
+      button.disabled = true; status.className = "zip-status"; status.textContent = "Preparing the project…";
+      try {
+        const { api, bundle } = await loadGenerator();
+        const problems = api.validate(current.answers);
+        if (problems.length) throw new Error(problems.join(" ").replace(/\s+-\s+/g, " · "));
+        const project = await api.generate(current.answers, bundle);
+        const bytes = api.zip(current.appName, project.files, project.executable);
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([bytes], { type: "application/zip" }));
+        a.download = `${current.appName}.zip`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        status.textContent = `${Object.keys(project.files).length} files · template ${bundle.templateVersion}`;
+        $("template-version").textContent = `Projects are generated from template ${bundle.templateVersion}.`;
+      } catch (error) {
+        status.className = "zip-status bad"; status.textContent = error.message;
+      } finally {
+        button.disabled = current.errors.length > 0;
+      }
     });
 
     renderAll();
